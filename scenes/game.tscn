@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=17 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_qw82n"]
@@ -456,6 +456,13 @@ _data = {
 "platform_move": SubResource("Animation_7jg1u")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_curw5"]
+bg_color = Color(0, 0, 0, 0.447059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -565,6 +572,7 @@ position = Vector2(396, -608)
 [node name="Hints" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Hints"]
+visible = false
 offset_left = -155.0
 offset_top = -23.0
 offset_right = -53.0
@@ -574,6 +582,7 @@ theme_override_font_sizes/font_size = 8
 text = "Figure it out :3c"
 
 [node name="Label2" type="Label" parent="Hints"]
+visible = false
 offset_left = -8.0
 offset_top = -61.0
 offset_right = 91.0
@@ -583,6 +592,7 @@ theme_override_font_sizes/font_size = 8
 text = "OwO whats this?"
 
 [node name="Label3" type="Label" parent="Hints"]
+visible = false
 offset_left = 251.0
 offset_top = -126.0
 offset_right = 399.0
@@ -592,6 +602,7 @@ theme_override_font_sizes/font_size = 8
 text = "Careful not to fall down"
 
 [node name="Label4" type="Label" parent="Hints"]
+visible = false
 offset_left = 292.0
 offset_top = -118.0
 offset_right = 362.0
@@ -599,3 +610,12 @@ offset_bottom = -95.0
 theme_override_fonts/font = ExtResource("7_cyu18")
 theme_override_font_sizes/font_size = 16
 text = "( ͡º ꒳ ͡º)"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_left = 37.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_curw5")
