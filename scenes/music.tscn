@@ -6,4 +6,5 @@
 position = Vector2(-1, -28)
 stream = ExtResource("1_aled8")
 autoplay = true
+panning_strength = 0.0
 bus = &"Music"

@@ -4,7 +4,9 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var joystick = $Joystick
+@onready var joystick = $"../HUD/HBoxContainer/Joystick"
+
+var direction = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -21,16 +23,17 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = 0
 	if Input.get_axis("move_left", "move_right"):
 		direction = Input.get_axis("move_left", "move_right")
 	else:
 		print(joystick.posVector)
-		if joystick.posVector.x > 0:
+		#stc this is the part where you can change values to add a walk mechanic
+		if joystick.posVector.x > 0.25:
 			direction = 1
-		elif joystick.posVector.x < 0:
+		elif joystick.posVector.x < -0.25:
 			direction = -1
-		elif joystick.posVector.y == 0:
+		#elif joystick.posVector.y == 0 :
+		else:
 			direction = 0
 	
 	#sets sprite direction

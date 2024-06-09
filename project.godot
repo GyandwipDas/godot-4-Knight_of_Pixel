@@ -19,6 +19,19 @@ config/icon="res://icon.svg"
 
 Music="*res://scenes/music.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/handheld/orientation=4
+
+[gui]
+
+fonts/emulate_touch_from_mouse=true
+fonts/size/mode=0
+fonts/stretch/aspect="expand"
+fonts/stretch/mode="viewport"
+
 [input]
 
 jump={
@@ -39,6 +52,10 @@ move_right={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

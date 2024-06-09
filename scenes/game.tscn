@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=20 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_qw82n"]
@@ -7,8 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://cyr6berepacsh" path="res://scenes/coin.tscn" id="4_lw1bo"]
 [ext_resource type="PackedScene" uid="uid://8p7oyvsmilvn" path="res://scenes/joystick.tscn" id="5_w2d3u"]
 [ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="5_xcl2g"]
+[ext_resource type="Texture2D" uid="uid://dusjnjge6d37n" path="res://assets/UI/Default Action button.png" id="5_xqwpo"]
 [ext_resource type="PackedScene" uid="uid://d1sihsupxrmti" path="res://scenes/slime.tscn" id="6_cscpp"]
+[ext_resource type="Texture2D" uid="uid://dcyxscbbr4tis" path="res://assets/UI/Pressed Action button.png" id="6_nhsc8"]
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="7_cyu18"]
+[ext_resource type="Texture2D" uid="uid://dw26akfan8qam" path="res://assets/sprites/coin_0.png" id="10_1cygj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_curw5"]
+bg_color = Color(0, 0, 0, 0.447059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_42vak"]
 texture = ExtResource("2_lu1q5")
@@ -456,18 +466,69 @@ _data = {
 "platform_move": SubResource("Animation_7jg1u")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_curw5"]
-bg_color = Color(0, 0, 0, 0.447059)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_qw82n")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_left = 37.0
+offset_top = 18.0
+offset_right = 312.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_curw5")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 96.0
+offset_bottom = 97.0
+texture = ExtResource("10_1cygj")
+
+[node name="Score" type="Label" parent="HUD/Panel"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 11.0
+offset_right = 260.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("7_cyu18")
+theme_override_font_sizes/font_size = 50
+text = ": 0"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Joystick" parent="HUD/HBoxContainer" instance=ExtResource("5_w2d3u")]
+position = Vector2(246, -178)
+scale = Vector2(0.25, 0.25)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/HBoxContainer2"]
+position = Vector2(-208, -276)
+scale = Vector2(0.185185, 0.185185)
+texture_normal = ExtResource("5_xqwpo")
+texture_pressed = ExtResource("6_nhsc8")
+action = "jump"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rq4cs")
@@ -487,20 +548,6 @@ limit_bottom = 100
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.5
-
-[node name="Score" type="Label" parent="Player"]
-offset_left = -127.0
-offset_top = -81.0
-offset_right = -25.0
-offset_bottom = -72.0
-theme_override_fonts/font = ExtResource("7_cyu18")
-theme_override_font_sizes/font_size = 8
-text = "🪙:"
-
-[node name="Joystick" parent="Player" instance=ExtResource("5_w2d3u")]
-visible = false
-position = Vector2(-91, 20)
-scale = Vector2(0.05, 0.05)
 
 [node name="Killzone" parent="." instance=ExtResource("5_xcl2g")]
 position = Vector2(111, 80)
@@ -610,12 +657,3 @@ offset_bottom = -95.0
 theme_override_fonts/font = ExtResource("7_cyu18")
 theme_override_font_sizes/font_size = 16
 text = "( ͡º ꒳ ͡º)"
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="HUD"]
-offset_left = 37.0
-offset_top = 18.0
-offset_right = 300.0
-offset_bottom = 128.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_curw5")

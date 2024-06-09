@@ -3,8 +3,8 @@ extends Sprite2D
 var pressing = false
 @onready var parent = $".."
 @onready var outer_ring_joystick = $"../OuterRingJoystick"
-@onready var maxLength = 25
-@onready var deadzone = 10
+@onready var maxLength = 125
+@onready var deadzone = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
