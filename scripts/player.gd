@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var joystick = $"../HUD/HBoxContainer/Joystick"
+@onready var joystick = $"../HUD/LeftStick/Joystick"
 
 var direction = 0
 

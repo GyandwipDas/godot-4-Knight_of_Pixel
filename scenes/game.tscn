@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=22 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_qw82n"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dusjnjge6d37n" path="res://assets/UI/Default Action button.png" id="5_xqwpo"]
 [ext_resource type="PackedScene" uid="uid://d1sihsupxrmti" path="res://scenes/slime.tscn" id="6_cscpp"]
 [ext_resource type="Texture2D" uid="uid://dcyxscbbr4tis" path="res://assets/UI/Pressed Action button.png" id="6_nhsc8"]
+[ext_resource type="Texture2D" uid="uid://c7romd6ywkvwr" path="res://assets/UI/Pause.png" id="7_4k0i2"]
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="7_cyu18"]
+[ext_resource type="PackedScene" uid="uid://dqi6rphk30ugh" path="res://scenes/pause_menu.tscn" id="8_1qoxo"]
 [ext_resource type="Texture2D" uid="uid://dw26akfan8qam" path="res://assets/sprites/coin_0.png" id="10_1cygj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_curw5"]
@@ -474,14 +476,14 @@ script = ExtResource("1_qw82n")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="HUD"]
+[node name="Score" type="Panel" parent="HUD"]
 offset_left = 37.0
 offset_top = 18.0
 offset_right = 312.0
 offset_bottom = 110.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_curw5")
 
-[node name="TextureRect" type="TextureRect" parent="HUD/Panel"]
+[node name="TextureRect" type="TextureRect" parent="HUD/Score"]
 layout_mode = 0
 offset_left = -2.0
 offset_top = -1.0
@@ -489,7 +491,7 @@ offset_right = 96.0
 offset_bottom = 97.0
 texture = ExtResource("10_1cygj")
 
-[node name="Score" type="Label" parent="HUD/Panel"]
+[node name="Score" type="Label" parent="HUD/Score"]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 11.0
@@ -500,7 +502,7 @@ theme_override_font_sizes/font_size = 50
 text = ": 0"
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="LeftStick" type="HBoxContainer" parent="HUD"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -508,11 +510,11 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="Joystick" parent="HUD/HBoxContainer" instance=ExtResource("5_w2d3u")]
+[node name="Joystick" parent="HUD/LeftStick" instance=ExtResource("5_w2d3u")]
 position = Vector2(246, -178)
 scale = Vector2(0.25, 0.25)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HUD"]
+[node name="RightStick" type="HBoxContainer" parent="HUD"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -523,12 +525,34 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/HBoxContainer2"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/RightStick"]
 position = Vector2(-208, -276)
 scale = Vector2(0.185185, 0.185185)
 texture_normal = ExtResource("5_xqwpo")
 texture_pressed = ExtResource("6_nhsc8")
 action = "jump"
+
+[node name="PauseButton" type="HBoxContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/PauseButton"]
+position = Vector2(-110, 29)
+scale = Vector2(0.058333, 0.058333)
+texture_normal = ExtResource("7_4k0i2")
+action = "pause"
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("8_1qoxo")]
+visible = false
+offset_left = 312.0
+offset_top = 123.0
+offset_right = 312.0
+offset_bottom = 123.0
+scale = Vector2(2.49405, 2.49405)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rq4cs")
@@ -619,7 +643,6 @@ position = Vector2(396, -608)
 [node name="Hints" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Hints"]
-visible = false
 offset_left = -155.0
 offset_top = -23.0
 offset_right = -53.0
@@ -629,7 +652,6 @@ theme_override_font_sizes/font_size = 8
 text = "Figure it out :3c"
 
 [node name="Label2" type="Label" parent="Hints"]
-visible = false
 offset_left = -8.0
 offset_top = -61.0
 offset_right = 91.0
@@ -639,7 +661,6 @@ theme_override_font_sizes/font_size = 8
 text = "OwO whats this?"
 
 [node name="Label3" type="Label" parent="Hints"]
-visible = false
 offset_left = 251.0
 offset_top = -126.0
 offset_right = 399.0
@@ -649,7 +670,6 @@ theme_override_font_sizes/font_size = 8
 text = "Careful not to fall down"
 
 [node name="Label4" type="Label" parent="Hints"]
-visible = false
 offset_left = 292.0
 offset_top = -118.0
 offset_right = 362.0
