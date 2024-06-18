@@ -548,10 +548,11 @@ action = "pause"
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource("8_1qoxo")]
 visible = false
-offset_left = 312.0
-offset_top = 123.0
-offset_right = 312.0
-offset_bottom = 123.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 scale = Vector2(2.49405, 2.49405)
 
 [node name="TileMap" type="TileMap" parent="."]
