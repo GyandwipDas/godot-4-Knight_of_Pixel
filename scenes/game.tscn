@@ -1,14 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=24 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_qw82n"]
 [ext_resource type="Texture2D" uid="uid://c7bldsqaqg7n2" path="res://assets/sprites/world_tileset.png" id="2_lu1q5"]
 [ext_resource type="PackedScene" uid="uid://cw8100s8801q5" path="res://scenes/long_platform.tscn" id="3_ewf4i"]
 [ext_resource type="PackedScene" uid="uid://cyr6berepacsh" path="res://scenes/coin.tscn" id="4_lw1bo"]
+[ext_resource type="Texture2D" uid="uid://b5c68s3s3sdrp" path="res://assets/UI/Arrow.png" id="5_ibm2x"]
 [ext_resource type="PackedScene" uid="uid://8p7oyvsmilvn" path="res://scenes/joystick.tscn" id="5_w2d3u"]
 [ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="5_xcl2g"]
 [ext_resource type="Texture2D" uid="uid://dusjnjge6d37n" path="res://assets/UI/Default Action button.png" id="5_xqwpo"]
 [ext_resource type="PackedScene" uid="uid://d1sihsupxrmti" path="res://scenes/slime.tscn" id="6_cscpp"]
+[ext_resource type="Texture2D" uid="uid://bbacwa66xsci1" path="res://assets/UI/Arrow Pressed.png" id="6_j7mh8"]
 [ext_resource type="Texture2D" uid="uid://dcyxscbbr4tis" path="res://assets/UI/Pressed Action button.png" id="6_nhsc8"]
 [ext_resource type="Texture2D" uid="uid://c7romd6ywkvwr" path="res://assets/UI/Pause.png" id="7_4k0i2"]
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="7_cyu18"]
@@ -514,6 +516,23 @@ grow_vertical = 0
 position = Vector2(246, -178)
 scale = Vector2(0.25, 0.25)
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/LeftStick"]
+visible = false
+position = Vector2(312.391, -233.61)
+scale = Vector2(0.18925, 0.18925)
+texture_normal = ExtResource("5_ibm2x")
+texture_pressed = ExtResource("6_j7mh8")
+action = "move_right"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="HUD/LeftStick"]
+visible = false
+position = Vector2(258.391, -30.6096)
+rotation = 3.14159
+scale = Vector2(0.18925, 0.18925)
+texture_normal = ExtResource("5_ibm2x")
+texture_pressed = ExtResource("6_j7mh8")
+action = "move_left"
+
 [node name="RightStick" type="HBoxContainer" parent="HUD"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -526,7 +545,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/RightStick"]
-position = Vector2(-208, -276)
+position = Vector2(-302, -230)
 scale = Vector2(0.185185, 0.185185)
 texture_normal = ExtResource("5_xqwpo")
 texture_pressed = ExtResource("6_nhsc8")

@@ -26,7 +26,7 @@ func _physics_process(delta):
 	if Input.get_axis("move_left", "move_right"):
 		direction = Input.get_axis("move_left", "move_right")
 	else:
-		print(joystick.posVector)
+		#print(joystick.posVector)
 		#stc this is the part where you can change values to add a walk mechanic
 		if joystick.posVector.x > 0.25:
 			direction = 1

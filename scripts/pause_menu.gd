@@ -18,3 +18,7 @@ func _on_resume_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_controller_type_pressed():
+	game_manager.switchJoystick()
