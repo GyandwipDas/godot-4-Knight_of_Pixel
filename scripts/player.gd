@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 150.0
+const SPEED = 125.0
 const JUMP_VELOCITY = -300.0
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var joystick = $"../HUD/LeftStick/Joystick"
@@ -18,13 +18,13 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("char_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	if Input.get_axis("move_left", "move_right"):
-		direction = Input.get_axis("move_left", "move_right")
+	if Input.get_axis("char_move_left", "char_move_right"):
+		direction = Input.get_axis("char_move_left", "char_move_right")
 	else:
 		#print(joystick.posVector)
 		#stc this is the part where you can change values to add a walk mechanic
@@ -48,7 +48,7 @@ func _physics_process(delta):
 			animated_sprite_2d.play("Idle")
 		elif direction != 0:
 			animated_sprite_2d.play("run")
-	elif Input.is_action_pressed("jump") && not is_on_floor() :
+	elif Input.is_action_pressed("char_jump") && not is_on_floor() :
 		animated_sprite_2d.play("jump")
 
 	#applies movement

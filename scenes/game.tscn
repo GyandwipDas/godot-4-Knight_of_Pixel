@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=25 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_qw82n"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="7_cyu18"]
 [ext_resource type="PackedScene" uid="uid://dqi6rphk30ugh" path="res://scenes/pause_menu.tscn" id="8_1qoxo"]
 [ext_resource type="Texture2D" uid="uid://dw26akfan8qam" path="res://assets/sprites/coin_0.png" id="10_1cygj"]
+[ext_resource type="PackedScene" uid="uid://f2pykwfn7r3h" path="res://scenes/cat.tscn" id="17_1grtq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_curw5"]
 bg_color = Color(0, 0, 0, 0.447059)
@@ -697,3 +698,7 @@ offset_bottom = -95.0
 theme_override_fonts/font = ExtResource("7_cyu18")
 theme_override_font_sizes/font_size = 16
 text = "( ͡º ꒳ ͡º)"
+
+[node name="cat" parent="." instance=ExtResource("17_1grtq")]
+z_index = 6
+position = Vector2(-180, 2)
