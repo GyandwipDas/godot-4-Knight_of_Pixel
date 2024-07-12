@@ -187,7 +187,14 @@ script = ExtResource("1_myipr")
 sprite_frames = SubResource("SpriteFrames_3ak0d")
 animation = &"run"
 autoplay = "Idle"
+frame = 7
+frame_progress = 0.742433
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_0fwjj")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
