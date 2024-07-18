@@ -12,14 +12,12 @@ config_version=5
 
 config/name="Knight of Pixel"
 run/main_scene="res://scenes/game.tscn"
-config/use_custom_user_dir=true
-config/custom_user_dir_name="saveStates"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Music="res://scenes/music.tscn"
+Music="*res://scenes/music.tscn"
 
 [display]
 

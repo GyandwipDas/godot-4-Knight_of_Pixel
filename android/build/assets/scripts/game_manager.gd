@@ -79,7 +79,7 @@ func loadJoystick():
 		print("now arrow type")
 	saveGame(0,nodeData["joystickType"], Vector2(-221, -144), Vector2(-180, 2))
 
-func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+func _input(event):
+	if event.is_action_pressed("pause"):
 		print("Pause pressed")
 		pauseGame()

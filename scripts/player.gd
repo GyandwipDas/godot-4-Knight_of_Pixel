@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var joystick = $"../HUD/LeftStick/Joystick"
+@onready var joystick = $"../HUD/LeftUI/Joystick"
+#@onready var inner_solid_joystick = $InnerSolidJoystick
 @onready var coyote_timer = $CoyoteTimer
-@export var SPEED = 125.0
+@export var SPEED = 100.0
+@export var JOYSTICK_RUN_SPEED = 1.25
 @export var JUMP_VELOCITY = -300.0
 
 var direction = 0
@@ -12,7 +14,6 @@ var can_jump = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,10 +40,10 @@ func _physics_process(delta):
 			#direction = 0
 		if joystick.posVector.x > 0:
 			direction = 1
-			print(joystick.posVector.x)
-		elif joystick.posVector.x < -0:
+			#print(joystick.posVector.x)
+		elif joystick.posVector.x < 0:
 			direction = -1
-			print(joystick.posVector.x)
+			#print(joystick.posVector.x)
 		#elif joystick.posVector.y == 0 :
 		else:
 			direction = 0
@@ -65,15 +66,18 @@ func _physics_process(delta):
 	#applies movement
 	if direction:
 		#if joystick.posVector.x < -0.1 && joystick.posVector.x > 0.1:
-		velocity.x = direction * SPEED
-		#velocity.x = min(velocity.x + acc, SPEED)
+		if joystick.pressing:
+			velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
+			animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5
+		else: 
+			velocity.x = direction * SPEED
 		
 		if Input.is_action_pressed("shift"): #teleport/ DASH IF YOU USE is_action_just_pressed
-			#velocity.x = velocity.x * 2
-			velocity.x = lerp(velocity.x, velocity.x * 2.5, .15)
+			#velocity.x = velocity.x * 10
+			velocity.x = lerp(velocity.x, velocity.x * 5, .1)
+			animated_sprite_2d.speed_scale = lerp(1.0, 2.75, .3)
 			#print(velocity.x)
-	if Input.is_action_pressed("shift"): #teleport/ DASH IF YOU USE is_action_just_pressed
-			animated_sprite_2d.speed_scale = lerp(1.0, 2.5, .5)
+			pass
 	else:
 		#velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.x = lerp(velocity.x, 0.0, .25) #slide on leaving movement key
