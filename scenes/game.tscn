@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=29 format=3 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kby7t"]
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
@@ -474,6 +474,18 @@ _data = {
 "platform_move": SubResource("Animation_7jg1u")
 }
 
+[sub_resource type="GDScript" id="GDScript_465j2"]
+script/source = "extends Camera2D
+
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+"
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_kby7t")
 
@@ -701,7 +713,7 @@ autoplay = "platform_move"
 [node name="Enemies" type="Node" parent="."]
 
 [node name="slime" parent="Enemies" instance=ExtResource("6_cscpp")]
-position = Vector2(488, -592)
+position = Vector2(488, -594)
 
 [node name="slime2" parent="Enemies" instance=ExtResource("6_cscpp")]
 position = Vector2(396, -608)
@@ -747,13 +759,20 @@ theme_override_fonts/font = ExtResource("7_cyu18")
 theme_override_font_sizes/font_size = 16
 text = "( ͡º ꒳ ͡º)"
 
+[node name="Camera2DChar" type="Camera2D" parent="."]
+position = Vector2(-219, -131)
+zoom = Vector2(4, 4)
+limit_bottom = 100
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.5
+
 [node name="Player" parent="." instance=ExtResource("1_l00t3")]
-visible = false
-position = Vector2(-216, -79)
+position = Vector2(-218, -116)
 collision_layer = 4
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -8)
+[node name="Camera2DCat" type="Camera2D" parent="."]
+position = Vector2(29, -88)
 zoom = Vector2(4, 4)
 limit_bottom = 100
 limit_smoothed = true
@@ -765,13 +784,14 @@ z_index = 6
 position = Vector2(28, -64)
 collision_layer = 4
 
-[node name="Camera2D2" type="Camera2D" parent="cat"]
-position = Vector2(1, -24)
+[node name="Area2D" parent="." instance=ExtResource("20_ph8y1")]
+position = Vector2(-246, 3)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(-220, -131)
 zoom = Vector2(4, 4)
 limit_bottom = 100
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.5
-
-[node name="Area2D" parent="." instance=ExtResource("20_ph8y1")]
-position = Vector2(-246, 3)
+script = SubResource("GDScript_465j2")

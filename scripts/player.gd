@@ -34,17 +34,12 @@ func _physics_process(delta):
 	if Input.get_axis("char_move_left", "char_move_right"):
 		direction = Input.get_axis("char_move_left", "char_move_right")
 	else:
-		#print(joystick.posVector)
-		#stc this is the part where you can change values to add a walk mechanic
-		#if joystick.posVector.x >= -0.1 && joystick.posVector.x <= 0.1:
-			#direction = 0
 		if joystick.posVector.x > 0:
 			direction = 1
 			#print(joystick.posVector.x)
 		elif joystick.posVector.x < 0:
 			direction = -1
 			#print(joystick.posVector.x)
-		#elif joystick.posVector.y == 0 :
 		else:
 			direction = 0
 	
@@ -65,7 +60,6 @@ func _physics_process(delta):
 
 	#applies movement
 	if direction:
-		#if joystick.posVector.x < -0.1 && joystick.posVector.x > 0.1:
 		if joystick.pressing:
 			velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
 			animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5
@@ -80,7 +74,7 @@ func _physics_process(delta):
 			pass
 	else:
 		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.x = lerp(velocity.x, 0.0, .25) #slide on leaving movement key
+		velocity.x = lerp(velocity.x, 0.0, .2) #slide on leaving movement key
 		#print(velocity.x)
 		animated_sprite_2d.speed_scale = 1
 	move_and_slide()

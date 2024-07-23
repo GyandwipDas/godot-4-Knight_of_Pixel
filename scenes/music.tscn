@@ -3,8 +3,10 @@
 [ext_resource type="AudioStream" uid="uid://dbtfjowyic12m" path="res://assets/music/time_for_adventure.mp3" id="1_aled8"]
 
 [node name="Music" type="AudioStreamPlayer2D"]
-position = Vector2(-1, -28)
+visible = false
 stream = ExtResource("1_aled8")
+volume_db = -80.0
 autoplay = true
 panning_strength = 0.0
 bus = &"Music"
+area_mask = 0

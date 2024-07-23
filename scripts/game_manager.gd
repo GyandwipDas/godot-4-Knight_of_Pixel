@@ -8,10 +8,17 @@ extends Node
 @onready var arrow_jump = $"../HUD/RightUI/ArrowJump"
 @onready var arrow_run = $"../HUD/RightUI/ArrowRun"
 @onready var joystick_jump = $"../HUD/RightUI/JoystickJump"
+@onready var transition_camera = $"../TransitionCamera"
+@onready var camera_2d_char = $"../Player/Camera2DChar"
+@onready var camera_2d_cat = $"../cat/Camera2DCat"
+@onready var cat = $"../cat"
+@onready var player = $"../Player"
 
 var score = 0
 var paused = false #game state
 var nodeData
+enum Player { char, cat }
+var PlayerPOVCam = Player.cat
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), catPos: Vector2 = Vector2(-180, 2)):
@@ -95,3 +102,15 @@ func _input(event):
 	if event.is_action_pressed("pause"):
 		print("Pause pressed")
 		pauseGame()
+
+func switchPlayerPOVCam():
+	if PlayerPOVCam == Player.char:
+		PlayerPOVCam = Player.cat
+	elif PlayerPOVCam == Player.cat:
+		PlayerPOVCam = Player.char
+		pass
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("switch"):
+		switchPlayerPOVCam()
+	pass
