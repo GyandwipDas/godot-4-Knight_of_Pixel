@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var game_manager = %GameManager
 @onready var joystick = $"../HUD/LeftUI/Joystick"
+#@onready var inner_solid_joystick = $InnerSolidJoystick
+@onready var game_manager = %GameManager
 
 @onready var coyote_timer = $CoyoteTimer
-@export var SPEED = 150.0
-@export var JUMP_VELOCITY = -325.0
+@export var SPEED = 100.0
+@export var JUMP_VELOCITY = -300.0
 @export var JOYSTICK_RUN_SPEED = 1.25
 
 var direction = 0
@@ -20,8 +21,8 @@ func _physics_process(delta):
 	 #Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	if game_manager.PlayerPOVCam == game_manager.Player.cat:
+			
+	if game_manager.PlayerPOVCam == game_manager.Player.char:
 		# Handle jump.
 		if can_jump == false && is_on_floor():
 			can_jump = true
@@ -38,8 +39,10 @@ func _physics_process(delta):
 		else:
 			if joystick.posVector.x > 0:
 				direction = 1
+				#print(joystick.posVector.x)
 			elif joystick.posVector.x < 0:
 				direction = -1
+				#print(joystick.posVector.x)
 			else:
 				direction = 0
 		
@@ -53,7 +56,7 @@ func _physics_process(delta):
 		if direction:
 			if joystick.pressing:
 				velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
-				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.25
+				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5
 			else: 
 				velocity.x = direction * SPEED
 			
@@ -64,10 +67,9 @@ func _physics_process(delta):
 		else:
 			velocity.x = lerp(velocity.x, 0.0, .15) #slide on leaving movement key
 			animated_sprite_2d.speed_scale = 1
-	else:
+	else: 
 		velocity.x = 0
 		direction = 0
-	
 	#sets animation
 	if is_on_floor():
 		if direction == 0:

@@ -1,12 +1,13 @@
+#@tool
 extends Area2D
 @onready var game = $".."
 @onready var game_manager = %GameManager
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+@onready var label = $AnimatedSprite2D/Label
+@export var labelstring = ""
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Change this to _ready before shipping
 func _process(delta):
-	print(game.getPlayerPos())
-	pass
+	label.text = labelstring
+	#print(game_manager.hintVisbility(self))
+	#label.visible_ratio = game_manager.hintVisbility(self)
+	label.modulate = Color(1.0, 1.0, 1.0, game_manager.hintVisbility(self))

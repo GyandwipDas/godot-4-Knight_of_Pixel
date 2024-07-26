@@ -8,17 +8,15 @@ extends Node
 @onready var arrow_jump = $"../HUD/RightUI/ArrowJump"
 @onready var arrow_run = $"../HUD/RightUI/ArrowRun"
 @onready var joystick_jump = $"../HUD/RightUI/JoystickJump"
-@onready var transition_camera = $"../TransitionCamera"
-@onready var camera_2d_char = $"../Player/Camera2DChar"
-@onready var camera_2d_cat = $"../cat/Camera2DCat"
+@onready var camera = $"../Camera"
 @onready var cat = $"../cat"
-@onready var player = $"../Player"
+@onready var character = $"../character"
 
 var score = 0
 var paused = false #game state
 var nodeData
 enum Player { char, cat }
-var PlayerPOVCam = Player.cat
+var PlayerPOVCam = Player.char
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), catPos: Vector2 = Vector2(-180, 2)):
@@ -109,8 +107,27 @@ func switchPlayerPOVCam():
 	elif PlayerPOVCam == Player.cat:
 		PlayerPOVCam = Player.char
 		pass
+		
+func distFromChar(from):
+	if PlayerPOVCam == Player.char:
+		return character.global_position.x - from.global_position.x
+	else:
+		return cat.global_position.x - from.global_position.x
+
+func hintVisbility(from):
+	var visibility = (120 - abs(distFromChar(from))) / 75
+	#if visibility > 0 return visibility else return 0.00
+	if visibility >= 0:
+		return visibility
+	else:
+		return 0.00
 
 func _physics_process(delta):
+	#camera switch 
 	if Input.is_action_just_pressed("switch"):
 		switchPlayerPOVCam()
+	if PlayerPOVCam == Player.char:
+		camera.global_position = character.global_position
+	else:
+		camera.global_position = cat.global_position
 	pass
