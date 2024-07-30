@@ -1,4 +1,3 @@
-#@tool
 extends Area2D
 @onready var game = $".."
 @onready var game_manager = %GameManager

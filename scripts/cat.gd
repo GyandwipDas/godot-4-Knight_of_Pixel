@@ -20,6 +20,7 @@ func _physics_process(delta):
 	 #Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		print("cat", velocity.y)
 
 	if game_manager.PlayerPOVCam == game_manager.Player.cat:
 		# Handle jump.
