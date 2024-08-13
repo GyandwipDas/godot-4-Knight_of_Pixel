@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwescxpiwcmil"]
+
+[ext_resource type="Script" path="res://scripts/camera_zoom_out.gd" id="1_4clhh"]
+
+[node name="camera_zoom_out" type="Area2D"]
+script = ExtResource("1_4clhh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

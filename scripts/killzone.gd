@@ -1,10 +1,10 @@
 extends Area2D
-@onready var player = $"../Player"
+@onready var character = $"../character"
 
 @onready var timer = $Timer
 
 func _on_body_entered(body):
-	if body == player:
+	if body == character:
 		print("char")
 	print("Player Died!")
 	Engine.time_scale = 0.5

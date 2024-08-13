@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqy7bb4ch8fok"]
 
 [ext_resource type="Texture2D" uid="uid://c7bldsqaqg7n2" path="res://assets/sprites/world_tileset.png" id="1_2odxm"]
-[ext_resource type="Script" path="res://scripts/sign_board2.gd" id="1_oy6w7"]
+[ext_resource type="Script" path="res://scripts/sign_board.gd" id="1_oy6w7"]
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="3_fg8o5"]
 [ext_resource type="Script" path="res://scripts/Label.gd" id="4_6nk7w"]
 

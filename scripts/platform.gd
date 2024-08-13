@@ -1,8 +1,11 @@
 extends AnimatableBody2D
 @onready var sprite_2d = $Sprite2D
-@onready var collision_shape_2d = $CollisionShape2D
-@onready var animation_player = $"../platform6/AnimationPlayer"
 @onready var character = $"../../character"
+@onready var collision_shape_2d = $CollisionShape2D
+@export var platform:int 
+@onready var pf_string = "../platform" + str(platform) + "/AnimationPlayer"
+#$"../platform6/AnimationPlayer"
+@onready var animation_player = $"../platform$platform/AnimationPlayer"
 
 @export var type: String
 var x
@@ -12,7 +15,6 @@ var h
 var sx
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation_player.play("new_animation")
 	match type[0]:
 		"s" :
 			x = 0					#FIRST TILE X = 0, Y = 0, W = 16, H = 10
@@ -45,7 +47,11 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _on_area_2d_body_entered(body):
-	#animation_player.active = false
-	if body == character:
-		print("!")
+func _on_area_2d_area_entered(area):
+	if platform:
+		get_child(3).play("RESET")
+
+
+func _on_area_2d_area_exited(area):
+	if platform:
+		get_child(3).play("new_animation")
