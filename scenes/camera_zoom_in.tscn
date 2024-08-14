@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://ugjgihk2r7l2"]
+
+[sub_resource type="GDScript" id="GDScript_pde0e"]
+script/source = "extends Area2D
+
+@onready var camera = $\"../Camera\"
+@onready var character = $\"../../character\"
+@onready var cat = $\"../../cat\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_body_entered(body):
+	if body == character || body == cat:
+		#print(camera.zoom,\" \", camera.position)
+		#tween.tween_property(camera, \"zoom\", Vector2(zoom, zoom), 1)
+		camera.make_current()
+"
+
+[node name="camera_zoom_in" type="Area2D"]
+script = SubResource("GDScript_pde0e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

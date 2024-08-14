@@ -1,6 +1,8 @@
 extends Area2D
-@onready var character = $"../character"
 @onready var camera = $"../Camera"
+@onready var camera_2 = $"../Camera2"
+@onready var cat = $"../../cat"
+@onready var character = $"../../character"
 
 @export var posX:float
 @export var posY:float
@@ -16,8 +18,13 @@ func _process(delta):
 	pass
 	
 func _on_body_entered(body):
-	#var tween = create_tween()
-	#if body == character:
-		##print(camera.zoom," ", camera.position)
-		#tween.tween_property(camera, "zoom", Vector2(zoom, zoom), 1)
+	var tween = create_tween()
+	if body == character || body == cat:
+		camera_2.make_current()
+	pass
+
+
+func _on_body_exited(body):
+	if body == character || body == cat:
+		camera.make_current()
 	pass

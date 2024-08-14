@@ -8,9 +8,9 @@ extends Node
 @onready var arrow_jump = $"../HUD/RightUI/ArrowJump"
 @onready var arrow_run = $"../HUD/RightUI/ArrowRun"
 @onready var joystick_jump = $"../HUD/RightUI/JoystickJump"
-@onready var camera = $"../Camera"
 @onready var cat = $"../cat"
 @onready var character = $"../character"
+@onready var camera = $"../Camera Stuff/Camera"
 
 var score = 0
 var paused = false #game state
@@ -128,6 +128,8 @@ func _physics_process(delta):
 		switchPlayerPOVCam()
 	if PlayerPOVCam == Player.char:
 		camera.global_position = character.global_position
-	else:
+	elif PlayerPOVCam == Player.cat:
 		camera.global_position = cat.global_position
+	else:		#handles puzzle scenes
+		pass
 	pass

@@ -1,6 +1,6 @@
 extends Area2D
 @onready var character = $"../character"
-
+@onready var cat = $"../cat"
 @onready var timer = $Timer
 
 func _on_body_entered(body):
