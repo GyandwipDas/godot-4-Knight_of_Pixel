@@ -127,7 +127,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("switch"):
 		switchPlayerPOVCam()
 	if PlayerPOVCam == Player.char:
-		camera.global_position = character.global_position
+		camera.global_position = character.global_position + Vector2(0, -15)
 	elif PlayerPOVCam == Player.cat:
 		camera.global_position = cat.global_position
 	else:		#handles puzzle scenes

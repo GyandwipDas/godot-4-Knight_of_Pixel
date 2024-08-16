@@ -2,14 +2,16 @@ extends AnimatableBody2D
 @onready var sprite_2d = $Sprite2D
 @onready var character = $"../../character"
 @onready var collision_shape_2d = $CollisionShape2D
-@onready var timer = $Timer
-@onready var animation_player = $"../long_platform2/AnimationPlayer"
+@onready var entry_timer = $Entry_Timer
+@onready var return_timer = $Return_Timer
+@onready var animation_player = $"../platform5/AnimationPlayer"
 
 @export var type: String
-@export var moveable: bool
+@export var moveable : bool
 @export var moveWhenOn: bool
 @export var waitTime = 1.0
-@onready var playerOnPF = false
+@export var returnable: bool
+
 var x
 var y
 var w
@@ -20,7 +22,12 @@ var playFW = true #play animation forward = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = waitTime
+	entry_timer.wait_time = waitTime
+	return_timer.wait_time = waitTime + 1
+	#var player = get_node(get_child(5))
+	#animation_player.play_backwards()
+	
+	#dynamic block selector
 	match type[0]:
 		"s" :
 			x = 0					#FIRST TILE X = 0, Y = 0, W = 16, H = 10
@@ -53,31 +60,41 @@ func _ready():
 
 
 func _on_area_2d_area_entered(area):
-	playerOnPF = true
 	if moveable:
 		if !moveWhenOn:
 			get_child(5).play("RESET")
 		else:
-			playFW = true
-			timer.start()
-
+			entry_timer.start()
+			
 
 func _on_area_2d_area_exited(area):
-	playerOnPF = false
 	if moveable:
 		if !moveWhenOn:
 			get_child(5).play("new_animation")
 		else:
-			playFW = false
-			timer.start()
+			entry_timer.stop()
+			
 
-func _on_timer_timeout():
-	if playFW == true && playerOnPF == true:
+#func _on_timer_timeout():
+	#if playFW == true:
+		#get_child(5).play("new_animation")
+	#elif playFW == false:
+		#get_child(5).play_backwards("new_animation")
+	#pass # Replace with function body.
+
+
+func _on_entry_timer_timeout():
+	if playFW:
 		get_child(5).play("new_animation")
-	elif playFW == false && playerOnPF == false:
+		if returnable:
+			return_timer.start()
+		else:
+			playFW = false
+	else:
 		get_child(5).play_backwards("new_animation")
-	pass # Replace with function body.
+		playFW = true
+	pass
 
-
-func _on_timer_2_timeout():
+func _on_return_timer_timeout():
+	get_child(5).play_backwards("new_animation")
 	pass # Replace with function body.

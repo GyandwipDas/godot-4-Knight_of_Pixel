@@ -62,7 +62,7 @@ func _physics_process(delta):
 				animated_sprite_2d.speed_scale = lerp(1.0, 2.75, .3)
 				pass
 		else:
-			velocity.x = lerp(velocity.x, 0.0, .15) #slide on leaving movement key
+			velocity.x = lerp(velocity.x, 0.0, .25) #slide on leaving movement key
 			animated_sprite_2d.speed_scale = 1
 	else:
 		velocity.x = 0
