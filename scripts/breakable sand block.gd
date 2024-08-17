@@ -8,7 +8,8 @@ extends AnimatableBody2D
 @onready var return_timer = $ReturnTimer
 @onready var collision_shape_2d = $CollisionShape2D
 
-@export var waitTime:float
+@export var waitTime: float
+@export var rebuildable: bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = waitTime
@@ -41,12 +42,13 @@ func _on_area_2d_area_exited(area):
 
 func _on_animation_player_animation_finished(anim_name):
 	collision_shape_2d.disabled = true
-	print("block deleted")
+	#print("block deleted")
 	return_timer.start()
 	pass # Replace with function body.
 
 func _on_return_timer_timeout():
-	print("Came back")
-	collision_shape_2d.disabled = false
-	animated_sprite_2d.play_backwards("break")
+	#print("Came back")
+	if rebuildable:
+		collision_shape_2d.disabled = false
+		animated_sprite_2d.play_backwards("break")
 	pass # Replace with function body.

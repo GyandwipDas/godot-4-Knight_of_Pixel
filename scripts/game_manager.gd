@@ -125,6 +125,7 @@ func hintVisbility(from):
 func _physics_process(delta):
 	#camera switch 
 	if Input.is_action_just_pressed("switch"):
+		camera.make_current()
 		switchPlayerPOVCam()
 	if PlayerPOVCam == Player.char:
 		camera.global_position = character.global_position + Vector2(0, -15)

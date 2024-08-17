@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @onready var entry_timer = $Entry_Timer
 @onready var return_timer = $Return_Timer
 @onready var animation_player = $"../platform5/AnimationPlayer"
+@onready var collision_shape_detector = $Area2D/CollisionShape2D
 
 @export var type: String
 @export var moveable : bool
@@ -16,7 +17,8 @@ var x
 var y
 var w
 var h
-var sx
+var px # platform x dimension
+var dx # detector x dimension
 
 var playFW = true #play animation forward = true
 
@@ -30,20 +32,23 @@ func _ready():
 	#dynamic block selector
 	match type[0]:
 		"s" :
-			x = 0					#FIRST TILE X = 0, Y = 0, W = 16, H = 10
-			w = 16										#+16
+			x = 0			#FIRST TILE X = 0, Y = 0, W = 16, H = 10
+			w = 16								#+16
 			h = 10
-			sx = .5
+			px = .5
+			dx = 1.45
 		"m" :
-			x = 16					#FIRST TILE X = 16, Y = 0, W = 32, H = 10
-			w = 32										#+16
+			x = 16			#FIRST TILE X = 16, Y = 0, W = 32, H = 10
+			w = 32								#+16
 			h = 10
-			sx = 1
+			px = 1
+			dx = 2.85
 		"l" :
-			x = 48					#FIRST TILE X = 48, Y = 0, W = 48, H = 10
-			w = 48										#+16
+			x = 48			#FIRST TILE X = 48, Y = 0, W = 48, H = 10
+			w = 48								#+16
 			h = 10
-			sx = 1.5
+			px = 1.5
+			dx = 4.25
 	
 	match type[1]:
 		"0" :
@@ -55,7 +60,8 @@ func _ready():
 		"3" :
 			y = 48
 	sprite_2d.region_rect = Rect2(x, y, w, h)
-	collision_shape_2d.scale = Vector2(sx, 1)
+	collision_shape_2d.scale = Vector2(px, 1)
+	collision_shape_detector.scale = Vector2(dx, 1)
 	pass # Replace with function body.
 
 

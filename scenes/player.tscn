@@ -179,7 +179,7 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3airg"]
-size = Vector2(16, 19)
+size = Vector2(12, 19)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5

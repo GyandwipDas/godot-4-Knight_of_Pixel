@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqy7bb4ch8fok"]
+[gd_scene load_steps=8 format=3 uid="uid://cqy7bb4ch8fok"]
 
 [ext_resource type="Texture2D" uid="uid://c7bldsqaqg7n2" path="res://assets/sprites/world_tileset.png" id="1_2odxm"]
 [ext_resource type="Script" path="res://scripts/sign_board.gd" id="1_oy6w7"]
@@ -19,6 +19,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v4ne"]
+size = Vector2(16.4594, 16.4594)
 
 [node name="SignBoard" type="Area2D"]
 script = ExtResource("1_oy6w7")
@@ -52,3 +55,20 @@ script = ExtResource("4_6nk7w")
 offset_right = 40.0
 offset_bottom = 40.0
 bbcode_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+scale = Vector2(0.850578, 0.850578)
+shape = SubResource("RectangleShape2D_3v4ne")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.850578, 0.850578)
+target_position = Vector2(0, 9.40537)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.850578, 0.850578)
+shape = SubResource("RectangleShape2D_3v4ne")
