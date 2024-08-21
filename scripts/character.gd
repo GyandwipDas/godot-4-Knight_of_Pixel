@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var joystick = $"../HUD/LeftUI/Joystick"
 #@onready var inner_solid_joystick = $InnerSolidJoystick
 @onready var game_manager = %GameManager
+@onready var area_2d: Area2D = $Area2D
 
 @onready var coyote_timer = $CoyoteTimer
 @export var SPEED = 100.0
@@ -83,3 +84,16 @@ func _physics_process(delta):
 
 func _on_coyote_timer_timeout():
 	can_jump = false
+
+func _ready():
+	#print(game_manager.nodeData["playerPos"])
+	var arr = game_manager.nodeData["playerPos"]
+	
+	#string(JSON) to vector2 There has to be a better way jeez
+	arr = arr.split(",")
+	var arr1 = arr[0].split("(")[1]
+	var arr2 = arr[1].split(")")[0]
+
+	position = Vector2(float(arr1), float(arr2)) 
+	
+	pass
