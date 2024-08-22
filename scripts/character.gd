@@ -87,12 +87,15 @@ func _on_coyote_timer_timeout():
 
 func _ready():
 	#print(game_manager.nodeData["playerPos"])
+	#game_manager.loadGame()
 	var arr = game_manager.nodeData["playerPos"]
 	
 	#string(JSON) to vector2 There has to be a better way jeez
 	arr = arr.split(",")
 	var arr1 = arr[0].split("(")[1]
 	var arr2 = arr[1].split(")")[0]
+	
+	#arrgame_manager.stringToVec2(arr)
 
 	position = Vector2(float(arr1), float(arr2)) 
 	

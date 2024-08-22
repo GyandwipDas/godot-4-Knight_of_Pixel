@@ -19,23 +19,24 @@ enum Player { char, cat }
 var PlayerPOVCam = Player.char
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
-func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), catPos: Vector2 = Vector2(-180, 2)):
+func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level = 1, memory = 0):
 	var saveDictionary = {
 		"score" : score,
 		"joystickType": joystickType,
 		"playerPos": playerPos,
-		"catPos": catPos,
+		"level": level,
+		"memory": memory,
 	}
 	return saveDictionary
 	
-func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), catPos: Vector2 = Vector2(-180, 2)):
+func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level = 1, memory = 0):
 	var saveGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.WRITE)
-	var jsonString = JSON.stringify(save(score, joystickType, playerPos, catPos))
+	var jsonString = JSON.stringify(save(score, joystickType, playerPos, level, memory))
 	saveGame.store_line(jsonString)
 
 func loadGame():
 	if !FileAccess.file_exists("user://KnightOfPixel.save"):
-		saveGame(0, true, Vector2(-221, -144), Vector2(-180, 2))
+		saveGame(0, true, Vector2(-221, -144), 1, 0)
 	var saveGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.READ)
 	
 	while saveGame.get_position() < saveGame.get_length():
@@ -77,9 +78,12 @@ func switchJoystick():
 		arrow_jump.show()
 		arrow_run.show()
 		print("now arrow type")
-	saveGame(0,!nodeData["joystickType"], Vector2(-221, -144), Vector2(-180, 2))
+	saveGame(0,!nodeData["joystickType"], nodeData["playerPos"], nodeData["level"], nodeData["memory"])
 
 func loadJoystick():
+	var arr
+	var arr1 : float
+	var arr2 : float
 	loadGame()
 	if nodeData["joystickType"]:
 		joystick.show()
@@ -94,7 +98,14 @@ func loadJoystick():
 		arrow_jump.show()
 		arrow_run.show()
 		print("now arrow type")
-	saveGame(0,nodeData["joystickType"], Vector2(-221, -144), Vector2(-180, 2))
+		
+		#converting the playerPos from string to float
+		arr = nodeData["playerPos"]
+		arr = arr.split(",")
+		arr1 = arr[0].split("(")[1]
+		arr2 = arr[1].split(")")[0]
+		
+	saveGame(0,nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
 
 func _input(event):
 	if event.is_action_pressed("pause"):

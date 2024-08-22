@@ -68,7 +68,8 @@ func _ready():
 func _on_area_2d_area_entered(area):
 	if moveable:
 		if !moveWhenOn:
-			get_child(5).play("RESET")
+			#get_child(5).play("RESET")
+			get_child(5).active = false
 		else:
 			entry_timer.start()
 			
@@ -76,6 +77,7 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if moveable:
 		if !moveWhenOn:
+			get_child(5).active = true
 			get_child(5).play("new_animation")
 		else:
 			entry_timer.stop()
