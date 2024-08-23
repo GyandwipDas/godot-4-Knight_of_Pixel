@@ -1,16 +1,10 @@
-extends AnimationPlayer
-
+extends Node
 @onready var game_manager: Node = %GameManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game_manager.loadGame()
-	print("This is the memory count now", game_manager.nodeData["memory"])
-	if int(game_manager.nodeData["memory"]) >= 1:
-		print("This is the memory count now!!!!", game_manager.nodeData["memory"])
-		play("falling rocks")
-	else:
-		pause()
+	if game_manager.nodeData["memory"] != 1:
+		get_node(get_path()).queue_free()
 	pass # Replace with function body.
 
 

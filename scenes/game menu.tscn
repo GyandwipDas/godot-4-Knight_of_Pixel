@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1fkh0p88qbmv"]
+
+[ext_resource type="Script" path="res://scripts/game menu.gd" id="1_gm7wl"]
+[ext_resource type="FontFile" uid="uid://cc56avyn7x0s0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_2lwks"]
+
+[node name="Game Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gm7wl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -50.5
+offset_right = 46.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="New Game" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2lwks")
+theme_override_font_sizes/font_size = 75
+text = "New Game"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/New Game"]
+visible = false
+layout_mode = 0
+offset_left = -95.5
+offset_top = -56.0
+offset_right = 679.5
+offset_bottom = -1.0
+theme_override_fonts/font = ExtResource("2_2lwks")
+theme_override_font_sizes/font_size = 25
+text = "This will delete any previous saves
+Click again to continue
+"
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2lwks")
+theme_override_font_sizes/font_size = 75
+text = "Continue"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2lwks")
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

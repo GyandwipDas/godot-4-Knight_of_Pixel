@@ -61,6 +61,9 @@ func pauseGame():
 	paused = !paused
 
 func switchJoystick():
+	var arr
+	var arr1 : float
+	var arr2 : float
 	loadGame()
 	if !nodeData["joystickType"]:
 		joystick.show()
@@ -78,7 +81,13 @@ func switchJoystick():
 		arrow_jump.show()
 		arrow_run.show()
 		print("now arrow type")
-	saveGame(0,!nodeData["joystickType"], nodeData["playerPos"], nodeData["level"], nodeData["memory"])
+		
+		arr = nodeData["playerPos"]
+		arr = arr.split(",")
+		arr1 = float(arr[0].split("(")[1])
+		arr2 = float(arr[1].split(")")[0])
+		
+	saveGame(0,!nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
 
 func loadJoystick():
 	var arr
@@ -102,8 +111,8 @@ func loadJoystick():
 		#converting the playerPos from string to float
 		arr = nodeData["playerPos"]
 		arr = arr.split(",")
-		arr1 = arr[0].split("(")[1]
-		arr2 = arr[1].split(")")[0]
+		arr1 = float(arr[0].split("(")[1])
+		arr2 = float(arr[1].split(")")[0])
 		
 	saveGame(0,nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
 
@@ -145,3 +154,6 @@ func _physics_process(delta):
 	else:		#handles puzzle scenes
 		pass
 	pass
+
+func _ready():
+	loadGame()

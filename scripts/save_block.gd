@@ -34,18 +34,33 @@ func _on_area_entered(area: Area2D) -> void:
 		animation_player.play("save_block")
 		print(get_path())
 		var curr_path = String(get_path())
-		
-		for i in range(1, int(curr_path[curr_path.length() - 1])):
+		var save_range: String
+		if int(curr_path[curr_path.length() - 1]) && int(curr_path[curr_path.length() - 2]):
+			save_range = curr_path[curr_path.length() - 2]
+			save_range += curr_path[curr_path.length() - 1]
+		elif int(curr_path[curr_path.length() - 1]):
+			save_range = curr_path[curr_path.length() - 1]
+		print("curr range",save_range)
+		for i in range(1, int(save_range) + 1):
 			paths = "../save_block" + str(i)
-			#print(get_node(paths))
-			if get_node(paths):
+			game_manager.loadGame()
+			
+			#deletes future save blocks so you can interact with them only after 1st memory TBI
+			if memory_count == 0 && save_range == "8" && game_manager.nodeData["memory"] != 1:
+				print("!!!!!!!!!!!!!!!!")
+				get_node("../save_block11").queue_free()
+			#elif memory_count == 0 && game_manager.nodeData["memory"] == 1 && save_range == "8":
+				
+				
+			if get_node(paths) && paths != "../save_block8":
 				get_node(paths).queue_free()
+			print(get_path()," -> ",get_node(paths))
 			#get_node(paths).queue_free()
 			pass
 		
 		game_manager.loadGame()
 		var arr = String(get_path())
-		if game_manager.nodeData["memory"] == 1 && (arr[arr.length() - 1] == "9" || arr[arr.length() - 1] == "2"):
+		if game_manager.nodeData["memory"] == 1 && (arr[arr.length() - 1] == "8"):
 			entry_rock_animation_player_2.play("end")
 			cave_rocks_animation_player.play("RESET")
 	pass # Replace with function body.

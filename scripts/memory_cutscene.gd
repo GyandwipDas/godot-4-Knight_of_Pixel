@@ -8,10 +8,11 @@ var memory_scene = preload("res://scenes/memory.tscn")
 func _ready() -> void:
 	game_manager.loadGame()
 	if game_manager.nodeData["memory"] > 0:
-		for i in range(0, game_manager.nodeData["memory"]):
+		for i in range(1, game_manager.nodeData["memory"] + 1):
 			var paths = "../memory_cutscene" + str(i)
 			if get_node(paths):
 				get_node(paths).queue_free()
+			#print(i)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area == character.area_2d:

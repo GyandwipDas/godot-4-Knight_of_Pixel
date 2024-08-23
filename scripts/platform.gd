@@ -12,6 +12,7 @@ extends AnimatableBody2D
 @export var moveWhenOn: bool
 @export var waitTime = 1.0
 @export var returnable: bool
+@export var continuous_play: bool
 
 var x
 var y
@@ -62,6 +63,9 @@ func _ready():
 	sprite_2d.region_rect = Rect2(x, y, w, h)
 	collision_shape_2d.scale = Vector2(px, 1)
 	collision_shape_detector.scale = Vector2(dx, 1)
+	
+	if continuous_play:
+		get_parent().play("platform")
 	pass # Replace with function body.
 
 
