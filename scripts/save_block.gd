@@ -32,7 +32,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		#deleting current and previous save blocks to stop accidentally saving previous postions
 		animation_player.play("save_block")
-		print(get_path())
+		#print(get_path())
 		var curr_path = String(get_path())
 		var save_range: String
 		if int(curr_path[curr_path.length() - 1]) && int(curr_path[curr_path.length() - 2]):
@@ -40,7 +40,7 @@ func _on_area_entered(area: Area2D) -> void:
 			save_range += curr_path[curr_path.length() - 1]
 		elif int(curr_path[curr_path.length() - 1]):
 			save_range = curr_path[curr_path.length() - 1]
-		print("curr range",save_range)
+		#print("curr range",save_range)
 		for i in range(1, int(save_range) + 1):
 			paths = "../save_block" + str(i)
 			game_manager.loadGame()

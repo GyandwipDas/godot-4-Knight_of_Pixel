@@ -5,9 +5,9 @@ extends AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	game_manager.loadGame()
-	print("This is the memory count now", game_manager.nodeData["memory"])
+	#print("This is the memory count now", game_manager.nodeData["memory"])
 	if int(game_manager.nodeData["memory"]) >= 1:
-		print("This is the memory count now!!!!", game_manager.nodeData["memory"])
+		#print("This is the memory count now!!!!", game_manager.nodeData["memory"])
 		play("falling rocks")
 	else:
 		pause()
