@@ -1,11 +1,10 @@
 extends AnimatableBody2D
 @onready var sprite_2d = $Sprite2D
-@onready var character = $"../../character"
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var entry_timer = $Entry_Timer
 @onready var return_timer = $Return_Timer
-@onready var animation_player = $"../platform5/AnimationPlayer"
 @onready var collision_shape_detector = $Area2D/CollisionShape2D
+@onready var character: CharacterBody2D = $"../../../character"
 
 @export var type: String
 @export var moveable : bool

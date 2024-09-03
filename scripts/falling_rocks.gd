@@ -2,6 +2,10 @@ extends Node2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var rock_types : Array[Rect2i]
+@onready var character: CharacterBody2D = $"../../../character"
+@onready var killzone_collision: CollisionShape2D = $Killzone/CollisionShape2D
+@onready var game_manager: Node = %GameManager
+@onready var killzone: Area2D = $Killzone
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,3 +25,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area == character.area_2d:
+		print(get_path())
+		var path = String(get_path())
+		game_manager.loadGame()
+		if path[path.length() - 1] == "4" && game_manager.nodeData["memory"] == 0 :
+			killzone.monitoring = false
+			print("bonk")
+	pass # Replace with function body.

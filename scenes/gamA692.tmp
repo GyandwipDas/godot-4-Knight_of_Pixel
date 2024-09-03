@@ -1296,7 +1296,7 @@ collision_layer = 4
 labelstring = "Sandblocks break after some time. Careful!"
 
 [node name="character" parent="." instance=ExtResource("1_l00t3")]
-position = Vector2(1315, -1015)
+position = Vector2(1401, -983)
 collision_layer = 5
 
 [node name="cat" parent="." instance=ExtResource("17_1grtq")]

@@ -1,6 +1,5 @@
 extends Control
 
-@onready var game_manager: Node = %GameManager
 @onready var warning: Label = $"MarginContainer/VBoxContainer/New Game/Label"
 var new_game_counter = 0
 var game_scene = preload("res://scenes/game.tscn")

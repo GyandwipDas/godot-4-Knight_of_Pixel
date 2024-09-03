@@ -14,7 +14,7 @@ extends CharacterBody2D
 var direction = 0
 var coyote_time = .5
 var can_jump = false
-
+var inputs_allowed = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -29,10 +29,14 @@ func _physics_process(delta):
 			can_jump = true
 		if can_jump == true && coyote_timer.is_stopped():
 			coyote_timer.start(coyote_time)
-		if Input.is_action_just_pressed("char_jump") and can_jump:
+		if Input.is_action_just_pressed("char_jump") && can_jump && inputs_allowed:
 			velocity.y = JUMP_VELOCITY
 			can_jump = false
-
+			
+		#variable jump
+		#if Input.is_action_just_released("char_jump") && inputs_allowed:
+			#velocity.y *= 0.35
+			
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		if Input.get_axis("char_move_left", "char_move_right"):
@@ -54,7 +58,7 @@ func _physics_process(delta):
 			animated_sprite_2d.flip_h = true
 
 		#applies movement
-		if direction:
+		if direction && inputs_allowed:
 			if joystick.pressing:
 				velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
 				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5
@@ -72,13 +76,16 @@ func _physics_process(delta):
 		velocity.x = 0
 		direction = 0
 	#sets animation
-	if is_on_floor():
+	if is_on_floor() && inputs_allowed:
 		if direction == 0:
 			animated_sprite_2d.play("idle")
 		else:
 			animated_sprite_2d.play("run")
-	else:
+	elif inputs_allowed:
 		animated_sprite_2d.play("jump")
+	else:
+		animated_sprite_2d.play("idle")
+		
 	move_and_slide()
 
 
@@ -97,6 +104,6 @@ func _ready():
 	
 	#arrgame_manager.stringToVec2(arr)
 
-	position = Vector2(float(arr1), float(arr2)) 
+	#position = Vector2(float(arr1), float(arr2)) 
 	
 	pass

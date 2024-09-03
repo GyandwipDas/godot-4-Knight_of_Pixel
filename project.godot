@@ -12,7 +12,6 @@ config_version=5
 
 config/name="Knight of Pixel"
 run/main_scene="res://scenes/main menu.tscn"
-config/use_custom_user_dir=true
 config/custom_user_dir_name="KnightOfPixel"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -24,7 +23,6 @@ Music="*res://scenes/music.tscn"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [gui]
 

@@ -11,12 +11,14 @@ extends Node
 @onready var cat = $"../cat"
 @onready var character = $"../character"
 @onready var camera = $"../Camera Stuff/Camera"
+@onready var camera_3 = $"../Camera Stuff/Camera3"
 
 var score = 0
 var paused = false #game state
 var nodeData
 enum Player { char, cat }
 var PlayerPOVCam = Player.char
+var puzzle_pos
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
@@ -147,10 +149,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("switch"):
 		camera.make_current()
 		switchPlayerPOVCam()
+		
+	#if Input.is_key_pressed(KEY_V):
+		#print("K")
 	if PlayerPOVCam == Player.char:
 		camera.global_position = character.global_position + Vector2(0, -15)
+		#camera_3.global_position = character.global_position + Vector2(0, -15)
 	elif PlayerPOVCam == Player.cat:
-		camera.global_position = cat.global_position
-	else:		#handles puzzle scenes
-		pass
+		camera.global_position = cat.global_position + Vector2(0, -15)
+		#camera_3.global_position = character.global_position + Vector2(0, -15)
+	if puzzle_pos:		#handles puzzle scenes
+		camera.position_smoothing_speed = 1
+		camera.global_position = puzzle_pos
+
 	pass

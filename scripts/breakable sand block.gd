@@ -1,7 +1,7 @@
 extends AnimatableBody2D
 
-@onready var character = $"../character"
-@onready var cat = $"../cat"
+@onready var character = $"../../character"
+@onready var cat = $"../../cat"
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimatedSprite2D/AnimationPlayer
 @onready var timer = $Timer

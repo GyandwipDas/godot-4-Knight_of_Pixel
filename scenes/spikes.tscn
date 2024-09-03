@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhdl4w6mnj7ae"]
+
+[ext_resource type="Texture2D" uid="uid://dpk2f4wtty4s6" path="res://assets/sprites/4 Conjoined Wooden Spikes.png" id="1_02xbe"]
+[ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="2_7hqiv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17k5e"]
+size = Vector2(40, 7.75)
+
+[node name="Spikes" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_02xbe")
+
+[node name="Killzone" parent="." instance=ExtResource("2_7hqiv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -10.75)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_17k5e")
