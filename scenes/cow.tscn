@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5dt1oxvr4jd1"]
+
+[ext_resource type="Texture2D" uid="uid://dka20d5fd4ica" path="res://assets/sprites/cow sprite sheet1.png" id="1_cvav1"]
+[ext_resource type="Script" path="res://scripts/cow.gd" id="2_6nlyy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv215"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(0, 104, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xds0i"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(52, 104, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux31k"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(0, 52, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nhvl"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(52, 52, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_733vi"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(0, 156, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs3be"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(52, 156, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78if4"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(104, 156, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne8kq"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(156, 156, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ptw7"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(0, 0, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kibf5"]
+atlas = ExtResource("1_cvav1")
+region = Rect2(52, 0, 52, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ja4ta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv215")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xds0i")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux31k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nhvl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_733vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs3be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78if4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne8kq")
+}],
+"loop": false,
+"name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ptw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kibf5")
+}],
+"loop": true,
+"name": &"look back",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hknw"]
+size = Vector2(20.875, 25.3333)
+
+[node name="cow" type="AnimatedSprite2D"]
+position = Vector2(0, -39)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ja4ta")
+animation = &"kick"
+autoplay = "idle"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_6nlyy")
+
+[node name="R inner area" type="Area2D" parent="."]
+position = Vector2(-4, 13.3333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="R inner area"]
+position = Vector2(18.6667, 0)
+shape = SubResource("RectangleShape2D_7hknw")
+
+[node name="R outer area" type="Area2D" parent="."]
+position = Vector2(-28.6667, 13.3333)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="R outer area"]
+position = Vector2(64.6667, 0)
+shape = SubResource("RectangleShape2D_7hknw")
+
+[node name="L inner area" type="Area2D" parent="."]
+position = Vector2(-4, 13.3333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="L inner area"]
+position = Vector2(-11.3333, 0)
+shape = SubResource("RectangleShape2D_7hknw")
+
+[node name="L outer area" type="Area2D" parent="."]
+position = Vector2(-28.6667, 13.3333)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="L outer area"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_7hknw")
+
+[connection signal="area_entered" from="R inner area" to="." method="_on_r_inner_area_area_entered"]
+[connection signal="area_exited" from="R inner area" to="." method="_on_r_inner_area_area_exited"]
+[connection signal="area_entered" from="R outer area" to="." method="_on_r_outer_area_area_entered"]
+[connection signal="area_exited" from="R outer area" to="." method="_on_r_outer_area_area_exited"]
+[connection signal="area_entered" from="L inner area" to="." method="_on_l_inner_area_area_entered"]
+[connection signal="area_exited" from="L inner area" to="." method="_on_l_inner_area_area_exited"]
+[connection signal="area_entered" from="L outer area" to="." method="_on_l_outer_area_area_entered"]
+[connection signal="area_exited" from="L outer area" to="." method="_on_l_outer_area_area_exited"]

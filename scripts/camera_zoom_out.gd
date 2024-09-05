@@ -30,7 +30,7 @@ func _on_body_entered(body):
 		#tween.tween_property(camera_3, "position", camera_2.position, 2)
 		tween.tween_property(camera, "zoom", Vector2(3,3), 1.5)
 		
-		character.inputs_allowed = false
+		#character.inputs_allowed = false
 		timer.start()
 	game_manager.puzzle_pos = camera_2.position
 	print(camera_2.position)
@@ -48,7 +48,7 @@ func _on_body_exited(body):
 			##camera.make_current()
 		##camera.make_current()
 		
-		character.inputs_allowed = false
+		#character.inputs_allowed = false
 		timer.start()
 		
 	game_manager.puzzle_pos = null

@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var paths
 	if area == character.area_2d:
-		#game_manager.loadGame()
+		game_manager.loadGame()
 		if memory_count_update:
 			game_manager.saveGame(0, game_manager.nodeData["joystickType"], Vector2(character.position.x + x_offset, character.position.y - 50), game_manager.nodeData["level"], memory_count)
 		else:

@@ -12,6 +12,7 @@ extends AnimatableBody2D
 @export var waitTime = 1.0
 @export var returnable: bool
 @export var continuous_play: bool
+@export var one_way_col: bool = true
 
 var x
 var y
@@ -24,6 +25,7 @@ var playFW = true #play animation forward = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	collision_shape_2d.one_way_collision = one_way_col
 	entry_timer.wait_time = waitTime
 	return_timer.wait_time = waitTime + 1
 	#var player = get_node(get_child(5))

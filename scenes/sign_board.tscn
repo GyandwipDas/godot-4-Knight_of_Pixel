@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqy7bb4ch8fok"]
 
-[ext_resource type="Texture2D" uid="uid://c7bldsqaqg7n2" path="res://assets/sprites/world_tileset.png" id="1_2odxm"]
+[ext_resource type="Texture2D" uid="uid://070krisibxf6" path="res://assets/sprites/world tileset/world_tileset-sheet_bw_dark.png" id="1_2odxm"]
 [ext_resource type="Script" path="res://scripts/sign_board.gd" id="1_oy6w7"]
 [ext_resource type="FontFile" uid="uid://bojjdrj4ux5gc" path="res://assets/fonts/PixelOperator8.ttf" id="3_fg8o5"]
 [ext_resource type="Script" path="res://scripts/Label.gd" id="4_6nk7w"]
@@ -28,6 +28,7 @@ script = ExtResource("1_oy6w7")
 labelstring = "hi"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_2v373")
 
@@ -44,6 +45,7 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.609306, 0.609306)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_fg8o5")
 text = "Default text"
 horizontal_alignment = 1

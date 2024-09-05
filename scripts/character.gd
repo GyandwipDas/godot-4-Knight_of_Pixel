@@ -15,13 +15,19 @@ var direction = 0
 var coyote_time = .5
 var can_jump = false
 var inputs_allowed = true
+var falling_var = 1
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#var gravity = 200
+
 
 func _physics_process(delta):
+	#print(position)
+	
 	 #Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * (delta/falling_var)
 			
 	if game_manager.PlayerPOVCam == game_manager.Player.char:
 		# Handle jump.
@@ -104,6 +110,6 @@ func _ready():
 	
 	#arrgame_manager.stringToVec2(arr)
 
+	#loading postion from save file
 	#position = Vector2(float(arr1), float(arr2)) 
-	
 	pass

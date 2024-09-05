@@ -32,13 +32,13 @@ func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vecto
 	return saveDictionary
 	
 func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
-	var saveGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.WRITE)
+	var savedGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.WRITE)
 	var jsonString = JSON.stringify(save(score, joystickType, playerPos, level, memory))
-	saveGame.store_line(jsonString)
+	savedGame.store_line(jsonString)
 
 func loadGame():
 	if !FileAccess.file_exists("user://KnightOfPixel.save"):
-		saveGame(0, true, Vector2(-221, -144), 1, 0)
+		saveGame(0, true, Vector2(-436.2794, -10.07547), 1, 0)
 	var saveGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.READ)
 	
 	while saveGame.get_position() < saveGame.get_length():
@@ -110,12 +110,12 @@ func loadJoystick():
 		arrow_run.show()
 		print("now arrow type")
 		
-		#converting the playerPos from string to float
-		arr = nodeData["playerPos"]
-		arr = arr.split(",")
-		arr1 = float(arr[0].split("(")[1])
-		arr2 = float(arr[1].split(")")[0])
-		print("load controller player pos -> ", arr1, " ", arr2)
+	#converting the playerPos from string to float
+	arr = nodeData["playerPos"]
+	arr = arr.split(",")
+	arr1 = float(arr[0].split("(")[1])
+	arr2 = float(arr[1].split(")")[0])
+	print("load controller player pos -> ", arr1, " ", arr2)
 	#saveGame(0,nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
 
 func _input(event):

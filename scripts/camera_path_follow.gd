@@ -18,10 +18,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if cam_switch:
-		var tween = create_tween()
-		var path_folw_2d = get_child(1).get_child(0)
+		#var tween = get_tree().create_tween()
+		#var path_folw_2d = get_child(1).get_child(0).get_child(0).get_child(0)
 		game_manager.puzzle_pos = icon.global_position
-		tween.tween_property(path_follow_2d, "progress_ratio", .5, 7.5).set_trans(Tween.TRANS_LINEAR)
+		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.22, 5)
+		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.5169, 10)
+		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.6497, 15)
+		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.7591, 20)
+		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 1, 25)
+		#print(path_folw_2d)
+		#path_folw_2d.play("path_mvt")
 	pass
 
 
@@ -30,12 +36,13 @@ func _on_area_entered(area: Area2D) -> void:
 	if area == character.area_2d:
 		#print(get_child(1).get_child(0).get_child(0))
 		var cam_ctrl = get_child(1).get_child(0).get_child(0)
-		var path_folw_2d = get_child(1).get_child(0)
+		var path_folw_2d = get_child(1).get_child(0).get_child(0).get_child(0)
 		print("cam_ctrl = ", cam_ctrl.get_path(), " path_folw_2d = ", path_folw_2d)
 		cam_switch = true
 		#game_manager.puzzle_pos = icon.global_position
 		#tween.tween_property(path_follow_2d, "progress_ratio", .5, 5)
 		tween.tween_property(camera, "zoom", Vector2(2.5, 2.5), 5)
+		path_folw_2d.play("path_mvt")
 		#tween.tween_property(path_folw_2d, "progress_ratio", 0.5, 2)
 	pass # Replace with function body.
 
