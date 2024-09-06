@@ -6,6 +6,9 @@ extends Area2D
 @onready var cat: CharacterBody2D = $"../../../cat"
 @onready var icon: Sprite2D = $Path2D/PathFollow2D/Icon
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
+@onready var zoom_timer: Timer = $ZoomTimer
+@onready var cam_switch_back_timer: Timer = $CamSwitchBackTimer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var cam_switch = false
 
@@ -16,38 +19,44 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	if cam_switch:
-		#var tween = get_tree().create_tween()
-		#var path_folw_2d = get_child(1).get_child(0).get_child(0).get_child(0)
 		game_manager.puzzle_pos = icon.global_position
-		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.22, 5)
-		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.5169, 10)
-		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.6497, 15)
-		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 0.7591, 20)
-		#tween.chain().tween_property(path_follow_2d, "progress_ratio", 1, 25)
-		#print(path_folw_2d)
-		#path_folw_2d.play("path_mvt")
+	#else:
+		#game_manager.puzzle_pos = null
 	pass
 
 
 func _on_area_entered(area: Area2D) -> void:
 	var tween = create_tween()
 	if area == character.area_2d:
-		#print(get_child(1).get_child(0).get_child(0))
-		var cam_ctrl = get_child(1).get_child(0).get_child(0)
-		var path_folw_2d = get_child(1).get_child(0).get_child(0).get_child(0)
-		print("cam_ctrl = ", cam_ctrl.get_path(), " path_folw_2d = ", path_folw_2d)
+		var path_folw_anim = get_child(3).get_child(0).get_child(0).get_child(0)
+		
+		print(get_child(3).get_child(0).get_child(0).get_child(0))
 		cam_switch = true
 		#game_manager.puzzle_pos = icon.global_position
-		#tween.tween_property(path_follow_2d, "progress_ratio", .5, 5)
+		
 		tween.tween_property(camera, "zoom", Vector2(2.5, 2.5), 5)
-		path_folw_2d.play("path_mvt")
-		#tween.tween_property(path_folw_2d, "progress_ratio", 0.5, 2)
+		
+		character.inputs_allowed = false
+		path_folw_anim.play("path_mvt")
+		zoom_timer.start()
+		cam_switch_back_timer.start()
 	pass # Replace with function body.
 
-#func cam_follow(delta: float):
-	#var tween = create_tween()
-	#var path_folw_2d = get_child(1).get_child(0)
-	#game_manager.puzzle_pos = icon.global_position
-	#tween.tween_property(path_follow_2d, "progress_ratio", .5, 5)
+
+
+func _on_zoom_timer_timeout() -> void:
+	var tween = create_tween()
+	tween.tween_property(camera, "zoom", Vector2(4, 4), 2.5)
+	collision_shape_2d.disabled = true
+	character.inputs_allowed = true
+	
+	pass # Replace with function body.
+
+
+func _on_cam_switch_back_timer_timeout() -> void:
+	print("switched back to char")
+	cam_switch = false
+	game_manager.puzzle_pos = null
+	
+	pass # Replace with function body.

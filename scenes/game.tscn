@@ -36,7 +36,6 @@
 [ext_resource type="Script" path="res://scripts/PlatformAnimationPlayer.gd" id="25_uw3qs"]
 [ext_resource type="Texture2D" uid="uid://070krisibxf6" path="res://assets/sprites/world tileset/world_tileset-sheet_bw_dark.png" id="27_4ibgs"]
 [ext_resource type="Script" path="res://scripts/parallax_2d.gd" id="27_a2571"]
-[ext_resource type="PackedScene" uid="uid://dhdl4w6mnj7ae" path="res://scenes/spikes.tscn" id="28_jtbab"]
 [ext_resource type="Texture2D" uid="uid://bynb6jaxn0jig" path="res://assets/sprites/test bgs/Level01_BG_01_Layer_01.png" id="29_qswb7"]
 [ext_resource type="Texture2D" uid="uid://bf0f85p7nsqv6" path="res://assets/sprites/test bgs/fillerbg.png" id="30_0k3lj"]
 [ext_resource type="Texture2D" uid="uid://dbmc5kyx82i4g" path="res://assets/sprites/test bgs/top.png" id="30_aqtr5"]
@@ -47,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://bj81h357oww8x" path="res://assets/sprites/test bgs/btm.png" id="31_uxjax"]
 [ext_resource type="PackedScene" uid="uid://ugjgihk2r7l2" path="res://scenes/camera_zoom_in.tscn" id="31_wtxyu"]
 [ext_resource type="PackedScene" uid="uid://rv3opb08nnaa" path="res://scenes/breakable sand block.tscn" id="33_g0oy1"]
+[ext_resource type="PackedScene" uid="uid://cqqo45vu66jvn" path="res://scenes/spikes_2.tscn" id="36_7hixu"]
 [ext_resource type="Script" path="res://scripts/Falling Rocks Memory 1.gd" id="37_kgpjx"]
 [ext_resource type="PackedScene" uid="uid://dluvhoig6gvxn" path="res://scenes/memory_cutscene.tscn" id="38_de7v6"]
 [ext_resource type="Script" path="res://scripts/Entry rock.gd" id="39_2lvkm"]
@@ -1401,23 +1401,23 @@ collision_mask = 4
 
 [node name="Spikes" type="Node" parent="."]
 
-[node name="Spikes" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(2760, -594)
+[node name="spikes2" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(2761, -594)
 
-[node name="Spikes2" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(2840, -594)
+[node name="spikes3" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(2841, -594)
 
-[node name="Spikes3" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(2920, -594)
+[node name="spikes4" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(2921, -594)
 
-[node name="Spikes4" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(3000, -594)
+[node name="spikes5" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(3001, -594)
 
-[node name="Spikes5" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(3080, -594)
+[node name="spikes6" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(3081, -594)
 
-[node name="Spikes6" parent="Spikes" instance=ExtResource("28_jtbab")]
-position = Vector2(3144, -594)
+[node name="spikes7" parent="Spikes" instance=ExtResource("36_7hixu")]
+position = Vector2(3145, -594)
 
 [node name="Platform" type="Node" parent="."]
 
@@ -1740,7 +1740,7 @@ position = Vector2(3386, -550)
 frame_progress = 0.483953
 
 [node name="character" parent="." instance=ExtResource("1_l00t3")]
-position = Vector2(1522, -1006)
+position = Vector2(1433, -973)
 collision_layer = 4
 
 [node name="cat" parent="." instance=ExtResource("17_1grtq")]

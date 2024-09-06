@@ -19,6 +19,7 @@ var nodeData
 enum Player { char, cat }
 var PlayerPOVCam = Player.char
 var puzzle_pos
+var falling = false
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
@@ -152,14 +153,24 @@ func _physics_process(delta):
 		
 	#if Input.is_key_pressed(KEY_V):
 		#print("K")
+		
+	#if puzzle_pos:		#handles puzzle scenes
+		#camera.position_smoothing_speed = 1
+		##print("! ", puzzle_pos)
+		#camera.global_position = puzzle_pos
 	if PlayerPOVCam == Player.char:
+		camera.position_smoothing_speed = 3.5
 		camera.global_position = character.global_position + Vector2(0, -15)
 		#camera_3.global_position = character.global_position + Vector2(0, -15)
-	elif PlayerPOVCam == Player.cat:
+	if PlayerPOVCam == Player.cat:
+		camera.position_smoothing_speed = 4
 		camera.global_position = cat.global_position + Vector2(0, -15)
 		#camera_3.global_position = character.global_position + Vector2(0, -15)
 	if puzzle_pos:		#handles puzzle scenes
 		camera.position_smoothing_speed = 1
+		#print("! ", puzzle_pos)
 		camera.global_position = puzzle_pos
+	if falling:
+		camera.position_smoothing_speed = 20
 
 	pass

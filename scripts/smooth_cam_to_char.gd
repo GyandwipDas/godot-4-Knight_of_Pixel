@@ -30,4 +30,6 @@ func _on_area_entered(area: Area2D) -> void:
 		camera.position_smoothing_speed = 3.5
 		character.gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 		character.falling_var = 1
+		game_manager.falling = false
+
 	pass # Replace with function body.

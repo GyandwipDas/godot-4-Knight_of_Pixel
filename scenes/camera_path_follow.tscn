@@ -10,4 +10,14 @@ script = ExtResource("1_7sfe7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xhcno")
 
+[node name="ZoomTimer" type="Timer" parent="."]
+wait_time = 22.0
+one_shot = true
+
+[node name="CamSwitchBackTimer" type="Timer" parent="."]
+wait_time = 28.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ZoomTimer" to="." method="_on_zoom_timer_timeout"]
+[connection signal="timeout" from="CamSwitchBackTimer" to="." method="_on_cam_switch_back_timer_timeout"]

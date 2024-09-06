@@ -111,5 +111,5 @@ func _ready():
 	#arrgame_manager.stringToVec2(arr)
 
 	#loading postion from save file
-	#position = Vector2(float(arr1), float(arr2)) 
+	position = Vector2(float(arr1), float(arr2)) 
 	pass
