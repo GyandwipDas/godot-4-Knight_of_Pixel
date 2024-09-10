@@ -57,10 +57,12 @@ func add_coin():
 func pauseGame():
 	if paused:
 		pause_menu.hide()
-		Engine.time_scale = 1
+		#Engine.time_scale = 1
+		get_tree().paused = false
 	else:
 		pause_menu.show()
-		Engine.time_scale = 0
+		#Engine.time_scale = 0
+		get_tree().paused = true
 	paused = !paused
 
 func switchJoystick():

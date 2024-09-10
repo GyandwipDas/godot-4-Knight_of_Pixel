@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://ccr300rbfka0"]
+[gd_scene load_steps=105 format=4 uid="uid://ccr300rbfka0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kby7t"]
 [ext_resource type="PackedScene" uid="uid://ca4urog4s5uvu" path="res://scenes/player.tscn" id="1_l00t3"]
@@ -55,7 +55,6 @@
 [ext_resource type="Texture2D" uid="uid://b6welo6ajm6sx" path="res://icon.svg" id="39_pq7tg"]
 [ext_resource type="Texture2D" uid="uid://uh72ig14gxsu" path="res://assets/sprites/test bgs/layers/04/cave guide.png" id="40_3y2wq"]
 [ext_resource type="Script" path="res://scripts/entry rock area2d.gd" id="40_pewuk"]
-[ext_resource type="Texture2D" uid="uid://7bax2g11ftsn" path="res://assets/sprites/test bgs/layers/04/mountain 2.png" id="41_dywi5"]
 [ext_resource type="Texture2D" uid="uid://686w6n62k6tv" path="res://assets/sprites/test bgs/layers/04/New Project (3).png" id="42_sfwn0"]
 [ext_resource type="Texture2D" uid="uid://bgnt3nr7w3tht" path="res://assets/sprites/test bgs/layers/04/mountain area godot game.png" id="43_hresd"]
 [ext_resource type="PackedScene" uid="uid://w74v7mb4p5nv" path="res://scenes/arrow_sign.tscn" id="44_nrgh7"]
@@ -778,6 +777,7 @@ text = ": 0"
 vertical_alignment = 1
 
 [node name="LeftUI" type="HBoxContainer" parent="HUD"]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -813,6 +813,7 @@ texture_pressed = ExtResource("6_j7mh8")
 action = "char_move_left"
 
 [node name="RightUI" type="HBoxContainer" parent="HUD"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -916,7 +917,6 @@ texture = ExtResource("44_qt3ch")
 
 [node name="-4" type="CanvasLayer" parent="BG/TEST BGS"]
 layer = -4
-visible = false
 follow_viewport_enabled = true
 
 [node name="mid" type="Sprite2D" parent="BG/TEST BGS/-4"]
@@ -1062,17 +1062,14 @@ position = Vector2(10728.6, -5954.29)
 texture = ExtResource("19_khjnv")
 
 [node name="mid12" type="Sprite2D" parent="BG/TEST BGS/-3"]
-visible = false
 position = Vector2(13700, -5040)
 texture = ExtResource("45_wmx4b")
 
 [node name="btm filler12" type="Sprite2D" parent="BG/TEST BGS/-3"]
-visible = false
 position = Vector2(13700, -4332.86)
 texture = ExtResource("19_khjnv")
 
 [node name="top filler12" type="Sprite2D" parent="BG/TEST BGS/-3"]
-visible = false
 position = Vector2(13700, -5747.14)
 texture = ExtResource("19_khjnv")
 
@@ -1235,17 +1232,14 @@ position = Vector2(10706.2, -4425)
 texture = ExtResource("21_fqb74")
 
 [node name="mid11" type="Sprite2D" parent="BG/TEST BGS/-2"]
-visible = false
 position = Vector2(13681.2, -5012.5)
 texture = ExtResource("23_bebb0")
 
 [node name="top filler11" type="Sprite2D" parent="BG/TEST BGS/-2"]
-visible = false
 position = Vector2(13668.7, -5727.5)
 texture = ExtResource("21_fqb74")
 
 [node name="btm filler11" type="Sprite2D" parent="BG/TEST BGS/-2"]
-visible = false
 position = Vector2(13675, -4325)
 texture = ExtResource("21_fqb74")
 
@@ -1407,17 +1401,14 @@ position = Vector2(10083.3, -5078.64)
 texture = ExtResource("18_kfxad")
 
 [node name="btm filler11" type="Sprite2D" parent="BG/TEST BGS/-1 bg"]
-visible = false
 position = Vector2(13072.2, -4251.11)
 texture = ExtResource("26_xpkoi")
 
 [node name="top filler11" type="Sprite2D" parent="BG/TEST BGS/-1 bg"]
-visible = false
 position = Vector2(13072.2, -5678.89)
 texture = ExtResource("26_xpkoi")
 
 [node name="mid11" type="Sprite2D" parent="BG/TEST BGS/-1 bg"]
-visible = false
 position = Vector2(13072.2, -4961.98)
 texture = ExtResource("25_x3tnw")
 
@@ -1586,10 +1577,6 @@ texture = ExtResource("47_04rkb")
 [node name="cave" type="Sprite2D" parent="BG/TEST BGS/test 1"]
 position = Vector2(-635.556, -5102.22)
 texture = ExtResource("40_3y2wq")
-
-[node name="cave2" type="Sprite2D" parent="BG/TEST BGS/test 1"]
-position = Vector2(20191.1, -5275.56)
-texture = ExtResource("41_dywi5")
 
 [node name="FG" type="Node2D" parent="."]
 position = Vector2(-215.8, -4.19998)
