@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://drlkg2ee6oydt"]
+
+[ext_resource type="Script" path="res://scripts/camera_shake_area.gd" id="1_mjnda"]
+
+[node name="camera_shake_area" type="Area2D"]
+script = ExtResource("1_mjnda")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

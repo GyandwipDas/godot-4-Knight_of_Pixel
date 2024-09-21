@@ -45,9 +45,10 @@ func loadGame():
 	while saveGame.get_position() < saveGame.get_length():
 		var jsonString = saveGame.get_line()
 		var json = JSON.new()
-		var parseResult = json.parse(jsonString)
+		json.parse(jsonString)
 		nodeData = json.get_data()
-		#print("Loaded Data")
+		#print("Loaded Data", type_string(typeof(nodeData)))
+		print("Loaded Data", nodeData)
 
 func add_coin(): 
 	score += 1
@@ -146,6 +147,18 @@ func hintVisbility(from):
 		return visibility
 	else:
 		return 0.00
+		
+func parse_json(dialogue_json, dialogue_id):
+	if FileAccess.file_exists(dialogue_json):
+		#print("dialogue json", dialogue_json)
+		var file = FileAccess.open(dialogue_json, FileAccess.READ)
+		
+		#var json_string = file.get_line()
+		var json = JSON.new()
+		json.parse(file.get_as_text())
+		var json_text = json.get_data()
+		#print("parsed data", json_text)
+		return json_text[dialogue_id]
 
 func _physics_process(delta):
 	#camera switch 

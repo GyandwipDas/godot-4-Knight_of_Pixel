@@ -11,7 +11,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if inner_area_entered && !outer_area_entered:
+	#if inner_area_entered && !outer_area_entered:
+		#play("kick")
+	if inner_area_entered:
 		play("kick")
 	elif outer_area_entered && !inner_area_entered:
 		play("look back")

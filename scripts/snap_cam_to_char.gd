@@ -1,9 +1,9 @@
 extends Area2D
 
-@onready var character: CharacterBody2D = $"../character"
-@onready var cat: CharacterBody2D = $"../cat"
+@onready var character: CharacterBody2D = $"../../character"
+@onready var cat: CharacterBody2D = $"../../cat"
 @onready var game_manager: Node = %GameManager
-@onready var camera: Camera2D = $"../Camera Stuff/Camera"
+@onready var camera: Camera2D = $"../Camera"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

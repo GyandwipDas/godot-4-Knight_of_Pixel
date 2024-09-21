@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://pgk7l0wd6xy7"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_box.gd" id="1_lyrjx"]
+[ext_resource type="Texture2D" uid="uid://jv5rweib876n" path="res://assets/UI/dialogue box.png" id="2_umkii"]
+[ext_resource type="FontFile" uid="uid://cc56avyn7x0s0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_0esin"]
+
+[node name="dialogue box" type="MarginContainer"]
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_lyrjx")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_umkii")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(5.57, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1316, 0.124, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_0esin")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="Letter Display Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Letter Display Timer" to="." method="_on_letter_display_timer_timeout"]

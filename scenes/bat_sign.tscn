@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3ywc3aql7jw0"]
+
+[ext_resource type="Texture2D" uid="uid://b8x23abn51ae8" path="res://assets/sprites/characters/32x32-bat-sprite.png" id="1_q6swf"]
+[ext_resource type="Texture2D" uid="uid://ypnm67wibr47" path="res://assets/sprites/Sign board.png" id="2_d5ism"]
+[ext_resource type="Script" path="res://scripts/bat_sign.gd" id="2_y4dip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5851b"]
+atlas = ExtResource("1_q6swf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k7ma"]
+atlas = ExtResource("1_q6swf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puyuw"]
+atlas = ExtResource("1_q6swf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvtor"]
+atlas = ExtResource("1_q6swf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfamb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5851b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k7ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puyuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvtor")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tse7t"]
+
+[node name="bat sign 2" type="Area2D"]
+script = ExtResource("2_y4dip")
+rotateVal = ""
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kfamb")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tse7t")
+
+[node name="SignBoard" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 25)
+rotation = 2.35619
+texture = ExtResource("2_d5ism")
+flip_h = true
+flip_v = true

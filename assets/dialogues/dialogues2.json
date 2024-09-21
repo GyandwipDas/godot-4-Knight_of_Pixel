@@ -1,0 +1,18 @@
+{
+	"entry": {
+		"player":"[shake]ugh![/shake]... Where am I?",
+		"player":"[shake]Wait?[/shake] I can't remember anything[shake]![/shake]",
+		"player":"I have to find a way out!"
+	},
+	"lift": {
+		"player":"I better run and jump to get there.",
+		"player":"Wouldn't want to fall into the water."
+	},
+	"rotating_platform": {
+		"player":"Timing looks important here."
+	},
+	"3rd_lvl": {
+		"player":"I'm so hungry...",
+		"player":"Wait what's that?"
+	}
+}

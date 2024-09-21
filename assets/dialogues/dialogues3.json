@@ -1,0 +1,59 @@
+{
+	"entry":
+	[
+		{
+			"character": "player",
+			"emotion": "confused",
+			"dialogue": "[shake]ugh![/shake]... Where am I?"
+		},
+		{
+			"character": "npc1",
+			"emotion": "happy",
+			"dialogue": "[wave]welcome to this [shake]world![/shake][/wave]"
+		},
+		{
+			"character": "player",
+			"emotion": "scared",
+			"dialogue": "[shake]Wait?[/shake] I can't remember anything[shake]![/shake]"
+		},
+		{
+			"character": "player",
+			"emotion": "confused",
+			"dialogue": "I need to find a way out of here"
+		}
+	],
+	"lift":
+	[
+		{
+			"character": "player",
+			"emotion": "neutral",
+			"dialogue": "I better run and jump to get there."
+		},
+		{
+			"character": "player",
+			"emotion": "scared",
+			"dialogue": "Wouldn't want to fall into the water."
+		}
+	],
+	"rotating_platform":
+	[
+		{
+			"character": "player",
+			"emotion": "thoughtful",
+			"dialogue": "Timing looks important here."
+		}
+	],
+	"3rd_lvl":
+	[
+		{
+			"character": "player",
+			"emotion": "hurt",
+			"dialogue": "I'm so hungry..."
+		},
+		{
+			"character": "player",
+			"emotion": "confused",
+			"dialogue": "Wait what's that?"
+		}
+	]
+}

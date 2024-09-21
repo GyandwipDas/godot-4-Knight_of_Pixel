@@ -1,0 +1,66 @@
+{
+	"entry":
+	[
+		{
+			"character": "player",
+			"dialogue": "[shake]ugh![/shake]... Where am I?"
+		},
+		{
+			"character": "npc1",
+			"dialogue": "[wave]welcome to this [shake]world![/shake][/wave]"
+		},
+		{
+			"character": "player",
+			"dialogue": "[shake]Wait?[/shake] I can't remember anything[shake]![/shake]"
+		},
+		{
+			"character": "player",
+			"dialogue": "I need to find a way out of here."
+		},
+		{
+			"character": "npc1",
+			"dialogue": "1"
+		},
+		{
+			"character": "player",
+			"dialogue": "2"
+		},
+		{
+			"character": "npc1",
+			"dialogue": "2"
+		},
+		{
+			"character": "player",
+			"dialogue": "3"
+		}
+	],
+	"lift":
+	[
+		{
+			"character": "player",
+			"dialogue": "I better run and jump to get there."
+		},
+		{
+			"character": "player",
+			"dialogue": "Wouldn't want to fall into the water."
+		}
+	],
+	"rotating_platform":
+	[
+		{
+			"character": "player",
+			"dialogue": "Timing looks important here."
+		}
+	],
+	"3rd_lvl":
+	[
+		{
+			"character": "player",
+			"dialogue": "I'm so hungry..."
+		},
+		{
+			"character": "player",
+			"dialogue": "Wait what's that?"
+		}
+	]
+}
