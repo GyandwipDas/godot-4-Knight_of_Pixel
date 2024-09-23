@@ -1,25 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhdl4w6mnj7ae"]
+[gd_scene load_steps=5 format=3 uid="uid://cqqo45vu66jvn"]
 
-[ext_resource type="Texture2D" uid="uid://dpk2f4wtty4s6" path="res://assets/sprites/4 Conjoined Wooden Spikes.png" id="1_02xbe"]
-[ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="2_7hqiv"]
+[ext_resource type="Texture2D" uid="uid://dpk2f4wtty4s6" path="res://assets/sprites/in game assets/hazards/spikes/4 Conjoined Wooden Spikes.png" id="1_ouiws"]
+[ext_resource type="Script" path="res://scripts/spikes_2.gd" id="1_t4q2e"]
+[ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="2_rqy2a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17k5e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm343"]
 size = Vector2(40, 7.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdxrw"]
-
-[node name="Spikes" type="Area2D"]
+[node name="spikes2" type="Node2D"]
+script = ExtResource("1_t4q2e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("1_02xbe")
+texture = ExtResource("1_ouiws")
 
-[node name="Killzone" parent="." instance=ExtResource("2_7hqiv")]
+[node name="Killzone" parent="." instance=ExtResource("2_rqy2a")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, -10.75)
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_17k5e")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rdxrw")
+shape = SubResource("RectangleShape2D_pm343")

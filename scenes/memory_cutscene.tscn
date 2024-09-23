@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dluvhoig6gvxn"]
 
 [ext_resource type="Script" path="res://scripts/memory_cutscene.gd" id="1_yewu3"]
-[ext_resource type="Texture2D" uid="uid://d2p6c4wmho02g" path="res://assets/sprites/world_tileset-sheet_darkened.png" id="2_u6p66"]
+[ext_resource type="Texture2D" uid="uid://d2p6c4wmho02g" path="res://assets/sprites/world tileset/world_tileset-sheet_darkened (2).png" id="2_u6p66"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3h8w2"]
 size = Vector2(16, 15)

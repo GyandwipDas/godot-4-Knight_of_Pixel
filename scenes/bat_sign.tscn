@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b3ywc3aql7jw0"]
 
-[ext_resource type="Texture2D" uid="uid://b8x23abn51ae8" path="res://assets/sprites/characters/32x32-bat-sprite.png" id="1_q6swf"]
-[ext_resource type="Texture2D" uid="uid://ypnm67wibr47" path="res://assets/sprites/Sign board.png" id="2_d5ism"]
+[ext_resource type="Texture2D" uid="uid://b8x23abn51ae8" path="res://assets/sprites/characters/bat/32x32-bat-sprite.png" id="1_q6swf"]
+[ext_resource type="Texture2D" uid="uid://ypnm67wibr47" path="res://assets/sprites/in game assets/decor/sign board/Sign board.png" id="2_d5ism"]
 [ext_resource type="Script" path="res://scripts/bat_sign.gd" id="2_y4dip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5851b"]

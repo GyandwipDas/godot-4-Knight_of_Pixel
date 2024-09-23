@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://6fyvsan7avcs"]
 
 [ext_resource type="Script" path="res://scripts/falling_rocks.gd" id="1_wg0hn"]
-[ext_resource type="Texture2D" uid="uid://by3u7yxow75so" path="res://assets/sprites/Rocks.png" id="2_nxm2y"]
+[ext_resource type="Texture2D" uid="uid://by3u7yxow75so" path="res://assets/sprites/in game assets/hazards/Rocks.png" id="2_nxm2y"]
 [ext_resource type="PackedScene" uid="uid://bpqqwg8wu1q6t" path="res://scenes/killzone.tscn" id="3_1nvbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhvkq"]

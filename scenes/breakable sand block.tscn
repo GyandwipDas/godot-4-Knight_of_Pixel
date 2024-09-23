@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://rv3opb08nnaa"]
 
-[ext_resource type="Texture2D" uid="uid://dou7uq50ovnae" path="res://assets/sprites/breaking sand block-sheet.png" id="1_n8iqm"]
+[ext_resource type="Texture2D" uid="uid://dou7uq50ovnae" path="res://assets/sprites/in game assets/ground/breaking sand block-sheet.png" id="1_n8iqm"]
 [ext_resource type="Script" path="res://scripts/breakable sand block.gd" id="1_wmd8f"]
-[ext_resource type="Texture2D" uid="uid://hmv2pmc2j3q0" path="res://assets/sprites/knight.png" id="2_87vsg"]
+[ext_resource type="Texture2D" uid="uid://mkelkacvx0na" path="res://assets/sprites/characters/player/knight (2).png" id="2_87vsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hocet"]
 atlas = ExtResource("1_n8iqm")

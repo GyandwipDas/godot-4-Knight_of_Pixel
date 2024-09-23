@@ -6,32 +6,12 @@
 			"dialogue": "[shake]ugh![/shake]... Where am I?"
 		},
 		{
-			"character": "npc1",
-			"dialogue": "[wave]welcome to this [shake]world![/shake][/wave]"
-		},
-		{
 			"character": "player",
 			"dialogue": "[shake]Wait?[/shake] I can't remember anything[shake]![/shake]"
 		},
 		{
 			"character": "player",
 			"dialogue": "I need to find a way out of here."
-		},
-		{
-			"character": "npc1",
-			"dialogue": "1"
-		},
-		{
-			"character": "player",
-			"dialogue": "2"
-		},
-		{
-			"character": "npc1",
-			"dialogue": "2"
-		},
-		{
-			"character": "player",
-			"dialogue": "3"
 		}
 	],
 	"lift":

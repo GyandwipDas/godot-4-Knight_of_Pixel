@@ -21,6 +21,8 @@ var dialogues # full set of dialogues
 var dialogue_line #the full string of dialogue from sequence
 var special_string #string of characters that have a rich text effect
 var finished = false
+var y_offset 
+var x_offset
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,7 +33,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func start_dialogue(dialogue_id):
+func start_dialogue(dialogue_id, dialogue_y_offset, dialogye_x_offset):
+	finished = false
+	y_offset = dialogue_y_offset
+	x_offset = dialogye_x_offset
+	rich_text_label_2.text = ""
 	character.inputs_allowed = false
 	dialogues = game_manager.parse_json(dialogue_json, dialogue_id)
 
@@ -50,6 +56,7 @@ func next_line():
 		print(dialogue_progress, "out of", dialogues.size()-1)
 	
 func show_text():
+	rich_text_label_2.text = ""
 	var tween = create_tween()
 	visible = true
 	rich_text_label_2.visible_ratio = 0
@@ -61,8 +68,8 @@ func show_text():
 			position = npc1.position 
 		_:
 			print("ERROR in finding talker")
-	global_position.x -= size.x/4
-	global_position.y -= size.y/4 + 24
+	global_position.x -= size.x/4 + x_offset
+	global_position.y -= size.y/4 + y_offset
 	rich_text_label_2.text = dialogues[dialogue_progress]["dialogue"]
 	print(dialogues[dialogue_progress]["dialogue"])
 	tween.tween_property(rich_text_label_2, "visible_ratio", 1, 1)
@@ -72,6 +79,7 @@ func finish():
 	print("Finished!")
 	in_progress = false
 	dialogue_progress = 0
+	rich_text_label_2.text = ""
 	print("dialog prog reset")
 	#dialogue_interaction_3.delete_dialogue_box()
 	visible = false
