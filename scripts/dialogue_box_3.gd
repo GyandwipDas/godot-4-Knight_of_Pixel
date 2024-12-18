@@ -53,14 +53,14 @@ func next_line():
 	else:
 		dialogue_progress += 1
 		show_text()
-		print(dialogue_progress, "out of", dialogues.size()-1)
+		#print(dialogue_progress, "out of", dialogues.size()-1)
 	
 func show_text():
 	rich_text_label_2.text = ""
 	var tween = create_tween()
 	visible = true
 	rich_text_label_2.visible_ratio = 0
-	print("dialog prog: ", dialogue_progress)
+	#print("dialog prog: ", dialogue_progress)
 	match dialogues[dialogue_progress]["character"]:
 		"player": 
 			position = character.position
@@ -71,16 +71,16 @@ func show_text():
 	global_position.x -= size.x/4 + x_offset
 	global_position.y -= size.y/4 + y_offset
 	rich_text_label_2.text = dialogues[dialogue_progress]["dialogue"]
-	print(dialogues[dialogue_progress]["dialogue"])
+	#print(dialogues[dialogue_progress]["dialogue"])
 	tween.tween_property(rich_text_label_2, "visible_ratio", 1, 1)
 	
 func finish():
 	#character.inputs_allowed = true
-	print("Finished!")
+	#print("Finished!")
 	in_progress = false
 	dialogue_progress = 0
 	rich_text_label_2.text = ""
-	print("dialog prog reset")
+	#print("dialog prog reset")
 	#dialogue_interaction_3.delete_dialogue_box()
 	visible = false
 	finished = true

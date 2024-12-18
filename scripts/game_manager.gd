@@ -20,6 +20,7 @@ enum Player { char, cat }
 var PlayerPOVCam = Player.char
 var puzzle_pos
 var falling = false
+var is_cam_snapped = false
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
@@ -93,7 +94,7 @@ func switchJoystick():
 	arr1 = float(arr[0].split("(")[1])
 	arr2 = float(arr[1].split(")")[0])
 	print("switchcontroller player pos -> ", arr1, " ", arr2)
-	saveGame(0,!nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
+	saveGame(0,!nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], int(nodeData["memory"]))
 
 func loadJoystick():
 	var arr
@@ -173,19 +174,33 @@ func _physics_process(delta):
 		#camera.position_smoothing_speed = 1
 		##print("! ", puzzle_pos)
 		#camera.global_position = puzzle_pos
+		
+		
 	if PlayerPOVCam == Player.char:
-		camera.position_smoothing_speed = 3.5
+		camera.position_smoothing_speed = 3.5 if is_cam_snapped else 10
+		camera.position_smoothing_enabled = true if is_cam_snapped else false
 		camera.global_position = character.global_position + Vector2(0, -15)
+		#print(camera.position_smoothing_speed, " ", camera.position_smoothing_enabled)
 		#camera_3.global_position = character.global_position + Vector2(0, -15)
 	if PlayerPOVCam == Player.cat:
 		camera.position_smoothing_speed = 4
 		camera.global_position = cat.global_position + Vector2(0, -15)
 		#camera_3.global_position = character.global_position + Vector2(0, -15)
+		pass
 	if puzzle_pos:		#handles puzzle scenes
 		camera.position_smoothing_speed = 1
 		#print("! ", puzzle_pos)
 		camera.global_position = puzzle_pos
+		pass
 	if falling:
 		camera.position_smoothing_speed = 20
+		pass
 
-	pass
+	pass 
+
+
+func _ready() -> void:
+	await get_tree().create_timer(.1).timeout
+	is_cam_snapped = true
+	camera.position_smoothing_enabled = true
+	#print("snapped")

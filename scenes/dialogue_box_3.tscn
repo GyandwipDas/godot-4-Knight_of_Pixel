@@ -9,6 +9,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0d258")
+dialogue_json = ""
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2

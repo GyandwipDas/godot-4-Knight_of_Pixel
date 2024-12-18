@@ -1,6 +1,7 @@
 extends AnimationPlayer
 
 @onready var game_manager: Node = %GameManager
+@onready var character: CharacterBody2D = $"../../character"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

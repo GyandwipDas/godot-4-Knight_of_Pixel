@@ -16,7 +16,7 @@ var coyote_time = .5
 var can_jump = false
 var inputs_allowed = true
 var falling_var = 1
-
+var anim_speed_scale = 1 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #var gravity = 200
@@ -67,17 +67,17 @@ func _physics_process(delta):
 		if direction && inputs_allowed:
 			if joystick.pressing:
 				velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
-				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5
+				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5 / anim_speed_scale
 			else: 
 				velocity.x = direction * SPEED
 			
 			if Input.is_action_pressed("shift"): #teleport/ DASH IF YOU USE is_action_just_pressed
 				velocity.x = lerp(velocity.x, velocity.x * 5, .1)
-				animated_sprite_2d.speed_scale = lerp(1.0, 2.75, .3)
+				animated_sprite_2d.speed_scale = lerp(1.0/anim_speed_scale, 2.75/anim_speed_scale, .3)
 				pass
 		else:
 			velocity.x = lerp(velocity.x, 0.0, .15) #slide on leaving movement key
-			animated_sprite_2d.speed_scale = 1
+			animated_sprite_2d.speed_scale = 1 / anim_speed_scale
 	else: 
 		velocity.x = 0
 		direction = 0
@@ -93,6 +93,9 @@ func _physics_process(delta):
 		animated_sprite_2d.play("idle")
 		
 	move_and_slide()
+	
+	if Input.is_key_pressed(KEY_V):
+		print("hi")
 
 
 func _on_coyote_timer_timeout():
@@ -111,5 +114,13 @@ func _ready():
 	#arrgame_manager.stringToVec2(arr)
 
 	#loading postion from save file
-	position = Vector2(float(arr1), float(arr2)) 
+	#position = Vector2(float(arr1), float(arr2)) 
 	pass
+
+func slowmospeed():
+	gravity = 800
+	anim_speed_scale = 10
+
+func normalspeed():
+	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+	anim_speed_scale = 1
