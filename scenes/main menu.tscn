@@ -35,6 +35,18 @@ theme_override_fonts/font = ExtResource("2_qfl23")
 theme_override_font_sizes/font_size = 75
 text = "Play"
 
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qfl23")
+theme_override_font_sizes/font_size = 75
+text = "Continue"
+
+[node name="New Game" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qfl23")
+theme_override_font_sizes/font_size = 75
+text = "New Game"
+
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qfl23")
@@ -48,5 +60,7 @@ theme_override_font_sizes/font_size = 75
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

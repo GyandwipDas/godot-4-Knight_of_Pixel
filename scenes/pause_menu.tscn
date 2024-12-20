@@ -61,11 +61,17 @@ theme_override_fonts/font = ExtResource("1_baeaf")
 text = "Change Left 
 Controller type"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit to Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_baeaf")
-text = "Quit"
+text = "Quit to Main Menu"
+
+[node name="Quit to Desktop" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_baeaf")
+text = "Quit to Desktop"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controller type" to="." method="_on_controller_type_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit to Main Menu" to="." method="_on_quit_to_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit to Desktop" to="." method="_on_quit_to_desktop_pressed"]

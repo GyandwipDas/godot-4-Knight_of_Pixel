@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Knight of Pixel"
+config/name="Gumm"
 run/main_scene="res://scenes/main menu.tscn"
 config/custom_user_dir_name="KnightOfPixel"
 config/features=PackedStringArray("4.3", "Forward Plus")
@@ -22,6 +22,7 @@ Music="*res://scenes/music.tscn"
 DialogueManager="res://singletons/dialogue_manager.gd"
 SignalBus="res://singletons/signal_bus.gd"
 DialogueManager2="res://singletons/dialogue_manager2.gd"
+SaveInfo="*res://singletons/save_info.gd"
 
 [dialogic]
 

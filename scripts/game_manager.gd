@@ -21,6 +21,7 @@ var PlayerPOVCam = Player.char
 var puzzle_pos
 var falling = false
 var is_cam_snapped = false
+var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
 func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
@@ -34,14 +35,16 @@ func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vecto
 	return saveDictionary
 	
 func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
-	var savedGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.WRITE)
+	#print("saveGame")
+	var savedGame = FileAccess.open(file_name, FileAccess.WRITE)
 	var jsonString = JSON.stringify(save(score, joystickType, playerPos, level, memory))
 	savedGame.store_line(jsonString)
 
 func loadGame():
-	if !FileAccess.file_exists("user://KnightOfPixel.save"):
+	if !FileAccess.file_exists(file_name):
 		saveGame(0, true, Vector2(-436.2794, -10.07547), 1, 0)
-	var saveGame = FileAccess.open("user://KnightOfPixel.save", FileAccess.READ)
+		print("No saves found!")
+	var saveGame = FileAccess.open(file_name, FileAccess.READ)
 	
 	while saveGame.get_position() < saveGame.get_length():
 		var jsonString = saveGame.get_line()
@@ -106,21 +109,21 @@ func loadJoystick():
 		joystick_jump.show()
 		#leftArrowInp.hide()
 		#rightArrowInp.hide()
-		print("now stick type")
+		#print("now stick type")
 	elif !nodeData["joystickType"]:
 		#joystick.hide()
 		leftArrowInp.show()
 		rightArrowInp.show()
 		arrow_jump.show()
 		arrow_run.show()
-		print("now arrow type")
+		#print("now arrow type")
 		
 	#converting the playerPos from string to float
 	arr = nodeData["playerPos"]
 	arr = arr.split(",")
 	arr1 = float(arr[0].split("(")[1])
 	arr2 = float(arr[1].split(")")[0])
-	print("load controller player pos -> ", arr1, " ", arr2)
+	#print("load controller player pos -> ", arr1, " ", arr2)
 	#saveGame(0,nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], nodeData["memory"])
 
 func _input(event):

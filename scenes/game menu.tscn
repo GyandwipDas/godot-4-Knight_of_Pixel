@@ -36,7 +36,6 @@ theme_override_font_sizes/font_size = 75
 text = "New Game"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/New Game"]
-visible = false
 layout_mode = 0
 offset_left = -95.5
 offset_top = -56.0

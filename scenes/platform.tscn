@@ -1,9 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw8100s8801q5"]
 
 [ext_resource type="Script" path="res://scripts/platform.gd" id="1_xfcf7"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0627e"]
-load_path = "res://.godot/imported/Assets_Platforms_04.png-cd7283bd9a67e4bd6981855a27ca6348.ctex"
+[ext_resource type="Texture2D" uid="uid://0o8x0t2wgxki" path="res://assets/sprites/in game assets/guide/platforms/Assets_Platforms_04.png" id="2_hwdu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xawam"]
 size = Vector2(13.6471, 13.5)
@@ -17,7 +15,7 @@ script = ExtResource("1_xfcf7")
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
 scale = Vector2(0.025, 0.025)
-texture = SubResource("CompressedTexture2D_0627e")
+texture = ExtResource("2_hwdu3")
 region_enabled = true
 region_rect = Rect2(0, 0, 2375, 1500)
 
