@@ -41,7 +41,7 @@ func _on_area_entered(area: Area2D) -> void:
 		arr = arr.split(",")
 		var arr1 = float(arr[0].split("(")[1])
 		var arr2 = float(arr[1].split(")")[0])
-		game_manager.saveGame(0,game_manager.nodeData["joystickType"], Vector2(arr1, arr2), game_manager.nodeData["level"], int(game_manager.nodeData["memory"])+1)
+		game_manager.saveGame(0,game_manager.nodeData["joystickType"], Vector2(arr1, arr2), game_manager.nodeData["level"], int(game_manager.nodeData["memory"])+1, int(SaveInfo.slot))
 		#if game_manager.nodeData["memory"] > 0:
 			#for i in range(0, game_manager.nodeData["memory"]):
 				#var paths = "../memory_cutscene" + str(i)

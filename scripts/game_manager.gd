@@ -22,28 +22,48 @@ var puzzle_pos
 var falling = false
 var is_cam_snapped = false
 var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+var saveSlot = "user://GummSaveInfo.save"
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
-func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
+func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0, slot: int = SaveInfo.slot):
 	var saveDictionary = {
 		"score" : score,
 		"joystickType": joystickType,
 		"playerPos": playerPos,
 		"level": level,
 		"memory": memory,
+		"slot": slot,
 	}
 	return saveDictionary
 	
-func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0):
+func saveInfo(currSlot: int = 1):
+	var saveInfoDictionary = {
+		"slot" : currSlot,
+	}
+	return saveInfoDictionary
+	
+func saveGame(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0, slot : int = SaveInfo.slot):
 	#print("saveGame")
+	
+	#saving currents slots save dictionary
 	var savedGame = FileAccess.open(file_name, FileAccess.WRITE)
 	var jsonString = JSON.stringify(save(score, joystickType, playerPos, level, memory))
 	savedGame.store_line(jsonString)
+	
+	#saving current slot num in saveInfo dictionary
+	var saveSlot = FileAccess.open(saveSlot, FileAccess.WRITE)
+	var jsonSaveSlotString = JSON.stringify((saveInfo(slot)))
+	saveSlot.store_line(jsonSaveSlotString)
 
 func loadGame():
+	if !FileAccess.file_exists(saveSlot):
+		saveGame(0, true, Vector2(-436.2794, -10.07547), 1, 0, SaveInfo.slot)
+		print("No save games EVER!")
+
 	if !FileAccess.file_exists(file_name):
-		saveGame(0, true, Vector2(-436.2794, -10.07547), 1, 0)
-		print("No saves found!")
+		saveGame(0, true, Vector2(-436.2794, -10.07547), 1, 0, SaveInfo.slot)
+		print("No saves found for slot:", SaveInfo.slot)
+		
 	var saveGame = FileAccess.open(file_name, FileAccess.READ)
 	
 	while saveGame.get_position() < saveGame.get_length():
@@ -97,7 +117,7 @@ func switchJoystick():
 	arr1 = float(arr[0].split("(")[1])
 	arr2 = float(arr[1].split(")")[0])
 	print("switchcontroller player pos -> ", arr1, " ", arr2)
-	saveGame(0,!nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], int(nodeData["memory"]))
+	saveGame(0,!nodeData["joystickType"], Vector2(arr1, arr2), nodeData["level"], int(nodeData["memory"]), int(nodeData["slot"]))
 
 func loadJoystick():
 	var arr
