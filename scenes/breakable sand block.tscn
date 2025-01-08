@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://rv3opb08nnaa"]
+[gd_scene load_steps=19 format=3 uid="uid://rv3opb08nnaa"]
 
-[ext_resource type="Texture2D" uid="uid://dou7uq50ovnae" path="res://assets/sprites/in game assets/ground/breaking sand block-sheet.png" id="1_n8iqm"]
+[ext_resource type="Texture2D" uid="uid://dou7uq50ovnae" path="res://assets/sprites/in game assets/rough/floors/breaking sand block-sheet.png" id="1_n8iqm"]
 [ext_resource type="Script" path="res://scripts/breakable sand block.gd" id="1_wmd8f"]
+[ext_resource type="Texture2D" uid="uid://tolg0kk6a5sx" path="res://assets/sprites/in game assets/rough/floors/Assets_Breakable blocks_01_01.png" id="2_5kllu"]
 [ext_resource type="Texture2D" uid="uid://mkelkacvx0na" path="res://assets/sprites/characters/player/knight (2).png" id="2_87vsg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hocet"]
@@ -76,6 +77,38 @@ _data = {
 "break": SubResource("Animation_ap5pv")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5apm2"]
+atlas = ExtResource("2_5kllu")
+region = Rect2(1350, 0, 1350, 1350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrn76"]
+atlas = ExtResource("2_5kllu")
+region = Rect2(2700, 0, 1350, 1350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niu8e"]
+atlas = ExtResource("2_5kllu")
+region = Rect2(4050, 0, 1350, 1350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mi30u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5apm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrn76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niu8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nvmg")
+}],
+"loop": false,
+"name": &"break",
+"speed": 3.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k37pd"]
 size = Vector2(16, 16)
 
@@ -86,11 +119,23 @@ size = Vector2(14, 2)
 script = ExtResource("1_wmd8f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_3wtmh")
 animation = &"break"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_funb8")
+}
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.012, 0.012)
+sprite_frames = SubResource("SpriteFrames_mi30u")
+animation = &"break"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D2"]
 libraries = {
 "": SubResource("AnimationLibrary_funb8")
 }
@@ -113,6 +158,7 @@ one_shot = true
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

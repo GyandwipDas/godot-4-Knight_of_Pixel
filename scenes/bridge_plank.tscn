@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohrkwc3pqqau"]
+
+[ext_resource type="Texture2D" uid="uid://b7440jr7dlmaf" path="res://assets/sprites/in game assets/rough/hazards/bridge/Bridge_Props_V01_01_plank.png" id="1_b7plj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqcgn"]
+size = Vector2(13.5342, 2.2513)
+
+[node name="Bridge plank" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vqcgn")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(0.075, 0.04)
+texture = ExtResource("1_b7plj")

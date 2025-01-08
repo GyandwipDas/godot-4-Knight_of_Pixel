@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://buk8ait7i3yq"]
+
+[ext_resource type="Shader" path="res://assets/fx/dust_specs.gdshader" id="1_5t8et"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cgtq"]
+shader = ExtResource("1_5t8et")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6cgtq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

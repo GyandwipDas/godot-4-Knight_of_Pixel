@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://diw3s2nn5drlc"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+amount = 5000

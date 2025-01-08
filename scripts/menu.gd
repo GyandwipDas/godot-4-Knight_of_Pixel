@@ -11,6 +11,9 @@ const slots_menu = preload("res://scenes/slots_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Music.set("parameters/switch_to_clip", "Lm 1 - Lure Of The Maw")
+	Music.music_switcher("Lm 1 - Lure Of The Maw")
+	
 	get_tree().paused = false
 	if DirAccess.get_files_at("user://"):
 		#print(DirAccess.get_files_at("user://"))

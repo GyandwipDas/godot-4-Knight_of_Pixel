@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpy2kw04g7ak8"]
+[gd_scene load_steps=4 format=3 uid="uid://bpy2kw04g7ak8"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_w7ve1"]
-[ext_resource type="FontFile" uid="uid://cc56avyn7x0s0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_qfl23"]
+[ext_resource type="Texture2D" uid="uid://dps5u5g04qyfg" path="res://assets/menu/Gumm_Poster_Landscape_gameStart_v01_01.png" id="2_sl2ur"]
+[ext_resource type="FontFile" uid="uid://gxsumutiqwl5" path="res://assets/fonts/papyrus.ttf" id="3_snkty"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -10,60 +11,119 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_w7ve1")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -50.5
-offset_right = 35.0
-offset_bottom = 50.5
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer2"]
+scale = Vector2(0.300463, 0.300463)
+texture = ExtResource("2_sl2ur")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(718.944, 325.5)
+scale = Vector2(0.373987, 0.300463)
+texture = ExtResource("2_sl2ur")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -655.0
+offset_top = -274.0
+offset_bottom = 274.0
+grow_horizontal = 0
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "Play"
+flat = true
 
 [node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "Continue"
+flat = true
 
 [node name="New Game" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "New Game"
+flat = true
 
 [node name="Load Game" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "Load Game"
+flat = true
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "Options"
+flat = true
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qfl23")
-theme_override_font_sizes/font_size = 75
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0.462745, 0.807843, 0.741176, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_snkty")
+theme_override_font_sizes/font_size = 35
 text = "Quit"
+flat = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]

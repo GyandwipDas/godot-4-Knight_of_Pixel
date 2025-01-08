@@ -12,7 +12,6 @@ func _ready() -> void:
 		print("continuing game from slot")
 	else:
 		print("starting new game")
-		
 	pass # Replace with function body.
 
 func continue_or_start_game(slot : int):

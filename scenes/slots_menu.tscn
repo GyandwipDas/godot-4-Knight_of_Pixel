@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://xkop3dtkoloe"]
+[gd_scene load_steps=4 format=3 uid="uid://xkop3dtkoloe"]
 
 [ext_resource type="Script" path="res://scripts/continue_menu.gd" id="1_twkai"]
-[ext_resource type="FontFile" uid="uid://cc56avyn7x0s0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_cffva"]
+[ext_resource type="Texture2D" uid="uid://dps5u5g04qyfg" path="res://assets/menu/Gumm_Poster_Landscape_gameStart_v01_01.png" id="2_o3cuu"]
+[ext_resource type="FontFile" uid="uid://gxsumutiqwl5" path="res://assets/fonts/papyrus.ttf" id="3_cwd7t"]
 
 [node name="Slots Menu" type="Control"]
 layout_mode = 3
@@ -10,48 +11,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_twkai")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer2"]
+position = Vector2(575.111, 324)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_o3cuu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
+offset_left = -655.0
+offset_top = -274.0
+offset_bottom = 274.0
+grow_horizontal = 0
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Slot 1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cffva")
-theme_override_font_sizes/font_size = 75
+theme_override_fonts/font = ExtResource("3_cwd7t")
+theme_override_font_sizes/font_size = 35
 text = "Slot 1"
+flat = true
 
 [node name="Slot 2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cffva")
-theme_override_font_sizes/font_size = 75
+theme_override_fonts/font = ExtResource("3_cwd7t")
+theme_override_font_sizes/font_size = 35
 text = "Slot 2"
+flat = true
 
 [node name="Slot 3" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cffva")
-theme_override_font_sizes/font_size = 75
+theme_override_fonts/font = ExtResource("3_cwd7t")
+theme_override_font_sizes/font_size = 35
 text = "Slot 3"
+flat = true
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cffva")
-theme_override_font_sizes/font_size = 75
+theme_override_fonts/font = ExtResource("3_cwd7t")
+theme_override_font_sizes/font_size = 35
 text = "Back"
+flat = true
 
 [connection signal="menu_function" from="." to="." method="_on_menu_function"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Slot 1" to="." method="_on_slot_1_pressed"]

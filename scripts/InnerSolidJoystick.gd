@@ -16,14 +16,14 @@ func _process(delta):
 	if pressing:
 		if get_global_mouse_position().distance_to(parent.global_position) <= maxLength:
 			global_position = get_global_mouse_position()
-			outer_ring_joystick.skew = 0
+			#outer_ring_joystick.skew = 0
 		else:
 			var angle = parent.global_position.angle_to_point(get_global_mouse_position())
 			global_position.x = parent.global_position.x + cos(angle)*maxLength
 			global_position.y = parent.global_position.y + sin(angle)*maxLength
 			#skew outer ring
-			outer_ring_joystick.skew = 10
-			outer_ring_joystick.rotation = angle - 15.15
+			#outer_ring_joystick.skew = 10
+			#outer_ring_joystick.rotation = angle - 15.15
 		calculateVector()
 	else:
 		global_position = lerp(global_position, parent.global_position, delta*50)

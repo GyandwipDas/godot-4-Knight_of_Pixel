@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnepvxj0hq7ae"]
+
+[ext_resource type="Shader" path="res://assets/fx/noise.gdshader" id="1_amm80"]
+[ext_resource type="Shader" path="res://assets/fx/FadeInOutVinegette.gdshader" id="1_wprxa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3nkjc"]
+shader = ExtResource("1_amm80")
+shader_parameter/colorMode = 0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/timescale = 0.2
+shader_parameter/hScrollSpeedFactor = 1.0
+shader_parameter/vScrollSpeedFactor = 1.0
+shader_parameter/entropyFactor = 1.0
+shader_parameter/sharpness = 10.0
+shader_parameter/multiplier = 0.2
+shader_parameter/softness = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e03eh"]
+shader = ExtResource("1_wprxa")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.2
+shader_parameter/softness = 0.405
+
+[node name="FadeinOut" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Noise2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_3nkjc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Noise" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_3nkjc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vingette" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_e03eh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

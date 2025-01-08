@@ -11,11 +11,11 @@ extends Node2D
 func _ready() -> void:
 	var r = 0
 	var c = 0
-	for i in range (2):
-		for j in range (4):
-			rock_types.append(Rect2i(r,c, 16, 16))
-			r += 16
-		c += 16
+	for i in range (1): # rows
+		for j in range (4): # columns
+			rock_types.append(Rect2i(r,c, 120, 120)) # pixel dimensions
+			r += 120
+		c += 120
 		r = 0
 	var rand_index = randi() % rock_types.size()
 	#print(rand_index)
@@ -32,6 +32,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print(get_path())
 		var path = String(get_path())
 		game_manager.loadGame()
+		print("-->>path ", path, " -->>mem ", game_manager.nodeData["memory"])
 		if path[path.length() - 1] == "4" && game_manager.nodeData["memory"] == 0 :
 			killzone.monitoring = false
 			print("bonk")

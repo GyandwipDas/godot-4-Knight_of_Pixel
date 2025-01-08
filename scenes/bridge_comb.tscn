@@ -1,0 +1,526 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgy37joammlsw"]
+
+[ext_resource type="Texture2D" uid="uid://bvk11quika4da" path="res://assets/sprites/in game assets/rough/hazards/bridge/Bridge_Props_V01_01_left.png" id="1_3xys3"]
+[ext_resource type="Texture2D" uid="uid://clh3b1eq61uj7" path="res://assets/sprites/in game assets/rough/hazards/bridge/Bridge_Props_V01_01_right.png" id="2_id3rs"]
+[ext_resource type="PackedScene" uid="uid://b601epw2o68jw" path="res://scenes/bridge_segment.tscn" id="3_xjob2"]
+[ext_resource type="Texture2D" uid="uid://b3c7yk5vabmlm" path="res://assets/sprites/in game assets/rough/hazards/bridge/Bridge_Props_V01_01_bridge.png" id="4_8cg7q"]
+[ext_resource type="Texture2D" uid="uid://b7skpkjl0sy8r" path="res://assets/sprites/in game assets/rough/hazards/bridge/Bridge_Props_V01_01_rope.png" id="5_shmbg"]
+[ext_resource type="PackedScene" uid="uid://dohrkwc3pqqau" path="res://scenes/bridge_plank.tscn" id="6_4dil2"]
+[ext_resource type="Texture2D" uid="uid://dseetbt76jgj" path="res://icon.svg" id="7_4yywi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuwcf"]
+size = Vector2(8.95911, 28.0633)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70myb"]
+size = Vector2(7.99228, 30.0588)
+
+[node name="BridgeComb" type="Node2D"]
+
+[node name="BridgePropsV0101Bridge" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_8cg7q")
+
+[node name="BridgePropsV0101Rope" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_shmbg")
+
+[node name="Bridge Left End" type="StaticBody2D" parent="."]
+position = Vector2(-441, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge Left End"]
+position = Vector2(376, -8)
+rotation = -0.0952865
+shape = SubResource("RectangleShape2D_vuwcf")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bridge Left End/CollisionShape2D"]
+position = Vector2(-0.735573, 0.688018)
+rotation = 0.0952865
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_3xys3")
+
+[node name="Bridge Right End" type="StaticBody2D" parent="."]
+position = Vector2(211, 5)
+rotation = 0.130809
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge Right End"]
+position = Vector2(-144.768, 15.9075)
+rotation = -0.0870556
+shape = SubResource("RectangleShape2D_70myb")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bridge Right End/CollisionShape2D"]
+position = Vector2(-0.344513, 0.20602)
+rotation = 0.0870557
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_id3rs")
+
+[node name="Bridge Segments" type="Node2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-64.076, 8.37052)
+rotation = 0.0370943
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../../Bridge Left End")
+node_b = NodePath("../Bridge segment")
+softness = 2.5
+
+[node name="Bridge segment" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-62.075, 8.41184)
+rotation = 0.0653246
+mass = 0.01
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-60.0448, 8.54625)
+rotation = 0.0487315
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment")
+node_b = NodePath("../Bridge segment2")
+softness = 2.5
+
+[node name="Bridge segment2" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-58.063, 8.65154)
+rotation = 0.0385029
+mass = 0.01
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-56.0683, 8.85161)
+rotation = 0.0768358
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment2")
+node_b = NodePath("../Bridge segment3")
+softness = 2.5
+
+[node name="Bridge segment3" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-54.0609, 8.98679)
+rotation = 0.0446229
+mass = 0.01
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-52.0675, 9.32102)
+rotation = 0.0855855
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment3")
+node_b = NodePath("../Bridge segment4")
+softness = 2.5
+
+[node name="Bridge segment4" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-50.084, 9.63733)
+rotation = 0.0796741
+mass = 0.01
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-48.0566, 9.99063)
+rotation = 0.069872
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment4")
+node_b = NodePath("../Bridge segment5")
+softness = 2.5
+
+[node name="Bridge segment5" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-46.056, 10.1809)
+rotation = 0.0587205
+mass = 0.01
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-44.0723, 10.4933)
+rotation = 0.0689352
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment5")
+node_b = NodePath("../Bridge segment6")
+softness = 2.5
+
+[node name="Bridge segment6" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-42.1037, 10.8511)
+rotation = 0.018486
+mass = 0.01
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-40.1007, 11.0127)
+rotation = 0.0715092
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment6")
+node_b = NodePath("../Bridge segment7")
+softness = 2.5
+
+[node name="Bridge segment7" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-38.1123, 11.1993)
+rotation = 0.0269896
+mass = 0.01
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-36.1073, 11.3771)
+rotation = 0.0547135
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment7")
+node_b = NodePath("../Bridge segment8")
+softness = 2.5
+
+[node name="Bridge segment8" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-34.1454, 11.6755)
+rotation = 0.0482826
+mass = 0.01
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-32.1207, 11.802)
+rotation = 0.051409
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment8")
+node_b = NodePath("../Bridge segment9")
+softness = 2.5
+
+[node name="Bridge segment9" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-30.1372, 11.8789)
+rotation = 0.0403693
+mass = 0.01
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-28.0991, 12.1076)
+rotation = 0.0152172
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment9")
+node_b = NodePath("../Bridge segment10")
+softness = 2.5
+
+[node name="Bridge segment10" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-26.1335, 12.1237)
+rotation = 0.0166451
+mass = 0.01
+
+[node name="PinJoint2D11" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-24.1786, 12.1454)
+rotation = 0.0236812
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment10")
+node_b = NodePath("../Bridge segment11")
+softness = 2.5
+
+[node name="Bridge segment11" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-22.1049, 12.2561)
+rotation = -0.0167773
+mass = 0.01
+
+[node name="PinJoint2D12" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-20.1388, 12.2286)
+rotation = 0.0138363
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment11")
+node_b = NodePath("../Bridge segment12")
+softness = 2.5
+
+[node name="Bridge segment12" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-18.0556, 12.383)
+rotation = 0.0329762
+mass = 0.01
+
+[node name="PinJoint2D13" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-16.1081, 12.4073)
+rotation = 0.0171169
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment12")
+node_b = NodePath("../Bridge segment13")
+softness = 2.5
+
+[node name="Bridge segment13" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-14.0177, 12.4328)
+rotation = 0.00629821
+mass = 0.01
+
+[node name="PinJoint2D14" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-12.0567, 12.4769)
+rotation = 0.0168476
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment13")
+node_b = NodePath("../Bridge segment14")
+softness = 2.5
+
+[node name="Bridge segment14" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-9.99988, 12.486)
+rotation = -0.0349436
+mass = 0.01
+
+[node name="PinJoint2D15" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-8.01107, 12.4097)
+rotation = 0.0121012
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment14")
+node_b = NodePath("../Bridge segment15")
+softness = 2.5
+
+[node name="Bridge segment15" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-5.93199, 12.4899)
+rotation = 0.00523704
+mass = 0.01
+
+[node name="PinJoint2D16" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(-3.9404, 12.4254)
+rotation = -0.00888752
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment15")
+node_b = NodePath("../Bridge segment16")
+softness = 2.5
+
+[node name="Bridge segment16" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(-1.89152, 12.4736)
+rotation = 0.0140556
+mass = 0.01
+
+[node name="PinJoint2D17" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(0.0922103, 12.4585)
+rotation = 0.00134772
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment16")
+node_b = NodePath("../Bridge segment17")
+softness = 2.5
+
+[node name="Bridge segment17" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(2.17948, 12.4553)
+rotation = -0.00448363
+mass = 0.01
+
+[node name="PinJoint2D18" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(4.15046, 12.3957)
+rotation = 0.00628653
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment17")
+node_b = NodePath("../Bridge segment18")
+softness = 2.5
+
+[node name="Bridge segment18" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(6.22307, 12.3998)
+rotation = -0.037957
+mass = 0.01
+
+[node name="PinJoint2D19" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(8.15798, 12.3959)
+rotation = -0.0164156
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment18")
+node_b = NodePath("../Bridge segment19")
+softness = 2.5
+
+[node name="Bridge segment19" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(10.2505, 12.4344)
+rotation = 0.00208052
+mass = 0.01
+
+[node name="PinJoint2D20" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(12.2019, 12.3789)
+rotation = 0.00459349
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment19")
+node_b = NodePath("../Bridge segment20")
+softness = 2.5
+
+[node name="Bridge segment20" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(14.3082, 12.3604)
+rotation = -0.0294526
+mass = 0.01
+
+[node name="PinJoint2D21" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(16.2408, 12.3557)
+rotation = -0.00822391
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment20")
+node_b = NodePath("../Bridge segment21")
+softness = 2.5
+
+[node name="Bridge segment21" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(18.3352, 12.3533)
+rotation = -0.0179599
+mass = 0.01
+
+[node name="PinJoint2D22" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(20.3497, 12.2011)
+rotation = -0.00531795
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment21")
+node_b = NodePath("../Bridge segment22")
+softness = 2.5
+
+[node name="Bridge segment22" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(22.3691, 12.1103)
+rotation = -0.0802301
+mass = 0.01
+
+[node name="PinJoint2D23" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(24.3392, 12.0501)
+rotation = -0.0184577
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment22")
+node_b = NodePath("../Bridge segment23")
+softness = 2.5
+
+[node name="Bridge segment23" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(26.4259, 11.8905)
+rotation = -0.0329442
+mass = 0.01
+
+[node name="PinJoint2D24" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(28.3546, 11.8298)
+rotation = -0.00645116
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment23")
+node_b = NodePath("../Bridge segment24")
+softness = 2.5
+
+[node name="Bridge segment24" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(30.4419, 11.8025)
+rotation = -0.0479106
+mass = 0.01
+
+[node name="PinJoint2D25" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(32.4011, 11.7342)
+rotation = -0.0140279
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment24")
+node_b = NodePath("../Bridge segment25")
+softness = 2.5
+
+[node name="Bridge segment25" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(34.487, 11.5624)
+rotation = -0.0355554
+mass = 0.01
+
+[node name="PinJoint2D26" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(36.3647, 11.5226)
+rotation = -0.0238506
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment25")
+node_b = NodePath("../Bridge segment26")
+softness = 2.5
+
+[node name="Bridge segment26" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(38.5045, 11.2907)
+rotation = -0.0327979
+mass = 0.01
+
+[node name="PinJoint2D27" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(40.4706, 11.145)
+rotation = -0.015944
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment26")
+node_b = NodePath("../Bridge segment27")
+softness = 2.5
+
+[node name="Bridge segment27" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(42.5189, 11.0594)
+rotation = -0.0236319
+mass = 0.01
+
+[node name="PinJoint2D28" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(44.4902, 10.9167)
+rotation = -0.0210762
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment27")
+node_b = NodePath("../Bridge segment28")
+softness = 2.5
+
+[node name="Bridge segment28" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(46.5657, 10.7982)
+rotation = -0.023857
+mass = 0.01
+
+[node name="PinJoint2D29" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(48.5563, 10.7217)
+rotation = -0.0252202
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment28")
+node_b = NodePath("../Bridge segment29")
+softness = 2.5
+
+[node name="Bridge segment29" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(50.615, 10.6382)
+rotation = -0.0379812
+mass = 0.01
+
+[node name="PinJoint2D30" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(52.561, 10.5746)
+rotation = -0.0138009
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment29")
+node_b = NodePath("../Bridge segment30")
+softness = 2.5
+
+[node name="Bridge segment30" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(54.648, 10.4603)
+rotation = -0.0513141
+mass = 0.01
+
+[node name="PinJoint2D31" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(56.6094, 10.391)
+rotation = -0.0204833
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment30")
+node_b = NodePath("../Bridge segment31")
+softness = 2.5
+
+[node name="Bridge segment31" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(58.5568, 10.2285)
+rotation = -0.00958217
+mass = 0.01
+
+[node name="PinJoint2D32" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(60.4967, 10.1276)
+rotation = -0.00246972
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment31")
+node_b = NodePath("../Bridge segment32")
+softness = 2.5
+
+[node name="Bridge segment32" parent="Bridge Segments" instance=ExtResource("3_xjob2")]
+position = Vector2(62.4774, 9.95719)
+rotation = -0.00958217
+mass = 0.01
+
+[node name="PinJoint2D33" type="PinJoint2D" parent="Bridge Segments"]
+position = Vector2(64.4173, 9.85629)
+rotation = -0.00246972
+scale = Vector2(0.1, 0.1)
+node_a = NodePath("../Bridge segment32")
+node_b = NodePath("../../Bridge Right End")
+softness = 2.5
+
+[node name="planks" type="Node2D" parent="."]
+visible = false
+position = Vector2(-59.9212, 8.41184)
+rotation = 0.0653246
+
+[node name="Bridge plank2" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(4.34393, -2.0629)
+rotation = 0.0332391
+
+[node name="Bridge plank3" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(20.2528, -1.03444)
+rotation = 0.0260788
+
+[node name="Bridge plank4" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(36.2097, -1.06366)
+rotation = -0.0287347
+
+[node name="Bridge plank5" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(52.2796, -1.81664)
+rotation = -0.0540686
+
+[node name="Bridge plank6" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(68.3761, -2.93689)
+rotation = -0.0697078
+
+[node name="Bridge plank7" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(84.0047, -4.2502)
+rotation = -0.119865
+
+[node name="Bridge plank8" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(100.367, -6.1902)
+rotation = -0.121596
+
+[node name="Bridge plank9" parent="planks" instance=ExtResource("6_4dil2")]
+position = Vector2(116.038, -8.16342)
+rotation = -0.121596
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, 6.64724)
+scale = Vector2(2, 0.005)
+texture = ExtResource("7_4yywi")

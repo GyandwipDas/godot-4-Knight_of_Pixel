@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqoooa34c1wlk"
+path="res://.godot/imported/LM2 - Casting Shadows.mp3-3c340ed4a2816a7ad2d7c5aa653eeeed.mp3str"
+
+[deps]
+
+source_file="res://assets/music/LM2 - Casting Shadows.mp3"
+dest_files=["res://.godot/imported/LM2 - Casting Shadows.mp3-3c340ed4a2816a7ad2d7c5aa653eeeed.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

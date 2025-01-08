@@ -29,6 +29,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	print(OS.get_user_data_dir())
+	$"../../HUD/Score/debugger".text = OS.get_user_data_dir()
 	var paths
 	if area == character.area_2d:
 		game_manager.loadGame()

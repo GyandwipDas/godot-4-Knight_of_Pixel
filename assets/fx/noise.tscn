@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cprk813exgeaj"]
+
+[ext_resource type="Shader" path="res://assets/fx/noise.gdshader" id="1_fv4bm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubmav"]
+shader = ExtResource("1_fv4bm")
+shader_parameter/colorMode = 0
+shader_parameter/color = Color(0, 0, 0, 0)
+shader_parameter/timescale = 0.2
+shader_parameter/hScrollSpeedFactor = 0.0
+shader_parameter/vScrollSpeedFactor = 0.0
+shader_parameter/entropyFactor = 1.0
+shader_parameter/sharpness = 10.0
+shader_parameter/multiplier = 0.395
+shader_parameter/softness = 0.575
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ubmav")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

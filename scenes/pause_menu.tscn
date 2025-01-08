@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cc56avyn7x0s0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_baeaf"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_uxrks"]
-[ext_resource type="Shader" path="res://shaders/pause_menu_blur.gdshader" id="2_3yuat"]
+[ext_resource type="Shader" path="res://assets/fx/pause_menu_blur.gdshader" id="2_3yuat"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ir1n"]
 shader = ExtResource("2_3yuat")

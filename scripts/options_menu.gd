@@ -3,6 +3,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Music.set("parameters/switch_to_clip", "Lm 1 - Lure Of The Maw")
+	#Music.music_switcher("Lm 1 - Lure Of The Maw")
+
 	pass # Replace with function body.
 
 

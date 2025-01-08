@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbich7h4tpbuh"
+path="res://.godot/imported/LM1 - Hunger I.mp3-8a6e8c6bd2be541355bba5fe7f28f5de.mp3str"
+
+[deps]
+
+source_file="res://assets/music/LM1 - Hunger I.mp3"
+dest_files=["res://.godot/imported/LM1 - Hunger I.mp3-8a6e8c6bd2be541355bba5fe7f28f5de.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

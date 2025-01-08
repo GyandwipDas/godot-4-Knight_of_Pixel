@@ -9,6 +9,8 @@ extends Node2D
 func _ready():
 	#game_manager.loadGame()
 	camera.make_current()
+	Engine.time_scale = 1
+
 	pass
 
 

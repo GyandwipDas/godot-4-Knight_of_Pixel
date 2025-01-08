@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var area_2d: Area2D = $Area2D
 
 @onready var coyote_timer = $CoyoteTimer
-@export var SPEED = 100.0
+@export var SPEED = 90
 @export var JUMP_VELOCITY = -300.0
 @export var JOYSTICK_RUN_SPEED = 1.25
 
@@ -68,12 +68,14 @@ func _physics_process(delta):
 			if joystick.pressing:
 				velocity.x = direction * SPEED * JOYSTICK_RUN_SPEED * abs(joystick.posVector.x)
 				animated_sprite_2d.speed_scale = abs(joystick.posVector.x) * 1.5 / anim_speed_scale
+				print(animated_sprite_2d.speed_scale)
 			else: 
 				velocity.x = direction * SPEED
 			
 			if Input.is_action_pressed("shift"): #teleport/ DASH IF YOU USE is_action_just_pressed
 				velocity.x = lerp(velocity.x, velocity.x * 5, .1)
 				animated_sprite_2d.speed_scale = lerp(1.0/anim_speed_scale, 2.75/anim_speed_scale, .3)
+				#print(animated_sprite_2d.speed_scale)
 				pass
 		else:
 			velocity.x = lerp(velocity.x, 0.0, .15) #slide on leaving movement key
@@ -114,7 +116,7 @@ func _ready():
 	#arrgame_manager.stringToVec2(arr)
 
 	#loading postion from save file
-	position = Vector2(float(arr1), float(arr2)) 
+	#position = Vector2(float(arr1), float(arr2)) 
 	pass
 
 func slowmospeed():

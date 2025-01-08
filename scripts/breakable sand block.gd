@@ -2,8 +2,8 @@ extends AnimatableBody2D
 
 @onready var character = $"../../character"
 @onready var cat = $"../../cat"
-@onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var animation_player = $AnimatedSprite2D/AnimationPlayer
+@onready var animated_sprite_2d = $AnimatedSprite2D2
+@onready var animation_player = $AnimatedSprite2D2/AnimationPlayer
 @onready var timer = $Timer
 @onready var return_timer = $ReturnTimer
 @onready var collision_shape_2d = $CollisionShape2D
