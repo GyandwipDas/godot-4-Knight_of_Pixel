@@ -72,7 +72,7 @@ func loadGame():
 		json.parse(jsonString)
 		nodeData = json.get_data()
 		#print("Loaded Data", type_string(typeof(nodeData)))
-		print("Loaded Data", nodeData)
+		#print("Loaded Data", nodeData)
 
 func add_coin(): 
 	score += 1

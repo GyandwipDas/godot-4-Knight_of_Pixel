@@ -5,6 +5,7 @@ extends Area2D
 @onready var entry_rock_animation_player_2: AnimationPlayer = $"../../Falling rocks/AnimationPlayer2"
 @onready var cave_rocks_animation_player: AnimationPlayer = $"../../Falling rocks/AnimationPlayer"
 @onready var memory_cutscene: Area2D = $"../../Memories/memory_cutscene1"
+@onready var bridge_comb: Node2D = $"../../Bridge stuff/BridgeComb"
 
 
 @export var memory_count_update: bool = false
@@ -29,7 +30,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print(OS.get_user_data_dir())
+	#print(OS.get_user_data_dir())
 	$"../../HUD/Score/debugger".text = OS.get_user_data_dir()
 	var paths
 	if area == character.area_2d:
@@ -37,8 +38,8 @@ func _on_area_entered(area: Area2D) -> void:
 		#if memory_count_update:
 			#game_manager.saveGame(0, game_manager.nodeData["joystickType"], Vector2(character.position.x + x_offset, character.position.y - 50), game_manager.nodeData["level"], memory_count)
 		#else:
-		print("-->>", game_manager.nodeData)
-		print("SAVESLOT!:", SaveInfo.slot)
+		#print("-->>", game_manager.nodeData)
+		#print("SAVESLOT!:", SaveInfo.slot)
 		game_manager.saveGame(0, game_manager.nodeData["joystickType"], Vector2(character.position.x + x_offset, character.position.y - 50), game_manager.nodeData["level"], game_manager.nodeData["memory"], SaveInfo.slot)
 		
 		#deleting current and previous save blocks to stop accidentally saving previous postions
@@ -70,6 +71,15 @@ func _on_area_entered(area: Area2D) -> void:
 				get_node(paths).queue_free()
 			#print(get_path()," -> ",get_node(paths))
 			#get_node(paths).queue_free()
+			
+			#print("SAVE BLOCK->", i)
+			if i >= 13:
+				var path_to_plank6 = bridge_comb.get_child(5).get_child(5).get_path()
+				#print("-->>", bridge_comb.get_child(5).get_children())
+				bridge_comb.break_plank(6)
+				bridge_comb.break_plank(7)
+				#bridge_comb.get_child(5).get_child(5).queue_free()
+				#bridge_comb.get_child(5).get_child(6).queue_free()
 			pass
 		
 		game_manager.loadGame()
@@ -89,6 +99,10 @@ func _on_area_entered(area: Area2D) -> void:
 		elif saveblocknum == 10 && str(game_manager.nodeData["memory"]) != "1":
 			print("Mem col on")
 			memory_cutscene.turnOnCollisionShape()
+		if saveblocknum == 13:
+			print("Breaking bridge planks 6,7")
+			bridge_comb.break_plank(6)
+			bridge_comb.break_plank(7)
 		else :
 			pass
 		

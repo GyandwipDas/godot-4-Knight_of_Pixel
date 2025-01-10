@@ -96,8 +96,8 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	if Input.is_key_pressed(KEY_V):
-		print("hi")
+	#if Input.is_key_pressed(KEY_V):
+		#print("hi")
 
 
 func _on_coyote_timer_timeout():
@@ -116,7 +116,7 @@ func _ready():
 	#arrgame_manager.stringToVec2(arr)
 
 	#loading postion from save file
-	#position = Vector2(float(arr1), float(arr2)) 
+	position = Vector2(float(arr1), float(arr2)) 
 	pass
 
 func slowmospeed():

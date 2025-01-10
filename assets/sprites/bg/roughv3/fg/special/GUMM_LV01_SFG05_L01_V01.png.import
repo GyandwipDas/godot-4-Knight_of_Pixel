@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beuh7imuicu1k"
-path="res://.godot/imported/GUMM_LV01_SFG04_L01_V01.png-d24e369b86d89b19803e37f860a27df1.ctex"
+uid="uid://bjaufsybrib4j"
+path="res://.godot/imported/GUMM_LV01_SFG05_L01_V01.png-69c93b0a56e65e6ba5a4daa041aa1215.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg/roughv3/fg/special/GUMM_LV01_SFG04_L01_V01.png"
-dest_files=["res://.godot/imported/GUMM_LV01_SFG04_L01_V01.png-d24e369b86d89b19803e37f860a27df1.ctex"]
+source_file="res://assets/sprites/bg/roughv3/fg/special/GUMM_LV01_SFG05_L01_V01.png"
+dest_files=["res://.godot/imported/GUMM_LV01_SFG05_L01_V01.png-69c93b0a56e65e6ba5a4daa041aa1215.ctex"]
 
 [params]
 
