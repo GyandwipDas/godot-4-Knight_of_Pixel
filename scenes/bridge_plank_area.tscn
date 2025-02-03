@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://scripts/bridge_plank_area.gd" id="1_yic1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr8q5"]
-size = Vector2(17.4348, 20)
+size = Vector2(19.537, 24.5935)
 
 [node name="bridge_plank_area" type="Area2D"]
 script = ExtResource("1_yic1u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.29673)
 shape = SubResource("RectangleShape2D_qr8q5")
 
 [node name="first pin timer" type="Timer" parent="."]

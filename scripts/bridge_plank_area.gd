@@ -17,12 +17,19 @@ func _on_area_entered(area: Area2D) -> void:
 	#breaking planks 9, 10, 11 when lands on plank 8
 	#var plank_parent: String = get_parent().get_path()
 	#var plank_parent_num = plank_parent[plank_parent.length()-1] 
-	if area == character.area_2d && plank_parent_num == "8":
+	if area == character.area_2d && plank_parent_num >= "8":
 		get_node(plank_parent).get_parent().get_parent().break_plank(9)
 		get_node(plank_parent).get_parent().get_parent().break_plank(10)
 		get_node(plank_parent).get_parent().get_parent().break_plank(11)
 		get_node(plank_parent).get_parent().get_parent().break_bridge_segment("32")
-		Engine.time_scale = .5
+		
+		var tween = create_tween()
+		tween.tween_property(Engine, "time_scale", 0.25, 1)
+		tween.tween_property(Engine, "time_scale", 0.25, .1)
+		tween.tween_property(Engine, "time_scale", 0.25, .01)
+		
+		#Engine.time_scale = .5
+		
 
 	
 	pass # Replace with function body.

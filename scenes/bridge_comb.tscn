@@ -886,7 +886,7 @@ gravity_scale = 0.25
 
 [node name="bridge_plank_area8" parent="planks/Bridge plank8" instance=ExtResource("8_0lb41")]
 modulate = Color(0.711959, 0.524369, 0.292439, 1)
-position = Vector2(-0.369198, -11.3923)
+position = Vector2(-0.0804197, -11.3051)
 rotation = -0.00297295
 
 [node name="PinJoint2D15" type="PinJoint2D" parent="planks/Bridge plank8"]

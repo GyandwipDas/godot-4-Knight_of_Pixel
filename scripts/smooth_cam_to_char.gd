@@ -14,16 +14,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-
-func _on_area_exited(area: Area2D) -> void:
-	#if area == character.area_2d:
-		#print("char stopped falling!")
-		#camera.position_smoothing_speed = 3.5
-		#character.gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-		#character.falling_var = 1
-	pass # Replace with function body.
-
-
 func _on_area_entered(area: Area2D) -> void:
 	if area == character.area_2d:
 		print("char stopped falling!")
