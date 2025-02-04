@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	
 	if area == character.area_2d:
-		print("char falling")
+		#print("char falling")
 		#camera.position_smoothing_speed = 20
 		game_manager.falling = true
 		character.gravity = 50

@@ -33,6 +33,11 @@ directories/dtl_directory={}
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/disable_vsync=true
+movie_writer/fps=120
+
 [gui]
 
 fonts/emulate_touch_from_mouse=true

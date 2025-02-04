@@ -1,8 +1,8 @@
 extends Control
 
 const game_scene = preload("res://scenes/game.tscn")
-const options_menu_scene = preload("res://scenes/options_menu.tscn")
-const slots_menu = preload("res://scenes/slots_menu.tscn")
+#const options_menu_scene = preload("res://scenes/options_menu.tscn")
+#const slots_menu = preload("res://scenes/slots_menu.tscn")
 
 @onready var play_btn: Button = $"MarginContainer/VBoxContainer/Play"
 @onready var load_game_btn: Button = $"MarginContainer/VBoxContainer/Load Game"
@@ -44,15 +44,15 @@ func _process(delta: float) -> void:
 
 func _on_play_pressed() -> void:
 	print("Play pressed")
-	#get_tree().change_scene_to_file("res://scenes/game menu.tscn")
+	#get_tree().change_scene_to_file("res://scenes/game.tscn")
 	get_tree().change_scene_to_packed(game_scene)
 	pass # Replace with function body.
 
 
 func _on_options_pressed() -> void:
 	print("Option pressed")
-	#get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
-	get_tree().change_scene_to_packed(options_menu_scene)
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
+	#get_tree().change_scene_to_packed(options_menu_scene)
 	pass # Replace with function body.
 
 
@@ -77,6 +77,8 @@ func _on_continue_pressed() -> void:
 		print("slot", SaveInfo.slot)
 		print(file_name)
 		get_tree().change_scene_to_packed(game_scene)
+		#get_tree().change_scene_to_file("res://scenes/game.tscn")
+		
 	pass # Replace with function body.
 
 
@@ -86,8 +88,7 @@ func _on_new_game_pressed() -> void:
 	SaveInfo.new_game = true
 	print("Continue game?",SaveInfo.continue_game, "\nNew game?", SaveInfo.new_game)
 	#DirAccess.remove_absolute("user://Gumm.save")
-	#get_tree().change_scene_to_packed(game_scene)
-	get_tree().change_scene_to_packed(slots_menu)
+	get_tree().change_scene_to_file("res://scenes/slots_menu.tscn")
 	#slots_menu.new_game.emit()
 	#slots_menu.menu_function("new game");
 
@@ -100,7 +101,7 @@ func _on_load_game_pressed() -> void:
 	SaveInfo.continue_game = true
 	SaveInfo.new_game = false
 	print("Continue game?",SaveInfo.continue_game, "\nNew game?", SaveInfo.new_game)
-	get_tree().change_scene_to_packed(slots_menu)
+	get_tree().change_scene_to_file("res://scenes/slots_menu.tscn")
 	#get_tree().call_group(slots_menu, slots_menu.menu_function("continue"))
 	#slots_menu.continue_game.emit()
 	#slots_menu.menu_function("continue game");

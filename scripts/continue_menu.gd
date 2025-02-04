@@ -22,11 +22,14 @@ func continue_or_start_game(slot : int):
 		print("slot", SaveInfo.slot)
 		print(file_name)
 		get_tree().change_scene_to_packed(game_scene)
+		#get_tree().change_scene_to_file("res://scenes/game.tscn")
+
 	else:
 		print("slot", SaveInfo.slot)
 		DirAccess.remove_absolute(file_name)
 		print(file_name)
 		get_tree().change_scene_to_packed(game_scene)
+		#get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 #func menu_function():
 	#if SaveInfo.continue_game:
@@ -37,7 +40,6 @@ func continue_or_start_game(slot : int):
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main menu.tscn")
-	#get_tree().change_scene_to_packed(MAIN_MENU)
 	pass # Replace with function body.
 
 

@@ -6,12 +6,16 @@ extends Area2D
 @onready var cave_rocks_animation_player: AnimationPlayer = $"../../Falling rocks/AnimationPlayer"
 @onready var memory_cutscene: Area2D = $"../../Memories/memory_cutscene1"
 @onready var bridge_comb: Node2D = $"../../Bridge stuff/BridgeComb"
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
+@onready var dialogue_interaction = "../../Dialogues/dialogue_interaction"
 
 @export var memory_count_update: bool = false
 @export var memory_count: int = 0
 @export var x_offset: int = 0
 @export var memory_hider: int = 0
+
+
 
 #var arr = String(get_path())
 #var saveblocknum = str_to_var(arr[arr.length() - 2] + arr[arr.length() - 1]) if int(arr[arr.length() - 2]) else str_to_var(arr[arr.length() - 1])
@@ -40,7 +44,11 @@ func _on_area_entered(area: Area2D) -> void:
 		#else:
 		#print("-->>", game_manager.nodeData)
 		#print("SAVESLOT!:", SaveInfo.slot)
+		print("This is save block-> ", get_path())
 		game_manager.saveGame(0, game_manager.nodeData["joystickType"], Vector2(character.position.x + x_offset, character.position.y - 50), game_manager.nodeData["level"], game_manager.nodeData["memory"], SaveInfo.slot)
+		#if get_node(".") != get_node("../save_block8"):
+			#game_manager.saveGame(0, game_manager.nodeData["joystickType"], Vector2(character.position.x + x_offset, character.position.y - 50), game_manager.nodeData["level"], game_manager.nodeData["memory"], SaveInfo.slot)
+			
 		
 		#deleting current and previous save blocks to stop accidentally saving previous postions
 		animation_player.play("save_block")
@@ -63,14 +71,20 @@ func _on_area_entered(area: Area2D) -> void:
 			#deletes future save blocks so you can interact with them only after 1st memory TBI
 			if memory_count == 0 && save_range == "8" && game_manager.nodeData["memory"] != 1:
 				#print("!!!!!!!!!!!!!!!!")
-				get_node("../save_block11").queue_free()
+				#get_node("../save_block11").queue_free()
+				get_node("../save_block11").collision_shape_2d.set_deferred("disabled", true)
 			#elif memory_count == 0 && game_manager.nodeData["memory"] == 1 && save_range == "8":
 				
 				
 			if get_node(paths) && paths != "../save_block8":
-				get_node(paths).queue_free()
+				##get_node(paths).queue_free()
+				#print("Deleting saveblock: ", paths)
+				get_node(paths).collision_shape_2d.set_deferred("disabled", true)
 			#print(get_path()," -> ",get_node(paths))
 			#get_node(paths).queue_free()
+			
+			#if paths == "../save_block12" && get_node("../save_block8"):
+				#get_node("../save_block8").collision_shape_2d.set_deferred("disabled", true)
 			
 			#print("SAVE BLOCK->", i)
 			if i >= 13:
@@ -87,9 +101,11 @@ func _on_area_entered(area: Area2D) -> void:
 		var saveblocknum = str_to_var(arr[arr.length() - 2] + arr[arr.length() - 1]) if int(arr[arr.length() - 2]) else str_to_var(arr[arr.length() - 1])
 		#print(saveblocknum, typeof(saveblocknum))
 		#print(type_string(typeof(game_manager.nodeData["memory"])), "->", game_manager.nodeData["memory"])
-		if ((game_manager.nodeData["memory"] == 1) && (saveblocknum == 8)):
+		if ((game_manager.nodeData["memory"] == 1) && ((saveblocknum == 8) || (saveblocknum >= 12))):
 			entry_rock_animation_player_2.play("end")
 			cave_rocks_animation_player.play("RESET")
+			if saveblocknum == 8:
+				get_node("../save_block8").collision_shape_2d.set_deferred("disabled", true)
 		#print(arr[arr.length() - 2], arr[arr.length() - 1])
 		#print(saveblocknum, typeof(saveblocknum))
 		#print(memory_count)
@@ -105,5 +121,14 @@ func _on_area_entered(area: Area2D) -> void:
 			bridge_comb.break_plank(7)
 		else :
 			pass
+			
+		#deleting dialogue boxes
+		if saveblocknum >= 1 && get_node(dialogue_interaction + str(1)):
+			get_node(dialogue_interaction + str(1)).collision_shape_2d.set_deferred("disabled", true)
+		if saveblocknum >= 3 && get_node(dialogue_interaction + str(2)):
+			get_node(dialogue_interaction + str(2)).collision_shape_2d.set_deferred("disabled", true)
+		if saveblocknum >= 5 && get_node(dialogue_interaction + str(3)):
+			get_node(dialogue_interaction + str(3)).collision_shape_2d.set_deferred("disabled", true)
+		#print(get_path_to())
 		
 	pass # Replace with function body.

@@ -1,6 +1,6 @@
 extends Control
 
-const MAIN_MENU = preload("res://scenes/main menu.tscn")
+#const MAIN_MENU = preload("res://scenes/main menu.tscn")
 
 @onready var game_manager = %GameManager
 

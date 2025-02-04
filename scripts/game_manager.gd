@@ -34,6 +34,7 @@ func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vecto
 		"memory": memory,
 		"slot": slot,
 	}
+	#note next refactor add dialogue pointers(currently deleting with respect to saveblocks, very detty)
 	return saveDictionary
 	
 func saveInfo(currSlot: int = 1):
