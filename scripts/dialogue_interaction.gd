@@ -10,11 +10,6 @@ extends Area2D
 @export var dialogue_y_offset = 24
 @export var dialogue_x_offset = 0
 
-const lines: Array[String] = [
-	"I'm [wave]hungry!",
-	"Better find something to eat quick",
-	"Lets look around for something"
-]
 var area_active = false
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +24,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area == character.area_2d:
+		
 		#print("Talking")
 		#SignalBus.emit_signal("display_dialogue", dialogue_key)
 		dialogue_box_3.start_dialogue(dialogue_id, dialogue_y_offset, dialogue_x_offset)
@@ -43,10 +39,11 @@ func _on_area_entered(area: Area2D) -> void:
 				get_node(paths).set_deferred("disabled", true)
 		
 		#deleting previous dialogue boxes
+		#game_manager.load_game()
+		#game_manager.saveGame(0, game_manager.nodeData["joystickType"], game_manager.nodeData["position"], game_manager.nodeData["level"], game_manager.nodeData["memory"], SaveInfo.slot, game_manager.nodeData["dialog_ptr"]+1)
+
 		
 		
-		
-		#await DialogueManager.start_dialogue(character.position, lines, character)
 		#pass
 	pass # Replace with function body.
 

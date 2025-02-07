@@ -122,7 +122,7 @@ func _on_area_entered(area: Area2D) -> void:
 		else :
 			pass
 			
-		#deleting dialogue boxes
+		#disabling dialogue boxes
 		if saveblocknum >= 1 && get_node(dialogue_interaction + str(1)):
 			get_node(dialogue_interaction + str(1)).collision_shape_2d.set_deferred("disabled", true)
 		if saveblocknum >= 3 && get_node(dialogue_interaction + str(2)):
