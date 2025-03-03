@@ -1,6 +1,6 @@
 extends Area2D
 @onready var game_manager: Node = %GameManager
-@onready var character: CharacterBody2D = $"../../character"
+@onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var dialogue_box_3: MarginContainer = $"../dialogue_box_3"
 @onready var timer: Timer = $Timer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D

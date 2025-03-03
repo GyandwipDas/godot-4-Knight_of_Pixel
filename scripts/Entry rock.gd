@@ -1,6 +1,6 @@
 extends AnimationPlayer
 
-@onready var character: CharacterBody2D = $"../../character"
+@onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var game_manager: Node = %GameManager
 var passed_once = false
 

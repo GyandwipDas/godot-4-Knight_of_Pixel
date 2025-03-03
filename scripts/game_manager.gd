@@ -8,10 +8,11 @@ extends Node
 @onready var arrow_jump = $"../HUD/RightUI/ArrowJump"
 @onready var arrow_run = $"../HUD/RightUI/ArrowRun"
 @onready var joystick_jump = $"../HUD/RightUI/JoystickJump"
-@onready var cat = $"../cat"
-@onready var character = $"../character"
-@onready var camera = $"../Camera Stuff/Camera"
-@onready var camera_3 = $"../Camera Stuff/Camera3"
+#@onready var camera: Camera2D = $"../camera stuff/Camera"
+@onready var camera: Camera2D = $"../Camera Stuff/Camera"
+@onready var character: CharacterBody2D = $"../Characters/character"
+
+#@onready var character: CharacterBody2D = $"../characters/character"
 
 var score = 0
 var paused = false #game state
@@ -25,7 +26,7 @@ var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
 var saveSlot = "user://GummSaveInfo.save"
 #var joystickType = false #true means joystick is stick type while false means arrow type `~`'
 
-func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 0, slot: int = SaveInfo.slot):
+func save(score: int = 0, joystickType: bool = false, playerPos: Vector2 = Vector2(-221, -144), level: int = 1, memory: int = 1, slot: int = SaveInfo.slot):
 	var saveDictionary = {
 		"score" : score,
 		"joystickType": joystickType,
@@ -162,8 +163,6 @@ func switchPlayerPOVCam():
 func distFromChar(from):
 	if PlayerPOVCam == Player.char:
 		return character.global_position.x - from.global_position.x
-	else:
-		return cat.global_position.x - from.global_position.x
 
 func hintVisbility(from):
 	var visibility = (120 - abs(distFromChar(from))) / 75
@@ -206,11 +205,11 @@ func _physics_process(delta):
 		camera.global_position = character.global_position + Vector2(0, -15)
 		#print(camera.position_smoothing_speed, " ", camera.position_smoothing_enabled)
 		#camera_3.global_position = character.global_position + Vector2(0, -15)
-	if PlayerPOVCam == Player.cat:
-		camera.position_smoothing_speed = 4
-		camera.global_position = cat.global_position + Vector2(0, -15)
-		#camera_3.global_position = character.global_position + Vector2(0, -15)
-		pass
+	#if PlayerPOVCam == Player.cat:
+		#camera.position_smoothing_speed = 4
+		#camera.global_position = cat.global_position + Vector2(0, -15)
+		##camera_3.global_position = character.global_position + Vector2(0, -15)
+		#pass
 	if puzzle_pos:		#handles puzzle scenes
 		camera.position_smoothing_speed = 1
 		#print("! ", puzzle_pos)

@@ -1,6 +1,8 @@
 extends Area2D
-@onready var game_manager: Node = %GameManager
-@onready var character: CharacterBody2D = $"../../character"
+#@onready var game_manager: Node = %GameManager if SaveInfo.slot == 1 else $"../../GameManager"
+@onready var game_manager: Node 
+
+@onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var entry_rock_animation_player_2: AnimationPlayer = $"../../Falling rocks/AnimationPlayer2"
 @onready var cave_rocks_animation_player: AnimationPlayer = $"../../Falling rocks/AnimationPlayer"
@@ -14,7 +16,7 @@ extends Area2D
 @export var memory_count: int = 0
 @export var x_offset: int = 0
 @export var memory_hider: int = 0
-
+@export var level: int = 1
 
 
 #var arr = String(get_path())
@@ -25,6 +27,20 @@ func _ready() -> void:
 	#game_manager.loadGame() #might have to comment out?
 	#if game_manager.nodeData["memory"] == memory_count:
 		#self.queue_free()
+	
+	var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+
+	var savedGame = FileAccess.open(file_name, FileAccess.READ)
+	#SaveInfo.slot = slot
+	file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+	
+	var jsonString = savedGame.get_line()
+	var json = JSON.new()
+	json.parse(jsonString)
+	var nodeData = json.get_data()
+	
+	game_manager = %GameManager if nodeData["level"] == 1 else $"../../GameManager"
+	#print(game_manager.nodeData) 
 	pass # Replace with function body.
 
 
@@ -35,7 +51,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	#print(OS.get_user_data_dir())
-	$"../../HUD/Score/debugger".text = OS.get_user_data_dir()
+	#$"../../HUD/Score/debugger".text = OS.get_user_data_dir()
 	var paths
 	if area == character.area_2d:
 		game_manager.loadGame()
@@ -98,6 +114,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		game_manager.loadGame()
 		var arr = String(get_path())
+		#print(arr)
 		var saveblocknum = str_to_var(arr[arr.length() - 2] + arr[arr.length() - 1]) if int(arr[arr.length() - 2]) else str_to_var(arr[arr.length() - 1])
 		#print(saveblocknum, typeof(saveblocknum))
 		#print(type_string(typeof(game_manager.nodeData["memory"])), "->", game_manager.nodeData["memory"])

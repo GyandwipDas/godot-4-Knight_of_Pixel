@@ -1,6 +1,6 @@
 extends MarginContainer
 @onready var game_manager: Node = %GameManager
-@onready var character: CharacterBody2D = $"../../character"
+@onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var cat: CharacterBody2D = $"../../cat"
 @onready var npc1: Sprite2D = $"../../Enemies/Sprite2D"
 @onready var rich_text_label_2: RichTextLabel = $MarginContainer/RichTextLabel2

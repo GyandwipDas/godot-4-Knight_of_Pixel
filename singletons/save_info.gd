@@ -3,6 +3,7 @@ extends Node
 var slot : int = 1
 var new_game : bool = false
 var continue_game : bool = true
+var level: int = 1
 
 #var file_name: String = "user://Gumm" + str(slot) + ".save"
 var save_info_file = "user://GummSaveInfo.save"

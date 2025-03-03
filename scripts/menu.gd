@@ -1,6 +1,8 @@
 extends Control
 
-const game_scene = preload("res://scenes/game.tscn")
+#const game_scene = preload("res://scenes/level2.tscn")
+var game_scene
+
 #const options_menu_scene = preload("res://scenes/options_menu.tscn")
 #const slots_menu = preload("res://scenes/slots_menu.tscn")
 
@@ -11,6 +13,20 @@ const game_scene = preload("res://scenes/game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+	var savedGame = FileAccess.open(file_name, FileAccess.READ)
+	var nodeData 
+	
+	if savedGame:
+		while savedGame.get_position() < savedGame.get_length():
+			var jsonString = savedGame.get_line()
+			var json = JSON.new()
+			json.parse(jsonString)
+			nodeData = json.get_data()
+			game_scene = preload("res://scenes/level1.tscn") if nodeData["level"] == 1 else preload("res://scenes/level2.tscn")
+	else:
+		game_scene = preload("res://scenes/level1.tscn")
+	
 	#Music.set("parameters/switch_to_clip", "Lm 1 - Lure Of The Maw")
 	Music.music_switcher("Lm 1 - Lure Of The Maw")
 	

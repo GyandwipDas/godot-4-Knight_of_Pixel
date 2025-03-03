@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var rock_types : Array[Rect2i]
-@onready var character: CharacterBody2D = $"../../../character"
+@onready var character: CharacterBody2D = $"../../../Characters/character"
 @onready var killzone_collision: CollisionShape2D = $Killzone/CollisionShape2D
 @onready var game_manager: Node = %GameManager
 @onready var killzone: Area2D = $Killzone

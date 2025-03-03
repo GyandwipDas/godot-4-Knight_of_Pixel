@@ -2,7 +2,7 @@ extends Area2D
 @onready var camera = $"../Camera"
 @onready var camera_2 = $"../Camera2"
 @onready var cat = $"../../cat"
-@onready var character = $"../../character"
+@onready var character = $"../../Characters/character"
 @onready var camera_3: Camera2D = $"../Camera3"
 @onready var timer: Timer = $Timer
 @onready var game_manager: Node = %GameManager

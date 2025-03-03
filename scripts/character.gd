@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var joystick = $"../HUD/LeftUI/Joystick"
+#@onready var joystick = $"../../HUD/LeftUI/Joystick"
+@onready var joystick: Node2D = $"../../HUD/LeftUI/Joystick"
+
 #@onready var inner_solid_joystick = $InnerSolidJoystick
-@onready var game_manager = %GameManager
+@onready var game_manager: Node = $"../../GameManager"
+#@onready var game_manager: Node = %GameManager
+#@onready var game_manager: Node = %GameManager if SaveInfo.slot == 1 else $"../../GameManager"
+
 @onready var area_2d: Area2D = $Area2D
 
 @onready var coyote_timer = $CoyoteTimer
@@ -19,12 +24,12 @@ var falling_var = 1
 var anim_speed_scale = 1 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-#var gravity = 200
-
+#var tween_time = create_tween()
+var time_scale
 
 func _physics_process(delta):
 	#print(position)
-	
+	#print(Engine.time_scale)
 	 #Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * (delta/falling_var)
@@ -105,7 +110,8 @@ func _on_coyote_timer_timeout():
 
 func _ready():
 	#print(game_manager.nodeData["playerPos"])
-	#game_manager.loadGame()
+	game_manager.loadGame()
+	print(game_manager.nodeData["playerPos"])
 	var arr = game_manager.nodeData["playerPos"]
 	
 	#string(JSON) to vector2 There has to be a better way jeez
@@ -119,10 +125,42 @@ func _ready():
 	position = Vector2(float(arr1), float(arr2)) 
 	pass
 
-func slowmospeed():
-	gravity = 800
-	anim_speed_scale = 10
+func slowmospeed(to_time_scale: float, lerp_time_scale: bool = false, time_scale_wt: int = 0.5):
+	if lerp_time_scale:
+		#lerp(velocity.x, velocity.x * 5, .1)
+		#lerp(gravity, grav, lerp_scale)
+		#lerp(Engine.time_scale, 0, 1)
+		print("LERPING ENGINE TIME SCALE")
+		#lerp(Engine.time_scale, to_time_scale, time_scale_wt)
+		var tween_time = create_tween()
+		#tween_time.tween_property(animated_sprite_2d, "scale", Vector2(1,1), 1)
+		tween_time.tween_property(Engine, "time_scale", to_time_scale, 1 )
+		tween_time.connect("finished", on_slowmo_done)
+		time_scale = to_time_scale
+	else:
+		#gravity = 800
+		#gravity = grav
+		#Engine.time_scale = 0.65
+		Engine.time_scale = to_time_scale
+		#lerp(animated_sprite_2d.scale, 1, 1)
+	#anim_speed_scale = 10
+	#anim_speed_scale = anim_speed
+
+
+#func slowmospeed():
+	#gravity = 800
+	#anim_speed_scale = 2
+	
+	
+func on_slowmo_done():
+	print("Slowmo done")
+	Engine.time_scale = time_scale
 
 func normalspeed():
+	print("RESETING TIME SCALE")
+	var tween_time = create_tween()
+	tween_time.tween_property(Engine, "time_scale", 1, .1)
+	tween_time.set_loops(0)
 	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-	anim_speed_scale = 1
+	#anim_speed_scale = 1
+	Engine.time_scale = 1

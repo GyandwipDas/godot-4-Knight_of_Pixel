@@ -1,8 +1,8 @@
 extends Area2D
 
-@onready var character: CharacterBody2D = $"../../character"
+@onready var character: CharacterBody2D = $"../../Characters/character"
 var memory_scene = preload("res://scenes/memory.tscn")
-@onready var game_manager: Node = %GameManager
+@onready var game_manager: Node 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var save_block_10: Area2D = $"../../Save blocks/save_block10"
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -10,6 +10,21 @@ var memory_scene = preload("res://scenes/memory.tscn")
 
 
 func _ready() -> void:
+				
+	var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+
+	var savedGame = FileAccess.open(file_name, FileAccess.READ)
+	#SaveInfo.slot = slot
+	file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+	
+	var jsonString = savedGame.get_line()
+	var json = JSON.new()
+	json.parse(jsonString)
+	var nodeData = json.get_data()
+	
+	game_manager = %GameManager if nodeData["level"] == 1 else $"../../GameManager"
+	
+	
 	game_manager.loadGame()
 	if game_manager.nodeData["memory"] > 0:
 		#print("Deleting mem num1")
@@ -34,7 +49,7 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area == character.area_2d:
 		print("Showing cutscene")
-		get_tree().change_scene_to_file("res://scenes/memory.tscn")
+		get_tree().change_scene_to_packed(memory_scene)
 		animation_player.play("memory_block")
 		game_manager.loadGame()
 		var arr = game_manager.nodeData["playerPos"]

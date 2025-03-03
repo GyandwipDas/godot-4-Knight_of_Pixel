@@ -1,5 +1,5 @@
 extends Area2D
-@onready var character: CharacterBody2D = $"../../../../../character"
+@onready var character: CharacterBody2D = $"../../../../../Characters/character"
 @onready var first_pin_timer: Timer = $"first pin timer"
 @onready var second_pin_timer: Timer = $"second pin timer"
 @onready var delete_timer: Timer = $"delete timer"
@@ -8,8 +8,7 @@ extends Area2D
 
 func _on_area_entered(area: Area2D) -> void:
 	var plank_parent: String = get_parent().get_path()
-	var plank_parent_num = plank_parent[plank_parent.length()-1] 
-	
+	var plank_parent_num = plank_parent[plank_parent.length()-1]
 	#breaking plank 4 when on plank 3
 	if area == character.area_2d && plank_parent_num == "3":
 		get_node(plank_parent).get_parent().get_parent().break_plank(4)

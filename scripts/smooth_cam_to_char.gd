@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var character: CharacterBody2D = $"../../character"
+@onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var cat: CharacterBody2D = $"../../cat"
 @onready var game_manager: Node = %GameManager
 @onready var camera: Camera2D = $"../Camera"

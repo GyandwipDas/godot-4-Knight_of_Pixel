@@ -1,6 +1,6 @@
 extends Area2D
 @onready var timer: Timer = $Timer
-@onready var character: CharacterBody2D = $"../../../character"
+@onready var character: CharacterBody2D = $"../../../Characters/character"
 @onready var bridge_comb: Node2D = $"../../BridgeComb"
 
 @export var time_to_break : float = 0.0
