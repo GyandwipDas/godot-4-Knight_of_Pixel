@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6onk2yq8oreg"]
+
+[ext_resource type="Script" path="res://scripts/baby_croc.gd" id="1_a01pr"]
+[ext_resource type="Texture2D" uid="uid://b4s82uif2ckfp" path="res://assets/sprites/characters/croc/croc_test1.png" id="1_c2ra4"]
+[ext_resource type="Texture2D" uid="uid://coi6j1wpagoxl" path="res://assets/sprites/characters/croc/croc_test2.png" id="2_m0h6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2io"]
+size = Vector2(24, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6q5j"]
+atlas = ExtResource("2_m0h6o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66mv6"]
+atlas = ExtResource("2_m0h6o")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwpeb"]
+atlas = ExtResource("2_m0h6o")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i41r4"]
+atlas = ExtResource("2_m0h6o")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xg4m"]
+atlas = ExtResource("1_c2ra4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i60wo"]
+atlas = ExtResource("1_c2ra4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs3cg"]
+atlas = ExtResource("1_c2ra4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq7un"]
+atlas = ExtResource("1_c2ra4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oefcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6q5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66mv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwpeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i41r4")
+}],
+"loop": true,
+"name": &"on_back",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xg4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i60wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs3cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq7un")
+}],
+"loop": true,
+"name": &"on_belly",
+"speed": 1.0
+}]
+
+[node name="Baby croc" type="CharacterBody2D"]
+script = ExtResource("1_a01pr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mo2io")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -2)
+sprite_frames = SubResource("SpriteFrames_oefcv")
+animation = &"on_back"
+frame_progress = 0.594689
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_mo2io")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

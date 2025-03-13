@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=4 uid="uid://dfhv7b1uoyylk"]
+[gd_scene load_steps=86 format=4 uid="uid://dfhv7b1uoyylk"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_wcv7v"]
 [ext_resource type="Texture2D" uid="uid://ehvgm1sahb3i" path="res://assets/UI/Switch Btn.png" id="2_c1bqa"]
@@ -24,7 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://cupjv6q84wdcp" path="res://assets/sprites/bg/parallax bg/level2/4_ Trees.png" id="22_vd3xe"]
 [ext_resource type="Texture2D" uid="uid://diok8r48u72up" path="res://assets/sprites/bg/parallax bg/level2/5_ Floor Platform.png" id="23_gdkoq"]
 [ext_resource type="PackedScene" uid="uid://jl65pv07q6st" path="res://scenes/save_block.tscn" id="24_83v1y"]
+[ext_resource type="PackedScene" uid="uid://dlckofxtqlry" path="res://scenes/Croc.tscn" id="25_7abm1"]
 [ext_resource type="PackedScene" uid="uid://dluvhoig6gvxn" path="res://scenes/memory_cutscene.tscn" id="25_7kngi"]
+[ext_resource type="PackedScene" uid="uid://c6onk2yq8oreg" path="res://scenes/baby_croc.tscn" id="25_ngpeb"]
+[ext_resource type="PackedScene" uid="uid://b8dv8fs1iqccf" path="res://scenes/animation_player.tscn" id="26_kyvbe"]
+[ext_resource type="Script" path="res://scripts/croc_spawn_area.gd" id="27_v3t6j"]
+[ext_resource type="PackedScene" uid="uid://cu1x0itauxuie" path="res://scenes/rope_swing_comb.tscn" id="29_kqacq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d6ub"]
 bg_color = Color(0, 0, 0, 0.447059)
@@ -549,13 +554,85 @@ texture = ExtResource("16_n6by3")
 13:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_pt2s7"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qkh2h")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxxb7"]
 size = Vector2(147.081, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_khg75"]
+
+[sub_resource type="Animation" id="Animation_njc0t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/1st Croc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-664, 18)]
+}
+
+[sub_resource type="Animation" id="Animation_mlmxw"]
+resource_name = "follow_croc"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/1st Croc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-661, 1), Vector2(-532, -33)]
+}
+
+[sub_resource type="Animation" id="Animation_6ghy3"]
+resource_name = "follow_croc_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/1st Croc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-532, -33), Vector2(-450, -36)]
+}
+
+[sub_resource type="Animation" id="Animation_xhexm"]
+resource_name = "get_up_croc"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/1st Croc:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-664, 18), Vector2(-661, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2b8g"]
+_data = {
+"RESET": SubResource("Animation_njc0t"),
+"follow_croc": SubResource("Animation_mlmxw"),
+"follow_croc_2": SubResource("Animation_6ghy3"),
+"get_up_croc": SubResource("Animation_xhexm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6df4c"]
+size = Vector2(451.75, 219.5)
 
 [node name="Level2" type="Node2D"]
 
@@ -709,12 +786,12 @@ scale = Vector2(2.49405, 2.49405)
 [node name="Main_TM" type="TileMapLayer" parent="BG"]
 z_index = -1
 use_parent_material = true
-tile_map_data = PackedByteArray("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")
+tile_map_data = PackedByteArray("AADt/wAAAAAAAAAAAADt/wEAAAAAAAEAAADu/wAAAAAAAAAAAADu/wEAAAAAAAEAAADv/wAAAAAAAAAAAADv/wEAAAAAAAEAAADw/wAAAAAAAAAAAADw/wEAAAAAAAEAAADx/wAAAAAAAAAAAADx/wEAAAAAAAEAAADy/wAAAAAAAAAAAADy/wEAAAAAAAEAAADz/wAAAAAAAAAAAADz/wEAAAAAAAEAAAD0/wAAAAAAAAAAAAD0/wEAAAAAAAEAAAD1/wAAAAAAAAAAAAD1/wEAAAAAAAEAAAD2/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD3/wEAAAAAAAEAAADf/wEAAAAAAAEAAADg/wAAAAAAAAAAAADg/wEAAAAAAAEAAADh/wAAAAAAAAAAAADh/wEAAAAAAAEAAADi/wAAAAAAAAAAAADi/wEAAAAAAAEAAADj/wAAAAAAAAAAAADj/wEAAAAAAAEAAADk/wAAAAAAAAAAAADk/wEAAAAAAAEAAADp/wAAAAAAAAAAAADp/wEAAAAAAAEAAADq/wAAAAAAAAAAAADq/wEAAAAAAAEAAADr/wAAAAAAAAAAAADr/wEAAAAAAAEAAADs/wAAAAAAAAAAAADs/wEAAAAAAAEAAADf/wAAAAAAAAAAAAD2/wEAAAAAAAEAAAD4/wAAAAAAAAEAAAD5/wAAAAAAAAEAAAD9/wAAAAAAAAEAAAD+/wAAAAAAAAEAAAD6/wAAAAAAAAEAAAD7/wAAAAAAAAEAAAD8/wAAAAAAAAEAAAD//wAAAAAAAAEAAAAAAAAAAAAAAAEAAAD3////AAABAAAAAAD4////AAAAAAAAAAD5//7/AAAAAAAAAAD6//7/AAAAAAAAAAD7//7/AAAAAAAAAAD8////AAAAAAAAAAD7////AAAAAAAAAAD6////AAAAAAAAAAD5////AAAAAAAAAAABAAAAAAAAAAAAAAADAP7/AAAAAAEAAAAEAP7/AAAAAAEAAAAFAP7/AAAAAAEAAAAGAP7/AAAAAAEAAAAHAP7/AAAAAAEAAAAIAP7/AAAAAAEAAAAJAP7/AAAAAAEAAAAKAP7/AAAAAAEAAAALAP7/AAAAAAEAAAAMAP7/AAAAAAEAAAANAP7/AAAAAAEAAAAOAP7/AAAAAAEAAAAPAP7/AAAAAAEAAAAQAP7/AAAAAAEAAAARAP7/AAAAAAEAAAASAP7/AAAAAAEAAAATAP7/AAAAAAEAAAAUAP7/AAAAAAEAAAAVAP7/AAAAAAEAAAAWAP7/AAAAAAEAAAAXAP7/AAAAAAEAAAAYAP7/AAAAAAEAAAAZAP7/AAAAAAEAAAAaAP7/AAAAAAEAAAAbAP7/AAAAAAEAAAAkAP7/AAAAAAEAAAAlAP7/AAAAAAEAAAAmAP7/AAAAAAEAAAAnAP7/AAAAAAEAAAAoAP7/AAAAAAEAAAApAP7/AAAAAAEAAAAqAP7/AAAAAAEAAAArAP7/AAAAAAEAAAAsAP7/AAAAAAEAAAAtAP7/AAAAAAEAAAAuAP7/AAAAAAEAAAAvAP7/AAAAAAEAAAAwAP7/AAAAAAEAAAAxAP7/AAAAAAEAAAAyAP7/AAAAAAEAAAAzAP7/AAAAAAEAAAA0AP7/AAAAAAEAAAA1AP7/AAAAAAEAAAA2AP7/AAAAAAEAAAA3AP7/AAAAAAEAAAA4AP7/AAAAAAEAAAA5AP7/AAAAAAEAAAA6AP7/AAAAAAEAAAA7AP7/AAAAAAEAAAA8AP7/AAAAAAEAAAA9AP7/AAAAAAEAAAA+AP7/AAAAAAEAAAA/AP7/AAAAAAEAAABAAP7/AAAAAAEAAABBAP7/AAAAAAEAAAA=")
 tile_set = SubResource("TileSet_pt2s7")
 
 [node name="Main_TM2" type="TileMapLayer" parent="BG"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AADe/wAAAAAEAAsAAADd/wAAAAAEAAsAAADc/wAAAAAEAAsAAADb/wAAAAAEAAsAAADa/wAAAAAEAAsAAADZ/wAAAAAEAAsAAADY/wAAAAAEAAsAAADX/wAAAAAEAAsAAADW/wAAAAAEAAsAAAA=")
+tile_map_data = PackedByteArray("AADe/wAAAAAEAAsAAADd/wAAAAAEAAsAAADc/wAAAAAEAAsAAADb/wAAAAAEAAsAAADa/wAAAAAEAAsAAADZ/wAAAAAEAAsAAADY/wAAAAAEAAsAAADX/wAAAAAEAAsAAADW/wAAAAAEAAsAAADV//7/AAADAAcAAADV////AAADAAgAAADV//z/AAADAAcAAADV//3/AAADAAgAAADV//r/AAACAAQAAADe/wEAAAAGAAoAAADd/wEAAAAGAAoAAADc/wEAAAAGAAoAAADb/wEAAAAGAAoAAADa/wEAAAAGAAoAAADZ/wEAAAAGAAoAAADY/wEAAAAGAAoAAADX/wEAAAAGAAoAAADW/wEAAAAGAAoAAADV/wEAAAAGAAoAAADV/wAAAAAAAAAAAADU/wAAAAAAAAAAAADT/wAAAAAEAAkAAADS/wAAAAAEAAkAAADS/wEAAAAGAAoAAADT/wEAAAAGAAoAAADU/wEAAAAGAAoAAADS/wIAAAAGAAoAAADT/wIAAAAGAAoAAADU/wIAAAAGAAoAAADV/wIAAAAGAAoAAADW/wIAAAAGAAoAAADX/wIAAAAGAAoAAADe/wIAAAAGAAoAAADd/wIAAAAGAAoAAADc/wIAAAAGAAoAAADb/wIAAAAGAAoAAADa/wIAAAAGAAoAAADZ/wIAAAAGAAoAAADY/wIAAAAGAAoAAADS/wMAAAAGAAoAAADT/wMAAAAGAAoAAADU/wMAAAAGAAoAAADV/wMAAAAGAAoAAADd/wMAAAAGAAoAAADe/wMAAAAGAAoAAADc/wMAAAAGAAoAAADb/wMAAAAGAAoAAADa/wMAAAAGAAoAAADZ/wMAAAAGAAoAAADY/wMAAAAGAAoAAADX/wMAAAAGAAoAAADW/wMAAAAGAAoAAAA=")
 tile_set = SubResource("TileSet_pt2s7")
 
 [node name="Camera Stuff" type="Node" parent="."]
@@ -818,17 +895,115 @@ texture = ExtResource("23_gdkoq")
 [node name="Save blocks" type="Node" parent="."]
 
 [node name="save_block1" parent="Save blocks" instance=ExtResource("24_83v1y")]
-position = Vector2(-416, -2)
+position = Vector2(-521, 1)
+level = 2
+
+[node name="save_block2" parent="Save blocks" instance=ExtResource("24_83v1y")]
+position = Vector2(-234, 0)
 level = 2
 
 [node name="Characters" type="Node" parent="."]
 
 [node name="character" parent="Characters" instance=ExtResource("17_6rb6q")]
-position = Vector2(-592, -33)
-collision_layer = 4
+position = Vector2(815, -50)
+collision_layer = 6
+
+[node name="baby crocs" type="Node" parent="Characters/character"]
+
+[node name="Baby croc" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(-157, -5)
+
+[node name="Baby croc2" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(-88, -36)
+
+[node name="Baby croc3" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(-55, -20)
+
+[node name="Baby croc4" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+z_index = 4
+position = Vector2(276, -35)
+
+[node name="Baby croc5" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+z_index = 6
+position = Vector2(299, -45)
+rotation = -0.495987
+
+[node name="Baby croc6" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(300, -35)
+
+[node name="Baby croc7" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(315, -43)
+
+[node name="Baby croc8" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+z_index = 6
+position = Vector2(324, -36)
+
+[node name="Baby croc9" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(331, -44)
+rotation = 0.459643
+
+[node name="Baby croc10" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(347, -36)
+
+[node name="Baby croc11" parent="Characters/character/baby crocs" instance=ExtResource("25_ngpeb")]
+position = Vector2(433, -35)
+
+[node name="1st Croc" parent="Characters" instance=ExtResource("25_7abm1")]
+z_index = -1
+position = Vector2(-664, 18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Characters/1st Croc"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_i2b8g")
+}
+
+[node name="Animation Player" parent="Characters/1st Croc/AnimationPlayer" instance=ExtResource("26_kyvbe")]
+position = Vector2(-500, -9)
+anim_to_play = "get_up_croc"
+pause_player_time = 1.5
+action_to_sim = "char_move_left"
+
+[node name="Animation Player2" parent="Characters/1st Croc/AnimationPlayer" instance=ExtResource("26_kyvbe")]
+position = Vector2(-472, -9)
+anim_to_play = "follow_croc"
+
+[node name="Animation Player3" parent="Characters/1st Croc/AnimationPlayer" instance=ExtResource("26_kyvbe")]
+position = Vector2(-357, -12)
+anim_to_play = "follow_croc_2"
+
+[node name="Timer2" type="Timer" parent="Characters/1st Croc"]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="Characters"]
+script = ExtResource("27_v3t6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Area2D"]
+position = Vector2(-477.125, -77.25)
+shape = SubResource("RectangleShape2D_6df4c")
+
+[node name="Rope swings" type="Node" parent="."]
+
+[node name="RopeSwingComb" parent="Rope swings" instance=ExtResource("29_kqacq")]
+position = Vector2(315, -118)
+
+[node name="RopeSwingComb2" parent="Rope swings" instance=ExtResource("29_kqacq")]
+position = Vector2(35, -75)
+
+[node name="RopeSwingComb3" parent="Rope swings" instance=ExtResource("29_kqacq")]
+position = Vector2(458, -111)
+
+[node name="RopeSwingComb4" parent="Rope swings" instance=ExtResource("29_kqacq")]
+position = Vector2(526, -111)
+
+[node name="RopeSwingComb5" parent="Rope swings" instance=ExtResource("29_kqacq")]
+position = Vector2(872, -109)
 
 [node name="Memories" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="memory_cutscene1" parent="Memories" instance=ExtResource("25_7kngi")]
-position = Vector2(-232, -657)
+position = Vector2(-241, -484)
+
+[connection signal="timeout" from="Characters/1st Croc/Timer2" to="Characters/Area2D" method="_on_timer_2_timeout"]
+[connection signal="area_exited" from="Characters/Area2D" to="Characters/Area2D" method="_on_area_exited"]

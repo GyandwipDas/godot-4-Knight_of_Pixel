@@ -12,7 +12,3 @@ func _ready():
 	Engine.time_scale = 1
 
 	pass
-
-
-func _on_smooth_cam_to_char_area_entered(_area: Area2D) -> void:
-	pass # Replace with function body.

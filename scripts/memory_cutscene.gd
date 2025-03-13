@@ -4,7 +4,6 @@ extends Area2D
 var memory_scene = preload("res://scenes/memory.tscn")
 @onready var game_manager: Node 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var save_block_10: Area2D = $"../../Save blocks/save_block10"
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -14,18 +13,18 @@ func _ready() -> void:
 	var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
 
 	var savedGame = FileAccess.open(file_name, FileAccess.READ)
-	#SaveInfo.slot = slot
-	file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
 	
 	var jsonString = savedGame.get_line()
 	var json = JSON.new()
 	json.parse(jsonString)
-	var nodeData = json.get_data()
+	var saveData = json.get_data()
 	
-	game_manager = %GameManager if nodeData["level"] == 1 else $"../../GameManager"
+	game_manager = %GameManager if saveData["level"] == 1 else $"../../GameManager"
+	#game_manager = $"../../GameManager"
 	
 	
 	game_manager.loadGame()
+	print("->", game_manager.nodeData)
 	if game_manager.nodeData["memory"] > 0:
 		#print("Deleting mem num1")
 		for i in range(1, game_manager.nodeData["memory"] + 1):

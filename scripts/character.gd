@@ -122,7 +122,7 @@ func _ready():
 	#arrgame_manager.stringToVec2(arr)
 
 	#loading postion from save file
-	position = Vector2(float(arr1), float(arr2)) 
+	#position = Vector2(float(arr1), float(arr2)) 
 	pass
 
 func slowmospeed(to_time_scale: float, lerp_time_scale: bool = false, time_scale_wt: int = 0.5):

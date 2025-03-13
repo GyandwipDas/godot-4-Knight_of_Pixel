@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=4 uid="uid://dt1so02vkm5kh"]
+[gd_scene load_steps=210 format=4 uid="uid://dt1so02vkm5kh"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wjdq1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_76qsu"]
@@ -97,6 +97,7 @@
 [ext_resource type="PackedScene" uid="uid://c0mfixxccus0o" path="res://scenes/smooth_cam_to_char.tscn" id="95_84ks4"]
 [ext_resource type="PackedScene" uid="uid://kwfdhdtkd8sp" path="res://scenes/slowmo_area.tscn" id="96_a57v6"]
 [ext_resource type="Script" path="res://scripts/Falling Rocks Memory 1.gd" id="96_fh24h"]
+[ext_resource type="Script" path="res://scripts/slowmo_and_change_to_next_level.gd" id="97_j5idc"]
 [ext_resource type="PackedScene" uid="uid://6fyvsan7avcs" path="res://scenes/falling_rocks.tscn" id="97_kvby8"]
 [ext_resource type="Script" path="res://scripts/slowmo.gd" id="98_x8gro"]
 [ext_resource type="Script" path="res://scripts/Entry rock.gd" id="99_o6f6x"]
@@ -996,36 +997,12 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_jp7cd"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(43, 137)]
-}
 
 [sub_resource type="Animation" id="Animation_xxcwe"]
 resource_name = "null_anim"
 length = 1.5
 loop_mode = 1
 step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(43, 137), Vector2(15, 137), Vector2(60, 137)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swj2q"]
 _data = {
@@ -1033,8 +1010,8 @@ _data = {
 "null_anim": SubResource("Animation_xxcwe")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkkuc"]
-size = Vector2(310, 340)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbn6b"]
+size = Vector2(310, 252)
 
 [sub_resource type="Animation" id="Animation_c3ehs"]
 length = 0.001
@@ -1394,6 +1371,7 @@ tile_set = SubResource("TileSet_auna3")
 
 [node name="water_TM" type="TileMapLayer" parent="BG"]
 modulate = Color(0.336608, 0.336608, 0.336608, 1)
+z_index = 6
 scale = Vector2(0.1, 0.1)
 tile_map_data = PackedByteArray("AACfABUAAAAAAAAAAAA6AhgAAAAAAAAAAADjARkAAAAAAAAAAACNARoAAAAAAAAAAAA3ARsAAAAAAAAAAAD3AiIAAAAAAAAAAABBA+X/AAAAAAAAAAC7A+f/AAAAAAAAAACVCFv/AAAAAAAAAADrCFv/AAAAAAAAAACVCG3/AAAAAAAAAAD0CG3/AAAAAAAAAACUCH//AAAAAAAAAADyCH//AAAAAAAAAACUCJH/AAAAAAAAAADyCJH/AAAAAAAAAADyCKL/AAAAAAAAAACUCKL/AAAAAAAAAACUCLT/AAAAAAAAAADzCLT/AAAAAAAAAADzCMb/AAAAAAAAAACUCMb/AAAAAAAAAAB+BOn/AAAAAAAAAADWBOn/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_sktqv")
@@ -2294,7 +2272,7 @@ rotateVal = "r"
 [node name="Characters" type="Node" parent="."]
 
 [node name="character" parent="Characters" instance=ExtResource("87_qo6tr")]
-position = Vector2(427, -866)
+position = Vector2(3214, -609)
 collision_layer = 4
 
 [node name="cat" parent="Characters" instance=ExtResource("88_5wy7o")]
@@ -2434,9 +2412,14 @@ position = Vector2(3533, -415)
 to_time_scale = 0.5
 time_scale_wt = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Stuff/AnimationPlayer/SlowmoArea"]
-position = Vector2(43, 137)
-shape = SubResource("RectangleShape2D_qkkuc")
+[node name="Slow mo and change to next level" type="Area2D" parent="Camera Stuff"]
+position = Vector2(3582, -317)
+script = ExtResource("97_j5idc")
+to_time_scale = 0.35
+time_scale_wt = 1.0
+
+[node name="Slow mo and change to next level" type="CollisionShape2D" parent="Camera Stuff/Slow mo and change to next level"]
+shape = SubResource("RectangleShape2D_lbn6b")
 
 [node name="Falling rocks" type="Node2D" parent="."]
 
@@ -2678,6 +2661,8 @@ position = Vector2(-346, -11)
 scale = Vector2(0.0341472, 0.0327864)
 texture = ExtResource("112_whgm1")
 
+[connection signal="area_entered" from="Camera Stuff/Slow mo and change to next level" to="Camera Stuff/Slow mo and change to next level" method="_on_area_entered"]
+[connection signal="area_exited" from="Camera Stuff/Slow mo and change to next level" to="Camera Stuff/Slow mo and change to next level" method="_on_area_exited"]
 [connection signal="area_entered" from="Falling rocks/AnimationPlayer/Slowmo area" to="Falling rocks/AnimationPlayer/Slowmo area" method="_on_area_entered"]
 [connection signal="area_exited" from="Falling rocks/AnimationPlayer/Slowmo area" to="Falling rocks/AnimationPlayer/Slowmo area" method="_on_area_exited"]
 [connection signal="area_entered" from="Falling rocks/AnimationPlayer2/Area2D" to="Falling rocks/AnimationPlayer2" method="_on_area_2d_area_entered"]
