@@ -38,6 +38,10 @@ window/stretch/aspect="expand"
 movie_writer/disable_vsync=true
 movie_writer/fps=120
 
+[global_group]
+
+Rope=""
+
 [gui]
 
 fonts/emulate_touch_from_mouse=true

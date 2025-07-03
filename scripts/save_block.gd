@@ -1,6 +1,6 @@
 extends Area2D
 #@onready var game_manager: Node = %GameManager if SaveInfo.slot == 1 else $"../../GameManager"
-@onready var game_manager: Node 
+var game_manager
 
 @onready var character: CharacterBody2D = $"../../Characters/character"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -9,7 +9,7 @@ extends Area2D
 @onready var memory_cutscene: Area2D = $"../../Memories/memory_cutscene1"
 @onready var bridge_comb: Node2D = $"../../Bridge stuff/BridgeComb"
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var croc: CharacterBody2D = $"../../Characters/Croc"
+@onready var croc: CharacterBody2D = $"../../Characters/1st Croc"
 
 @onready var dialogue_interaction = "../../Dialogues/dialogue_interaction"
 
@@ -109,7 +109,9 @@ func _on_area_entered(area: Area2D) -> void:
 				
 				#print("SAVE BLOCK->", i)
 				if i >= 13:
-					var path_to_plank6 = bridge_comb.get_child(5).get_child(5).get_path()
+					#var path_to_plank6 = bridge_comb.get_child(5).get_child(5).get_path()
+					#var path_to_plank6 = bridge_comb.get_child(4).get_child(4).get_path()
+					#print(bridge_comb.get_children())
 					#print("-->>", bridge_comb.get_child(5).get_children())
 					bridge_comb.break_plank(6)
 					bridge_comb.break_plank(7)

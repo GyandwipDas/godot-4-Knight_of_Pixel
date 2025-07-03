@@ -17,90 +17,70 @@ debug_color = Color(0, 0, 0, 0.42)
 [node name="Bridge segment" parent="RopeSegments" instance=ExtResource("1_tosbx")]
 position = Vector2(-0.0528958, 12.3438)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
 [node name="Bridge segment2" parent="RopeSegments" instance=ExtResource("1_tosbx")]
 position = Vector2(-0.052896, 17.3906)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
 [node name="Bridge segment3" parent="RopeSegments" instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000384092, 22.4339)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
 [node name="Bridge segment4" parent="RopeSegments" instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000384569, 27.4726)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment5" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment5" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000385046, 32.5145)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment6" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment6" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000383854, 37.5677)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment7" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment7" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000384808, 42.6068)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment8" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment8" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000385284, 47.649)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment9" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment9" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000385761, 52.7071)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
-[node name="Bridge segment10" parent="RopeSegments" instance=ExtResource("1_tosbx")]
+[node name="Bridge segment10" parent="RopeSegments" groups=["Rope"] instance=ExtResource("1_tosbx")]
 position = Vector2(-0.000386238, 57.765)
 rotation = 1.5708
-collision_layer = 2
-collision_mask = 2
-mass = 1.0
+mass = 0.5
 gravity_scale = 1.0
 linear_damp = 5.0
 
@@ -108,60 +88,70 @@ linear_damp = 5.0
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000383128, 9.8196)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../StaticBody2D")
 node_b = NodePath("../../RopeSegments/Bridge segment")
+bias = 0.9
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.0131454, 14.8721)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment")
 node_b = NodePath("../../RopeSegments/Bridge segment2")
+bias = 0.4
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000383258, 19.924)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment2")
 node_b = NodePath("../../RopeSegments/Bridge segment3")
+bias = 0.4
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.0003829, 24.9729)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment3")
 node_b = NodePath("../../RopeSegments/Bridge segment4")
+bias = 0.4
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000382662, 30.0021)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment4")
 node_b = NodePath("../../RopeSegments/Bridge segment5")
+bias = 0.4
 
 [node name="PinJoint2D6" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000382423, 35.0544)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment5")
 node_b = NodePath("../../RopeSegments/Bridge segment6")
+bias = 0.4
 
 [node name="PinJoint2D7" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000383377, 40.1022)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment6")
 node_b = NodePath("../../RopeSegments/Bridge segment7")
+bias = 0.4
 
 [node name="PinJoint2D8" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000383854, 45.1448)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment7")
 node_b = NodePath("../../RopeSegments/Bridge segment8")
+bias = 0.9
 
 [node name="PinJoint2D9" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000383377, 50.1789)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment8")
 node_b = NodePath("../../RopeSegments/Bridge segment9")
+bias = 0.9
 
 [node name="PinJoint2D10" type="PinJoint2D" parent="Pinjoints"]
 position = Vector2(-0.000382423, 55.2544)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../RopeSegments/Bridge segment9")
 node_b = NodePath("../../RopeSegments/Bridge segment10")
+bias = 0.9

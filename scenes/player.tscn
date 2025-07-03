@@ -131,12 +131,13 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yx0j"]
-radius = 4.0
-height = 25.5
+radius = 6.0
+height = 23.5
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_myipr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -155,10 +156,15 @@ shape = SubResource("CapsuleShape2D_c4nay")
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
 gravity_space_override = 1
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.25)
 shape = SubResource("CapsuleShape2D_5yx0j")
 
+[node name="RopeTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="RopeTimer" to="." method="_on_rope_timer_timeout"]

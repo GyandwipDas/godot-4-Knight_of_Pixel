@@ -124,11 +124,25 @@ signal menu_function
 
 func _ready() -> void:
 	
-	if SaveInfo.continue_game:
-		print("continuing game from slot")
-	else:
-		print("starting new game")
+	#if SaveInfo.continue_game:
+		#print("continuing game from slot")
+	#else:
+		#print("starting new game")
 		
+	#file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+		#
+	#var savedGame = FileAccess.open(file_name, FileAccess.READ)
+	##
+	#var jsonString = savedGame.get_line()
+	#var json = JSON.new()
+	#json.parse(jsonString)
+	#savedData = json.get_data()
+	#
+	
+	pass # Replace with function body.
+
+func continue_or_start_game(slot : int):
+	
 	file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
 		
 	var savedGame = FileAccess.open(file_name, FileAccess.READ)
@@ -138,12 +152,12 @@ func _ready() -> void:
 	json.parse(jsonString)
 	savedData = json.get_data()
 	
-	
-	pass # Replace with function body.
-
-func continue_or_start_game(slot : int):
-	
 	SaveInfo.slot = slot
+	
+	if SaveInfo.continue_game:
+		print("continuing game from slot")
+	else:
+		print("starting new game")
 
 	if SaveInfo.continue_game:
 		print("slot", SaveInfo.slot)

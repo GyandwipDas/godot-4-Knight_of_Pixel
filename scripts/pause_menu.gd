@@ -2,8 +2,21 @@ extends Control
 
 #const MAIN_MENU = preload("res://scenes/main menu.tscn")
 
-@onready var game_manager = %GameManager
+var game_manager
 
+func _ready() -> void:
+	var file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+
+	var savedGame = FileAccess.open(file_name, FileAccess.READ)
+	#SaveInfo.slot = slot
+	file_name = "user://Gumm" + str(SaveInfo.slot) + ".save"
+	
+	var jsonString = savedGame.get_line()
+	var json = JSON.new()
+	json.parse(jsonString)
+	var nodeData = json.get_data()
+	
+	game_manager = %GameManager if nodeData["level"] == 1 else $"../../GameManager"
 
 func _on_resume_pressed():
 	game_manager.pauseGame()

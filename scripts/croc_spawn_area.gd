@@ -1,8 +1,8 @@
 extends Area2D
 
-@onready var croc: CharacterBody2D = $"../Croc"
+@onready var croc: CharacterBody2D = $"../1st Croc"
 @onready var character: CharacterBody2D = $"../character"
-@onready var timer_2: Timer = $"../Croc/Timer2"
+@onready var timer_2: Timer = $"../1st Croc/Timer2"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

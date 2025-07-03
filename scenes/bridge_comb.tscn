@@ -722,7 +722,6 @@ node_b = NodePath("../../Bridge Right End")
 softness = 5.0
 
 [node name="planks" type="Node2D" parent="."]
-visible = false
 position = Vector2(-59.9212, 8.41184)
 rotation = 0.0653246
 
